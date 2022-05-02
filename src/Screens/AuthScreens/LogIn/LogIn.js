@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import WrapperContainer from '../../../Component/WrapperContainer'
 import imagePaths from '../../../constants/imagePaths';
 import { styles } from './style';
@@ -11,6 +11,7 @@ import navigationString from '../../../navigation/navigationString';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 import actions from '../../../redux/actions';
+import { introStyles } from '../AppIntroSlider/style';
 
 const LogIn = ({ navigation }) => {
 
@@ -69,7 +70,7 @@ const LogIn = ({ navigation }) => {
     try {
       await fbLogIn(_resInfoCallback)
       console.log("data details",)
-      
+
 
     } catch (error) {
       console.log("error raisedkl;kjh", error)
@@ -93,16 +94,9 @@ const LogIn = ({ navigation }) => {
       <View style={{
         height: height,
       }}>
-        <View style={{ flex: 0.45, alignItems: "center" }}>
-          <Image source={imagePaths.LOGO_IMG} style={{
-            width: moderateScale(width / 2.5),
-            height: moderateScale(width / 2.5),
-            resizeMode: 'contain',
-            marginTop: moderateScale(50)
-          }} />
-
+        <View style={styles.logoView}>
+          <Image source={imagePaths.LOGO_IMG} style={styles.logoImageStyle} />
           <Text style={styles.priavcyTrems}>{strings.PRIVACY_TERM}</Text>
-
         </View>
         <View style={{ flex: 0.55 }}>
           <ButtonComponent
@@ -111,12 +105,16 @@ const LogIn = ({ navigation }) => {
             onpress={() => { navigation.navigate(navigationString.PHONE_LOGIN) }}
           />
           <Text style={styles.orText}> {strings.OR}</Text>
+
+
           <ButtonComponent leftIcon={true}
             icon={imagePaths.GOOGLE_LOGO}
             style={{ backgroundColor: "white", }}
             textColor={colors.black}
             buttonText={strings.GOOGLE_LOGIN}
             onpress={googleLogin} />
+
+
           <ButtonComponent
             leftIcon={true}
             icon={imagePaths.FACEBOOK_LOGO}
@@ -124,13 +122,12 @@ const LogIn = ({ navigation }) => {
             textColor={colors.black}
             buttonText={strings.FACEBOOK_LOGIN}
             onpress={onFBlogIn} />
+
           <ButtonComponent
             leftIcon={true}
             icon={imagePaths.APPLE_LOGO}
             style={{ backgroundColor: "white", }}
-            buttonText={strings.APPLE_LOGIN}
-          />
-
+            buttonText={strings.APPLE_LOGIN}/>
 
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
             <Text style={{ fontSize: textScale(13), color: colors.white }}>{strings.NEW_USER}</Text>

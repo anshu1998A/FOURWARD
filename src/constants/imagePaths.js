@@ -11,4 +11,9 @@ export default {
     ADD_POST: require('../assets/images/ic_add.png'),
     NOTIFICATION: require('../assets/images/ic_notify.png'),
     PROFILE: require('../assets/images/ic_user.png'),
+    SETTING: require('../assets/images/ic_dots.png'),
+    DIRECTION: require('../assets/images/ic_direction.png'),
+    HOME_ICON: require('../assets/images/ic_home_icon.png'),
+    LOCATION: require('../assets/images/ic_loc.png'),
+
 };

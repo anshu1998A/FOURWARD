@@ -14,7 +14,7 @@ import {
 
 export const styles = StyleSheet.create({
     logoView: {
-        backgroundColor: '#2E2E2E',
+         flex: 0.45, alignItems: "center" 
     },
         phoneview: {
         backgroundColor: '#2E2E2E',
@@ -24,6 +24,12 @@ export const styles = StyleSheet.create({
         marginTop: 80
        
     },
+    logoImageStyle:{
+        width: moderateScale(width / 2.5),
+        height: moderateScale(width / 2.5),
+        resizeMode: 'contain',
+        marginTop: moderateScale(50)
+      },
     container: {
         // flex: 1,
         justifyContent: 'center',
@@ -33,17 +39,12 @@ export const styles = StyleSheet.create({
     },
     
     logoimage: {
-
         width: moderateScale(121),
         height: moderateScale(178)
 
     },
     privacyView:{
-      
-        height: moderateScale(48),
-        // lineHeight:20
-        // width: moderateScale(328),
-        // marginVertical: 30
+      height: moderateScale(48),
         
     },
     priavcyTrems:{
@@ -53,20 +54,15 @@ export const styles = StyleSheet.create({
         marginLeft: moderateScale(24),
         marginRight: moderateScale(23),
         paddingVertical:moderateScale(16),paddingTop:moderateScaleVertical(50)
-        
-        // lineHeight:16
 
     },
-    orView:{
-       
-      
-
-    },
+   
     orText:{
         color: colors.white,
         fontSize: textScale(16),
         textAlign:'center'
 
-    }
+    },
+    logInButtonsView: { flexDirection: 'row', justifyContent: 'center' }
 
 })

@@ -8,8 +8,9 @@ import navigationString from '../../../navigation/navigationString';
 import strings from '../../../constants/lang';
 import ButtonComponent from '../../../Component/Button';
 import colors from '../../../styles/colors';
-import { height } from '../../../styles/responsiveSize';
+import { height, moderateScale, textScale } from '../../../styles/responsiveSize';
 import imagePaths from '../../../constants/imagePaths';
+import styles from './styles';
 
 const OtpScreen = ({ navigation, route }) => {
 

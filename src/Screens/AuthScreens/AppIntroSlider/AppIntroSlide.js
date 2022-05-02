@@ -40,7 +40,7 @@ const slides = [
   },
 ];
 
-const AppIntroSlide = ({navigation}) => {
+const AppIntroSlide = () => {
   const data = () => {
     actions.Intro(false);
   };
@@ -48,10 +48,10 @@ const AppIntroSlide = ({navigation}) => {
   const renederItem = ({item}) => {
     return (
       <View style={introStyles.tutMainStyle}>
-        <View style={{justifyContent: 'center', flex: 0.5}}>
+        <View style={introStyles.mainDescription}>
           <Image source={item.image} style={introStyles.tutImage} />
         </View>
-        <View style={{flex: 0.5, justifyContent: 'center'}}>
+        <View style={introStyles.mainDescription}>
           <View style={introStyles.tittleTextView}>
             <Text style={introStyles.tittleText}>{item.tittle} </Text>
           </View>

@@ -39,9 +39,12 @@ export default {
     WRITE_DESCRIPTION: 'Write description here...',
     ADD_LOC: 'Add location',
     PROFILE: 'Profile',
-    TIME: '20 min go',
+    TIME: '20 min ago',
     CHANGE_PASSWORD: 'Change Password',
-    SIGN_OUT: 'Signout'
+    SIGN_OUT: 'Signout',
+    COMMENTS: 'Comments',
+    LIKES: 'Likes',
+    LOREM_TEXT: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.'
 
     
 

@@ -14,7 +14,7 @@ export default Routes = () => {
     const intro = useSelector(state => state?.appIntro?.introData)
 
     console.log('intro', intro);
-   
+
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>

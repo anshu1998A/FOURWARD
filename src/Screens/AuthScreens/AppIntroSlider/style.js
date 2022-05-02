@@ -74,4 +74,5 @@ export const introStyles = StyleSheet.create({
         right: moderateScale(110),
         marginBottom:moderateScale(15)
     },
+    mainDescription:{flex: 0.5, justifyContent: 'center'}
 })

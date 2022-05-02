@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import colors from '../../../styles/colors'
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../../styles/responsiveSize'
-export const styles= StyleSheet.create({
+const styles= StyleSheet.create({
     headText:{
         fontSize: textScale(24),
         color: colors.white
@@ -26,3 +26,4 @@ export const styles= StyleSheet.create({
         fontSize: textScale(15)
     }
 })
+export default styles
