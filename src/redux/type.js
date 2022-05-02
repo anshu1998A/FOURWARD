@@ -1,5 +1,5 @@
 export default {
-    APP_INTRO: 'Tutorial',
+    INTRO: 'Intro',
     LOGIN: 'login',
     LOGOUT: 'LogOut',
     SIGNUP: 'SignUp',

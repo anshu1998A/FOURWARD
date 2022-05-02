@@ -3,25 +3,30 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import AuthStack from './AuthStack';
-import introSlider from './IntroSlider';
-import MainStack from './MainStack';
-
+import AuthStack from './AuthStack'
+import MainStack from './MainStack'
+import IntroSlider from './IntroSlider'
 const Stack = createStackNavigator();
 
 export default Routes = () => {
-    const user = useSelector(state => state.userStatus.userData)
-    
-    console.log("sdcfgvbhjnkm", user)
-    const intro = useSelector(state=> state.appIntro )
+    const userData = useSelector(state => state?.userStatus?.userData)
+    console.log("Userdata>>>", userData)
+    const intro = useSelector(state => state?.appIntro?.introData)
 
-    
-    return(
+    console.log('intro', intro);
+   
+    return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown:false}}>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {
-                    !!intro ? introSlider(Stack):!!user?.access_token ? MainStack(Stack):AuthStack(Stack)
+                    intro
+                        ? IntroSlider(Stack)
+                        : !!(userData || userData?.access_token)
+                            ? MainStack(Stack)
+                            : AuthStack(Stack)
                 }
+
+                {/* {userData ? MainStack(Stack) : AuthStack(Stack)} */}
             </Stack.Navigator>
         </NavigationContainer>
     )

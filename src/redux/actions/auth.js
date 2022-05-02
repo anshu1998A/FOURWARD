@@ -7,11 +7,11 @@ const { dispatch } = store;
 
 
 export const logIN = (data) => {
+    console.log('userdata----', data);
     dispatch({
-        type: type.LOGIN,
-        payload: data,
-
-    })
+      type: type.LOGIN,
+      payload: data,
+    });
 }
 
 export function signUp(data) {
@@ -34,9 +34,11 @@ export const login = (data) => {
     // });
 };
 
-export const Intro = () => {
+export const Intro = (data) => {
+    console.log("data>>>>>>>>>>>>>>>>>>", data)
     dispatch({
-        type: type.APP_INTRO,
+        type: type.INTRO,
+        payload: data,
     })
 };
 

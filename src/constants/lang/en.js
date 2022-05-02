@@ -4,6 +4,7 @@ export default {
     GET_STARTED: 'GET STARTED',
     PHONE_LOGIN: 'Log In with Phone number',
     OR: 'or',
+    NOTIFICATION : 'Notification',
     GOOGLE_LOGIN: 'Log In with Google',
     FACEBOOK_LOGIN: 'Log In with Facebook',
     APPLE_LOGIN: 'Log In with Apple',
@@ -38,6 +39,7 @@ export default {
     WRITE_DESCRIPTION: 'Write description here...',
     ADD_LOC: 'Add location',
     PROFILE: 'Profile',
+    TIME: '20 min go',
     CHANGE_PASSWORD: 'Change Password',
     SIGN_OUT: 'Signout'
 

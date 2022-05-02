@@ -6,5 +6,10 @@ export default {
     HOME: 'Home',
     OTP: 'OTP',
     SET_PASSWORD: 'Set Password',
-    INTRO_SCREEN: "Tut Screen"
+    INTRO_SCREEN: "Tut Screen",
+    SEARCH: 'Search',
+    ADD_POST: 'Add Post',
+    NOTIFICATION: 'Notification',
+    PROFILE: 'Profile',
+   
 }

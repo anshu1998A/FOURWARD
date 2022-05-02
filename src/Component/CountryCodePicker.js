@@ -51,7 +51,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.sliderBGColor,
     borderRadius: moderateScale(10),
-    marginRight: moderateScale(5),
+  paddingLeft:moderateScale(10),
     height: moderateScale(50),
   
     marginTop: moderateScaleVertical(32),

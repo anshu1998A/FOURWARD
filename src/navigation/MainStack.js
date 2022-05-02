@@ -1,12 +1,12 @@
-import React from 'react'
-import Home from '../Screens/Home/Home';
-import OtpScreen from '../Screens/OTP/OtpScreen';
+import React from 'react';
+import HomeStack from './HomeStack'
 import navigationString from './navigationString';
 
 export default function MainStack(Stack) {
   return (
     <>
-    <Stack.Screen name={navigationString.HOME} component={Home}/>
+
+     <Stack.Screen name={navigationString.HOME} component={HomeStack} />
     </>
   )
 }

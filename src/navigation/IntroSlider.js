@@ -1,14 +1,12 @@
-
-import { StackActions } from '@react-navigation/native'
 import React from 'react'
-import AppIntroSlide from '../Screens/AppIntroSlider/AppIntroSlide';
+import AppIntroSlide from '../Screens/AuthScreens/AppIntroSlider/AppIntroSlide';
 import navigationString from './navigationString';
 
-const introSlider = (Stack) => {
+const IntroSlider = (Stack) => {
   return (
     <>
     <Stack.Screen  name ={navigationString.INTRO_SCREEN} component={AppIntroSlide} />
     </>
   )
 }
-export default introSlider
+export default IntroSlider
