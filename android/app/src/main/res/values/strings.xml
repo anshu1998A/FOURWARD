@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TASK_PROJECT</string>
+
+<string name="facebook_app_id">973192993336554</string>
+<string name="fb_login_protocol_scheme">fb973192993336554</string>
+<string name="facebook_client_token">0334df7870a5e8fb062e2d37b31bb4f7</string>
+
+
+</resources>
