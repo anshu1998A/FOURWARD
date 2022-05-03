@@ -20,12 +20,16 @@ function BottomTabNAvigation() {
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
+          tabBarShowLabel: false,
       tabBarStyle: {
-        backgroundColor: colors.sliderBGColor,
-         borderTopWidth: moderateScaleVertical(0),
-        //  paddingVertical:0,
+        position: 'absolute',
+    backgroundColor: colors.sliderBGColor,
+    borderTopLeftRadius: moderateScale(8),
+    borderTopRightRadius: moderateScale(8),
+    borderTopWidth: moderateScale(0),
+    paddingVertical:moderateScaleVertical(10)
       },
-      tabBarShowLabel: false ,
+   
       
     }}>
       <Tab.Screen

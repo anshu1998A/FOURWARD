@@ -161,6 +161,7 @@ export function apiPut(endPoint, data, headers = {}) {
 
 
 export function setItem(key, data) {
+	console.log("introdatata>>>>>>>>>>@@T#&*@",data)
 	data = JSON.stringify(data);
 	return AsyncStorage.setItem(key, data);
 }

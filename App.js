@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Route from './src/navigation/route';
+import Route from './src/navigation/Route';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
@@ -12,10 +12,10 @@ const App = () => {
 
 
   useEffect(() => {
-    getItem('intro').then((res)=>{
+    getItem('introdata').then((res)=>{
       console.log(res,"getItem>>>res");
       if(res != null){
-        actions.Intro()
+        actions.Intro(res)
       }
     })
 
@@ -36,7 +36,7 @@ const App = () => {
   
   return (
     <Provider store={store}>
-      <Route />
+    <Route/>
     </Provider>
 
   )

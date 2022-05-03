@@ -20,7 +20,7 @@ const userStatus = (state = inititalState, action) => {
         console.log('res', res)
       })
       return {
-        userData: undefined
+        userData: null
       }
     }
     default: return state;

@@ -11,7 +11,7 @@ const appIntro = (state = initialState, action) => {
       const data = action.payload;
       setItem('introdata', data);
       console.log('intro>>>>', data);
-      return {...state, introdata: data};
+      return {...state, introData: data};
 
     default:
       return state;
