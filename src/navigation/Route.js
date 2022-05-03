@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import AuthStack from './AuthStack'
 import MainStack from './MainStack'
 import IntroSlider from './IntroSlider'
+import navigationString from './navigationString';
+import SetPassword from '../Screens/AuthScreens/SetPassword/SetPassword';
 const Stack = createStackNavigator();
 
 export default Routes = () => {
@@ -18,15 +20,18 @@ export default Routes = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-                {
+                {/* {
                     intro
                         ? IntroSlider(Stack)
                         : !!(userData || userData?.access_token)
                             ? MainStack(Stack)
                             : AuthStack(Stack)
-                }
+                } */}
 
-                {/* {userData ? MainStack(Stack) : AuthStack(Stack)} */}
+                {userData ? MainStack(Stack) : AuthStack(Stack)}
+
+                <Stack.Screen name={navigationString.SET_PASSWORD} component={SetPassword} />
+
             </Stack.Navigator>
         </NavigationContainer>
     )

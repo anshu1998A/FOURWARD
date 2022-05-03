@@ -15,5 +15,10 @@ export default {
     DIRECTION: require('../assets/images/ic_direction.png'),
     HOME_ICON: require('../assets/images/ic_home_icon.png'),
     LOCATION: require('../assets/images/ic_loc.png'),
-
+    USER_PROFILE: require('../assets/images/ic_usrr_1.png'),
+    CHANGE_PASSWORD: require('../assets/images/ic_key.png'),
+    SIGNOUT: require('../assets/images/ic_logout.png'),
+    PROFILE_IMAGE1: require('../assets/images/postIamge.jpeg'),
+    POST_IMAGE1: require('../assets/images/PostIMAGES.jpeg'),
+    PROFILE_IMAGE2: require('../assets/images/Pro.jpeg')
 };

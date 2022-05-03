@@ -11,5 +11,8 @@ export default {
     ADD_POST: 'Add Post',
     NOTIFICATION: 'Notification',
     PROFILE: 'Profile',
+    EDIT_PROFILE: 'Edit Profile',
+    BOTTOM: 'bottom',
+    HOMESTACK: 'Home stack'
    
 }

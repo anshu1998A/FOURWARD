@@ -35,7 +35,10 @@ const SignUp = ({ navigation }) => {
   }
 
   const verifyData = async () => {
+
+
     if (password === confirmPassword) {
+
       let apiData = {
         first_name: fisrt_name,
         last_name: last_name,
@@ -46,18 +49,14 @@ const SignUp = ({ navigation }) => {
         confirmPassword: confirmPassword
       }
       console.log("user Data", apiData)
-      try {
-        const res = await actions.signUp(apiData)
-        console.log("SignUp api Data is *************", res)
-        actions.signUp(res)
-        alert("User signup successfully....!!!")
-        navigation.navigate(navigationString.OTP)
-        // console.log("fdvbchdmjcyhdyuikduytvk", val)
-      }
-      catch (error) {
-        console.log("error raised in signinup", error)
-        alert(error?.message)
-      }
+      actions.signUp(apiData)
+        .then(res => {
+          alert('User SignUp Succesfully')
+          navigation.navigate(navigationString.OTP)
+        })
+        .catch(e => {
+          alert(e)
+        })
     }
     else {
       alert("Password and confirm password does not match")
@@ -116,7 +115,7 @@ const SignUp = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.MOBILE_NUMBER}
                   placeholderTextColor={colors.whiteOpacity50}
-                  value={null}
+                  value={phone}
                   onChangetext={(phone) => changeHandler({ phone })}
                 />
               </View>

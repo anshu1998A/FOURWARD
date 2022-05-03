@@ -23,7 +23,7 @@ const OtpScreen = ({ navigation, route }) => {
             <HeadComp
                 leftImage={true}
                 leftImageIcon ={imagePaths.BACK_ARROW}
-                onPress={() => { navigation.navigate(navigationString.SIGNUP) }} />
+                onPress={() => { navigation.navigate(navigationString.PHONE_LOGIN) }} />
             <ScrollView>
                 <View style={{ height: height }}>
                     <View style={styles.otpEnetrView}>

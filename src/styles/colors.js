@@ -127,6 +127,7 @@ export default {
   bgColor: '#2E2E2E',
   SIGNUP: '#41CCFF',
   sub_Text: '#A6A6A6',
-  forgot_Text: '#32C5FF'
-  
+  forgot_Text: '#32C5FF',
+  sub_theme: '#F43738',
+  time_text: '#B5B0B0'
 };

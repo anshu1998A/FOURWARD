@@ -1,7 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import imagePaths from '../constants/imagePaths';
-import colors from '../styles/colors';
 import { moderateScale, moderateScaleVertical, textScale, width } from '../styles/responsiveSize';
 
 function HeadComp({
@@ -33,16 +32,20 @@ function HeadComp({
   onPress = '',
   ...props
 }) {
+  const navigation = useNavigation();
   return (
     <View
       style={{
-        marginHorizontal: moderateScale(20),
+        marginHorizontal: moderateScale(24),
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginVertical:moderateScaleVertical(20),
+        // marginTop: moderateScale(20)
+        // backgroundColor:'pink'
       }}>
-      <View style={{ flex: 0.33, flexDirection: 'row' }}>
+      <View style={{  flexDirection: 'row', justifyContent:'space-between',  }}>
         {leftImage && (
-          <TouchableOpacity  {...props} onPress={onPress}>
+          <TouchableOpacity  {...props} onPress={()=>navigation.goBack()} style={{alignSelf:'center',marginRight: moderateScale(16)}}>
             <Image source={leftImageIcon} style={leftImageStyle} />
           </TouchableOpacity>
         )}
@@ -62,7 +65,7 @@ function HeadComp({
           </TouchableOpacity>
         )}
       </View>
-      <View style={{ flex: 0.33, flexDirection: 'row' }}>
+      <View style={{ flex: 0.33, flexDirection: 'row', justifyContent:'flex-end' }}>
         {rightImage && (
           <Image source={rightImageIcon} style={rightImageStyle} />
         )}
@@ -72,38 +75,6 @@ function HeadComp({
           </TouchableOpacity>
         )}
       </View>
-      {/* {left && (<View>
-
-        <TouchableOpacity onPress={onPress}>
-
-          <Image source={imagePaths.BACK_ARROW} style={styles.imagesize} />
-
-        </TouchableOpacity>
-      </View>
-      )}
-      {leftText && (
-        <TouchableOpacity activeOpacity={1} {...props}>
-          <Text style={leftTextStyle}>{leftTitle}</Text>
-        </TouchableOpacity>
-      )} */}
-      {/* <Text
-        style={{
-          fontSize: textScale(20),
-          color: colors.black,
-        }}>
-        {Title}
-      </Text>
-      {right && (
-        <TouchableOpacity onPress={onPress}>
-          <Text
-            style={{
-              fontSize: textScale(20),
-              color: colors.black,
-            }}>
-            {rightTitle}
-          </Text>
-        </TouchableOpacity>
-      )} */}
     </View>
   );
 }

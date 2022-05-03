@@ -6,7 +6,7 @@ export default function MainStack(Stack) {
   return (
     <>
 
-     <Stack.Screen name={navigationString.HOME} component={HomeStack} />
+     <Stack.Screen name={navigationString.HOMESTACK} component={HomeStack} />
     </>
   )
 }

@@ -11,6 +11,7 @@ import {
 import imagePaths from '../constants/imagePaths';
 import strings from '../constants/lang';
 import colors from '../styles/colors';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function HomeCard({
     userProfile = '',
@@ -36,9 +37,9 @@ export default function HomeCard({
                     <Image source={imagePaths.DIRECTION} />
                 </View>
             </View>
-            <View>
-                <Image source={userProfile} style={styles.postStyle} />
-            </View>
+            <TouchableOpacity>
+                <Image source={postImage} style={styles.postStyle} />
+            </TouchableOpacity>
             <View style={{ 
                 marginHorizontal: moderateScale(16),
                 marginVertical: moderateScale(10)
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     },
     postStyle: {
         width: moderateScale(width - 68),
-        height: moderateScale(width - 40),
+        height: moderateScale(width - 68),
         marginVertical: moderateScaleVertical(16),
         alignSelf: 'center',
     },

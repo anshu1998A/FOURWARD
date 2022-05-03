@@ -22,9 +22,11 @@ function BottomTabNAvigation() {
       headerShown: false,
       tabBarStyle: {
         backgroundColor: colors.sliderBGColor,
-         borderTopWidth: moderateScaleVertical(0)
+         borderTopWidth: moderateScaleVertical(0),
+        //  paddingVertical:0,
       },
-      tabBarShowLabel: false 
+      tabBarShowLabel: false ,
+      
     }}>
       <Tab.Screen
         name={navigationString.HOME}
@@ -93,8 +95,8 @@ function BottomTabNAvigation() {
           ),
         }} />
 
-
-      <Tab.Screen name={navigationString.PROFILE} component={Profile}
+      <Tab.Screen name={navigationString.PROFILE} 
+      component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image

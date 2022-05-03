@@ -39,14 +39,18 @@ export default {
     WRITE_DESCRIPTION: 'Write description here...',
     ADD_LOC: 'Add location',
     PROFILE: 'Profile',
-    TIME: '20 min ago',
+    TIME: ' 20 min ago',
     CHANGE_PASSWORD: 'Change Password',
     SIGN_OUT: 'Signout',
     COMMENTS: 'Comments',
     LIKES: 'Likes',
-    LOREM_TEXT: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.'
-
-    
+    LOREM_TEXT: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in turpis luctus.',
+    EDIT_PROFILE: 'Edit Profile',
+    USER_NAME1: "Russell Gordon ",
+    USER_NAME2: 'Sara ',
+    NEW_POST: 'added a new post.',
+    SAVE: 'Save',
+    LOCATION: 'Sector 28 D, Chandigarh'
 
 
 }

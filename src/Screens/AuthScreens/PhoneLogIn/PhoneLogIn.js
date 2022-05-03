@@ -18,37 +18,48 @@ import imagePaths from '../../../constants/imagePaths';
 const PhoneLogIn = ({ navigation }) => {
   const [data, setData] = useState({
     phone: '',
-    password: ''
+    password: '',
+    logInType: 'admin',
   })
-  const { phone, password } = data
+  const { phone, password, logInType } = data
   const updateData = data => setData(state => ({ ...state, ...data }));
 
+  const [show, setShow] = useState();
 
-  const onLogin = () => {
-    console.log("login details", phone, password)
+  const showPassword = () => {
+    setShow(!show);
+  };
+  const onLogin = async () => {
     let apiData = {
       phone: phone,
-      phone_code: '91',
-      device_token: 'scdsawwr67889ghghgh',
+      phone_code: "91",
+      device_token: 'KDKFJDKFDFKDFDF',
       device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
-      loginType: 'admin',
       password: password,
-    };
-
-    actions.login(apiData).then(res => {
-      console.log('LOGIN api DATA_+++++', res);
+      loginType: logInType
+    }
+    actions.login(apiData).then( res=>{
+        console.log("fdhgf",res)
     })
-      .catch(err => {
-        console.log(err, "err");
-        alert(err?.message);
-      });
+    .catch( err=>{
+      alert(err)
+    })
+  //   try {
+  //     const res = await actions.login(apiData)
+  //     console.log("Login api res_+++++",res)
+  //     alert("User Login successfully....!!!")
+  //     actions.login(navigation.navigate(navigationString.HOME))
+  // } catch (error) {
+  //     console.log("error raised", error)
+  //     alert(error?.message)
+  // }
   }
   return (
     <WrapperContainer>
       <HeadComp
         leftImage={true}
         leftImageIcon={imagePaths.BACK_ARROW}
-        onPress={() => { navigation.navigate(navigationString.LOGIN) }} />
+        onPress={() => { navigation.navigate(navigationString.LOGIN)}} />
       <ScrollView >
         <View style={styles.mainContainer}>
           <View>
@@ -63,7 +74,7 @@ const PhoneLogIn = ({ navigation }) => {
               <View style={{ flex: 0.6 }}>
                 <TextInputComponent
                   viewstyle={styles.inputView}
-                  placeholder={strings.PASSWORD}
+                  placeholder={strings.MOBILE_NUMBER}
                   placeholderTextColor={colors.whiteOpacity50}
                   value={phone}
                   onChangetext={(phone) => updateData({ phone })}
@@ -80,6 +91,8 @@ const PhoneLogIn = ({ navigation }) => {
               value={password}
               onChangetext={(password) => updateData({ password })}
               rightTextVal={strings.SHOW}
+              showPassword={showPassword}
+              secureTextEntry={show}
             />
 
           </View>
@@ -88,7 +101,7 @@ const PhoneLogIn = ({ navigation }) => {
 
               <Text style={styles.otpStyle}>{strings.OTP_USE}</Text>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate(navigationString.SET_PASSWORD)}
+            <TouchableOpacity onPress={() => {navigation.navigate(navigationString.SET_PASSWORD)}}
               style={{
                 flex: 0.5,
                 marginLeft: moderateScale(42)

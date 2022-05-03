@@ -9,9 +9,9 @@ const { dispatch } = store;
 export const logIN = (data) => {
     console.log('userdata----', data);
     dispatch({
-      type: type.LOGIN,
-      payload: data,
-    });
+        type: type.LOGIN,
+        payload: data,
+      });
 }
 
 export function signUp(data) {
@@ -19,20 +19,7 @@ export function signUp(data) {
     return apiPost(SIGNUP, data)
 }
 
-export const login = (data) => {
-    console.log(data, 'the given data')
-    
-    // return new Promise((resolve, reject) => {
-    //     apiPost(LOGIN, data)
-    //         .then((res) => {
-    //             logIN(res.data)
-    //             resolve(res)
-    //         })
-    //         .catch((error) => {
-    //             reject(error);
-    //         });
-    // });
-};
+
 
 export const Intro = (data) => {
     console.log("data>>>>>>>>>>>>>>>>>>", data)
@@ -47,3 +34,18 @@ export const Logout = () => {
         type: type.LOGOUT
     })
 }
+
+export const login = (data) => {
+    console.log(data, 'the given data')
+    return new Promise((resolve, reject) => {
+      apiPost(LOGIN, data)
+        .then((res) => {
+          logIN(res.data)
+          resolve(res)
+        })
+        .catch(() => {
+      
+        alert("dbfgggfgcb")
+        });
+    });
+  };
