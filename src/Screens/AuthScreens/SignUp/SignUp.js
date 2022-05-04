@@ -11,8 +11,8 @@ import ButtonComponent from '../../../Component/Button';
 import navigationString from '../../../navigation/navigationString';
 import actions from '../../../redux/actions';
 import CountryCodePicker from '../../../Component/CountryCodePicker';
+import validator from '../../../utlis/validations';
 import imagePaths from '../../../constants/imagePaths';
-// import vali
 import DeviceInfo from 'react-native-device-info'
 
 const SignUp = ({ navigation }) => {
