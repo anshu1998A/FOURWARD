@@ -20,6 +20,7 @@ const TextInputComponent = ({
   rightTextVal='',
   showPassword,
   secureTextEntry,
+  longText=false,
   ...props
 }) => {
   return (
@@ -51,7 +52,15 @@ const TextInputComponent = ({
           </TouchableOpacity> 
         </View>
       )}
-
+ {longText && (
+        <View style={{flex: 0.86}}>
+          <TouchableOpacity activeOpacity={1} onPress={showpass}>
+            <Text style={{...styles.showcolour, ...textcolour}}>
+              {rightTextVal}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
       {rightIcon && (
         <View >
           <Image source={img} style={styles.image} />

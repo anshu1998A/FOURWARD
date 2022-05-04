@@ -54,14 +54,14 @@ const EditProfile = ({ navigation }) => {
     <WrapperContainer>
       <HeadComp
         leftImage={true}
-        leftImageIcon={imagePaths.BACK_ARROW}
+        leftImageIcon={imagePaths.back_Arrow}
         leftText={true}
         leftTextTitle={strings.EDIT_PROFILE}
         leftTextStyle={styles.headerTextStyle}
         onPress={() => navigation.navigate(navigationString.PROFILE)} />
       <ScrollView >
         < View style={styles.imageView} >
-          <Image source={imagePaths.PROFILE_IMAGE1} style={styles.imageStyle} resizeMode="cover" />
+          <Image source={imagePaths.profile_Image1} style={styles.imageStyle} resizeMode="cover" />
 
 
           <TouchableOpacity
@@ -69,8 +69,7 @@ const EditProfile = ({ navigation }) => {
             style={styles.imagePickerStyle}>
 
             <Image
-              source={imagePaths.EDIT_IMAGE}
-
+              source={imagePaths.edit_image}
             />
           </TouchableOpacity>
         </View >

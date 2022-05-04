@@ -22,7 +22,7 @@ export default function (data) {
     email,
     last_Name,
     password,
-    phone,
+    phoneNumber,
     confirmPassword,
   } = data;
 
@@ -78,12 +78,12 @@ export default function (data) {
 
 
 
-  if (phone !== undefined) {
-   let emptyValidationText = checkEmpty(phone, 'phone number');
+  if (phoneNumber !== undefined) {
+   let emptyValidationText = checkEmpty(phoneNumber, 'phone number');
    if (emptyValidationText !== '') {
      return emptyValidationText;
    }
-   if (!/^[0][1-9]$|^[1-9]\d{8,14}$/.test(phone)) {
+   if (!/^[0][1-9]$|^[1-9]\d{8,14}$/.test(phoneNumber)) {
      return 'Please enter valid mobile number';
    }
   }

@@ -40,7 +40,7 @@ const changePassword = () => {
 
         <TouchableOpacity style={styles.optionAMinViewStyle} onPress={editProfile} >
           <View style={{ flex: 0.1 }}>
-            <Image source={imagePaths.USER_PROFILE} />
+            <Image source={imagePaths.user_Profile} />
           </View>
           <View style={{ flex: 0.9 }}>
             <Text style={styles.optionTextStyle}>{strings.EDIT_PROFILE}</Text>
@@ -49,7 +49,7 @@ const changePassword = () => {
 
         <TouchableOpacity style={styles.optionAMinViewStyle} onPress={changePassword}>
           <View style={{ flex: 0.1 }}>
-            <Image source={imagePaths.CHANGE_PASSWORD} />
+            <Image source={imagePaths.change_Password} />
           </View>
           <View style={{ flex: 0.9 }}>
             <Text style={styles.optionTextStyle}>{strings.CHANGE_PASSWORD}</Text>
@@ -58,7 +58,7 @@ const changePassword = () => {
 
         <TouchableOpacity style={styles.optionAMinViewStyle} onPress={signOut} >
           <View style={{ flex: 0.1 }}>
-            <Image source={imagePaths.SIGNOUT} />
+            <Image source={imagePaths.signout} />
           </View>
           <View style={{ flex: 0.9 }}>
             <Text style={styles.optionTextStyle}>{strings.SIGN_OUT}</Text>

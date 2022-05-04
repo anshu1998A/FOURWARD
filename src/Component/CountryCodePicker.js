@@ -42,7 +42,7 @@ setCountryFlag,
         />
 
         <Image
-          source={imagePaths.DROP_DOWN}
+          source={imagePaths.drop_Down}
           style={{
             height: moderateScale(width / 24),
             width: moderateScale(width / 24),

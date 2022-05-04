@@ -20,10 +20,6 @@ const SignUp = ({ navigation }) => {
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
 
-  // const onSelect = country => {
-  //   setCountryFlag(country.cca2);
-  //   setCountryCode(country.callingCode[0]);
-  // };
 
   console.log(DeviceInfo.getUniqueId())
 
@@ -41,26 +37,43 @@ const SignUp = ({ navigation }) => {
   };
 
   const [allValues, setAllValues] = useState({
-    fisrt_name: '',
-    last_name: '',
+    first_Name: '',
+    last_Name: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     device_type: '',
     password: '',
     confirmPassword: '',
   });
-  const { fisrt_name, last_name, email, phone, password, confirmPassword } = allValues
+  const { first_Name, last_Name, email, phoneNumber, password, confirmPassword } = allValues
   const changeHandler = (val) => {
     setAllValues({ ...allValues, ...val })
   }
 
+
+  const isValidData = () => {
+    const error = validator({first_Name , last_Name, email,  phoneNumber, password, confirmPassword});
+    if (error) {
+  //  showError(error)
+  alert(error)
+      return;
+    }
+    return true;
+  };
+
+
   const verifyData = async () => {
 
+    const checkValid = isValidData();
+    if (!checkValid) {
+      return;
+    }
+
     let apiData = {
-      first_name: fisrt_name,
-      last_name: last_name,
+      first_name: first_Name,
+      last_name: last_Name,
       email: email,
-      phone: phone,
+      phone: phoneNumber,
       phoneCode: countryCode,
       county_Code: countryFlag,
       device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
@@ -78,7 +91,7 @@ const SignUp = ({ navigation }) => {
       alert('User signup successfully....!!!');
     } catch (error) {
       console.log('error raised', error);
-      // showSuccess(error?.message);
+      
     }
 
   }
@@ -87,7 +100,7 @@ const SignUp = ({ navigation }) => {
     <WrapperContainer>
       <HeadComp
         leftImage={true}
-        leftImageIcon={imagePaths.BACK_ARROW}
+        leftImageIcon={imagePaths.back_Arrow}
         onPress={() => { navigation.navigate(navigationString.LOGIN) }} />
       <ScrollView >
         <View style={styles.mainContainer}>
@@ -102,8 +115,8 @@ const SignUp = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.FIRST_NAME}
                   placeholderTextColor={colors.sub_Text}
-                  onChangetext={(fisrt_name) => changeHandler({ fisrt_name })}
-                  value={fisrt_name}
+                  onChangetext={(first_Name) => changeHandler({ first_Name })}
+                  value={first_Name}
                 />
               </View>
               <View style={{ flex: 0.48 }}>
@@ -112,8 +125,8 @@ const SignUp = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.LAST_NAME}
                   placeholderTextColor={colors.sub_Text}
-                  onChangetext={(last_name) => changeHandler({ last_name })}
-                  value={last_name}
+                  onChangetext={(last_Name) => changeHandler({ last_Name })}
+                  value={last_Name}
                 />
               </View>
 
@@ -140,9 +153,9 @@ const SignUp = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.MOBILE_NUMBER}
                   placeholderTextColor={colors.whiteOpacity50}
-                  value={phone}
+                  value={phoneNumber}
                   maxLength={10}
-                  onChangetext={(phone) => changeHandler({ phone })}
+                  onChangetext={(phoneNumber) => changeHandler({ phoneNumber })}
                 />
               </View>
             </View>

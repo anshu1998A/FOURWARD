@@ -2,14 +2,12 @@ import React, { useEffect } from 'react';
 import Route from './src/navigation/Route';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import actions from './src/redux/actions';
 import { getItem } from './src/utlis/utlis';
-
+import FlashMessage from "react-native-flash-message";
 
 
 const App = () => {
-
 
   useEffect(() => {
     getItem('introdata').then((res)=>{
@@ -35,9 +33,12 @@ const App = () => {
 
   
   return (
+    <>
+    <FlashMessage position="top" />
     <Provider store={store}>
     <Route/>
     </Provider>
+    </>
 
   )
 }

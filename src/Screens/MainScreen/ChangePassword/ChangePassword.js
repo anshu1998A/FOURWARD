@@ -1,4 +1,4 @@
-import { Text, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native'
+import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native'
 import React, { useState } from 'react'
 import WrapperContainer from '../../../Component/WrapperContainer';
 import strings from '../../../constants/lang';
@@ -12,22 +12,16 @@ import imagePaths from '../../../constants/imagePaths';
 import { moderateScaleVertical } from '../../../styles/responsiveSize';
 
 
-
-
 const ChangePassword = ({ navigation }) => {
 
     const [allValues, setAllValues] = useState({
-
-        password: '',
-        confirmPassword: '',
+        oldPassword: '',
+        newPassword: '',
     });
-    const { password, confirmPassword } = allValues
+    const { oldPassword, newPassword } = allValues
     const changeHandler = (val) => {
         setAllValues({ ...allValues, ...val })
     }
-
-
-
 
     const [show, setShow] = useState();
     const [confirmShow, setConfirmShow] = useState();
@@ -36,7 +30,7 @@ const ChangePassword = ({ navigation }) => {
         setShow(!show);
     };
 
-    const showConfirmPassword = () => {
+    const shownewPassword = () => {
         setConfirmShow(!confirmShow);
     };
     return (
@@ -57,10 +51,10 @@ const ChangePassword = ({ navigation }) => {
                         placeholderTextColor={colors.whiteOpacity50}
                         rightText={true}
                         rightTextVal={show ? strings.SHOW : strings.HIDE}
-                        value={password}
+                        value={oldPassword}
                         showPassword={showPassword}
                         secureTextEntry={show}
-                        onChangetext={(password) => changeHandler({ password })}
+                        onChangetext={(oldPassword) => changeHandler({ oldPassword })}
                     />
 
                     <TextInputComponent
@@ -69,10 +63,10 @@ const ChangePassword = ({ navigation }) => {
                         placeholderTextColor={colors.whiteOpacity50}
                         rightText={true}
                         rightTextVal={confirmShow ? strings.SHOW : strings.HIDE}
-                        value={confirmPassword}
-                        showPassword={showConfirmPassword}
+                        value={newPassword}
+                        showPassword={shownewPassword}
                         secureTextEntry={confirmShow}
-                        onChangetext={(confirmPassword) => changeHandler({ confirmPassword })}
+                        onChangetext={(newPassword) => changeHandler({ newPassword })}
                     />
                 </View>
 

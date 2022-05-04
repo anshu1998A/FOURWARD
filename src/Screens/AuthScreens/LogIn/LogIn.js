@@ -95,7 +95,7 @@ const LogIn = ({ navigation }) => {
         height: height,
       }}>
         <View style={styles.logoView}>
-          <Image source={imagePaths.LOGO_IMG} style={styles.logoImageStyle} />
+          <Image source={imagePaths.logo_Image} style={styles.logoImageStyle} />
           <Text style={styles.priavcyTrems}>{strings.PRIVACY_TERM}</Text>
         </View>
         <View style={{ flex: 0.55 }}>
@@ -108,7 +108,7 @@ const LogIn = ({ navigation }) => {
 
 
           <ButtonComponent leftIcon={true}
-            icon={imagePaths.GOOGLE_LOGO}
+            icon={imagePaths.google_Logo}
             style={{ backgroundColor: "white", }}
             textColor={colors.black}
             buttonText={strings.GOOGLE_LOGIN}
@@ -117,7 +117,7 @@ const LogIn = ({ navigation }) => {
 
           <ButtonComponent
             leftIcon={true}
-            icon={imagePaths.FACEBOOK_LOGO}
+            icon={imagePaths.facebook_Logo}
             style={{ backgroundColor: "white", }}
             textColor={colors.black}
             buttonText={strings.FACEBOOK_LOGIN}
@@ -125,7 +125,7 @@ const LogIn = ({ navigation }) => {
 
           <ButtonComponent
             leftIcon={true}
-            icon={imagePaths.APPLE_LOGO}
+            icon={imagePaths.apple_Logo}
             style={{ backgroundColor: "white", }}
             buttonText={strings.APPLE_LOGIN}/>
 

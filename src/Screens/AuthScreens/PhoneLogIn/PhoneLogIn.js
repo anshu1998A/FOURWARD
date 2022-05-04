@@ -13,21 +13,20 @@ import CountryCodePicker from '../../../Component/CountryCodePicker';
 import actions from '../../../redux/actions';
 import { moderateScale, moderateScaleVertical } from '../../../styles/responsiveSize';
 import imagePaths from '../../../constants/imagePaths';
-
+import validator from '../../../utlis/validations';
+import { showError } from '../../../utlis/helperFunctions';
 const PhoneLogIn = ({ navigation }) => {
 
 
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
 
- 
-
 
   const [data, setData] = useState({
-    phone: '',
+    phoneNumber: '',
     password: '',
   })
-  const { phone, password} = data
+  const { phoneNumber, password} = data
 
 
   const changeHandler = data => setData(state => ({ ...state, ...data }));
@@ -37,9 +36,26 @@ const PhoneLogIn = ({ navigation }) => {
   const showPassword = () => {
     setShow(!show);
   };
+
+  const isValidData = () => {
+    const error = validator({phoneNumber, password});
+    if (error) {
+  //  showError(error)
+  alert(error)
+      return;
+    }
+    return true;
+  };
+
   const onLogin = async () => {
+
+    const checkValid = isValidData();
+    if (!checkValid) {
+      return;
+    }
+
     let apiData = {
-      phone: phone,
+      phoneNumber: phone,
       phone_code: countryCode,
       device_token: 'KDKFJDKFDFKDFDF',
       device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
@@ -61,7 +77,7 @@ const PhoneLogIn = ({ navigation }) => {
     <WrapperContainer>
       <HeadComp
         leftImage={true}
-        leftImageIcon={imagePaths.BACK_ARROW}
+        leftImageIcon={imagePaths.back_Arrow}
         onPress={() => { navigation.navigate(navigationString.LOGIN) }} />
       <ScrollView >
         <View style={styles.mainContainer}>
@@ -85,9 +101,9 @@ const PhoneLogIn = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.MOBILE_NUMBER}
                   placeholderTextColor={colors.whiteOpacity50}
-                  value={phone}
+                  value={phoneNumber}
                   maxLength={10}
-                  onChangetext={(phone) => changeHandler({ phone })}
+                  onChangetext={(phoneNumber) => changeHandler({ phoneNumber })}
                 />
               </View>
             </View>

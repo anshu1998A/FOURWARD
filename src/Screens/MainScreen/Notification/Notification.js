@@ -9,22 +9,22 @@ import styles from './styles'
 const notificationsData = [
   {
     id: '1',
-    image: imagePaths.PROFILE_IMAGE1,
+    image: imagePaths.post_Image1,
     name: strings.USER_NAME1,
   },
   {
     id: '2',
-    image: imagePaths.POST_IMAGE1,
+    image: imagePaths.profile_Image1,
     name: strings.USER_NAME2,
   },
   {
     id: '3',
-    image: imagePaths.PROFILE_IMAGE2,
+    image: imagePaths.profile_Image2,
     name: strings.USER_NAME1,
   },
   {
     id: '4',
-    image: imagePaths.POST_IMAGE1,
+    image: imagePaths.profile_Image1,
     name: strings.USER_NAME2,
   },
 ]
@@ -50,10 +50,10 @@ const notificationItems = ({ item }) => {
 }
 const Notification = () => {
 
-  const [state, setState] = useState({
-    notificationData: [{}, {}, {}, {}]
-  })
-  const { notificationData } = state
+  // const [state, setState] = useState({
+  //   notificationData: [{}, {}, {}, {}]
+  // })
+  // const { notificationData } = state
 
   return (
     <WrapperContainer>

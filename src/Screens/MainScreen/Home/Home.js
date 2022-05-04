@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
 import HeadComp from '../../../Component/Header';
 import HomeCard from '../../../Component/HomeCard';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
-import {ScrollView,View} from 'react-native';
+import { ScrollView, View } from 'react-native';
 import strings from '../../../constants/lang';
 import navigationString from '../../../navigation/navigationString';
 
-const Home = ({navigation, route}) => {
+const Home = ({ navigation, route }) => {
   const data = useSelector(state => state.userStatus);
   const User = data?.pass;
   const user = data?.email;
@@ -16,48 +17,67 @@ const Home = ({navigation, route}) => {
     cardData: [
       {
         id: '1',
-        userProfile: imagePaths.PROFILE_IMAGE1,
-        postImage: imagePaths.POST_IMAGE1,
+        userProfile: imagePaths.profile_Image1,
+        postImage: imagePaths.post_Image1,
         userName: strings.USER_NAME1,
         LOCATION: strings.LOCATION,
       },
       {
         id: '2',
-        userProfile: imagePaths.PROFILE_IMAGE1,
-        postImage: imagePaths.POST_IMAGE1,
+        userProfile: imagePaths.profile_Image2,
+        postImage: imagePaths.post_Image1,
         userName: strings.USER_NAME1,
         LOCATION: strings.LOCATION,
       },
       {
         id: '3',
-        userProfile: imagePaths.PROFILE_IMAGE1,
-        postImage: imagePaths.POST_IMAGE1,
+        userProfile: imagePaths.profile_Image1,
+        postImage: imagePaths.post_Image1,
         userName: strings.USER_NAME1,
         LOCATION: strings.LOCATION,
       },
       {
         id: '4',
-        userProfile: imagePaths.PROFILE_IMAGE1,
-        postImage: {...imagePaths.POST_IMAGE1},
+        userProfile: imagePaths.profile_Image1,
+        postImage: imagePaths.post_Image1,
         userName: 'strings.USER_NAME1',
         LOCATION: 'strings.LOCATION',
       },
     ],
   });
-  const {cardData} = state;
+  const { cardData } = state;
 
-  console.log("drvfstgyhuijnkml,;./'", cardData)
+  console.log("drvfstgyhuijnk", cardData)
 
-  
+
+  const renderItem = (item) => {
+
+
+  }
+
+
   return (
 
     <WrapperContainer>
       <HeadComp
         leftImage={true}
-        leftImageIcon={imagePaths.HOME_ICON}
+        leftImageIcon={imagePaths.home_Icon}
         rightImage={true}
-        rightImageIcon={imagePaths.LOCATION}
+        rightImageIcon={imagePaths.location}
       />
+
+      {/* <FlatList
+        data={cardData}
+        renderItem={(element, index) => {
+          <HomeCard
+            userProfile={element.item.userProfile}
+            postImage={element.item.postImage}
+            userName={element.item.userName}
+            location={element.item.LOCATION}
+            onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: item })}
+          />
+        }}
+      /> */}
 
       <ScrollView>
         {cardData.map((item, index) => {
@@ -68,7 +88,7 @@ const Home = ({navigation, route}) => {
                 postImage={item.postImage}
                 userName={item.userName}
                 location={item.LOCATION}
-                onPress={() => navigation.navigate(navigationString.POST_DETAILS,{postDetail:item}) }
+                onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: item })}
               />
             </View>
           );

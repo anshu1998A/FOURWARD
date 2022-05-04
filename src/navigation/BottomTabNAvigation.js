@@ -20,17 +20,20 @@ function BottomTabNAvigation() {
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
-          tabBarShowLabel: false,
+      tabBarShowLabel: false,
       tabBarStyle: {
         position: 'absolute',
-    backgroundColor: colors.sliderBGColor,
-    borderTopLeftRadius: moderateScale(8),
-    borderTopRightRadius: moderateScale(8),
-    borderTopWidth: moderateScale(0),
-    paddingVertical:moderateScaleVertical(10)
+        backgroundColor: colors.sliderBGColor,
+        height: moderateScale(60),
+        borderTopLeftRadius: moderateScale(8),
+        borderTopRightRadius: moderateScale(8),
+        borderTopWidth: moderateScale(0),
+        // paddingVertical: moderateScaleVertical(10)
+        alignSelf:'center',
+        justifyContent:'center',
       },
-   
-      
+
+
     }}>
       <Tab.Screen
         name={navigationString.HOME}
@@ -38,7 +41,7 @@ function BottomTabNAvigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              source={imagePaths.HOME}
+              source={imagePaths.home}
               style={{
                 height: moderateScale(width / 18),
                 width: moderateScale(width / 18),
@@ -54,7 +57,7 @@ function BottomTabNAvigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              source={imagePaths.SEARCH}
+              source={imagePaths.search}
               style={{
                 height: moderateScale(width / 18),
                 width: moderateScale(width / 18),
@@ -70,7 +73,7 @@ function BottomTabNAvigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              source={imagePaths.ADD_POST}
+              source={imagePaths.add_Post}
               style={{
                 height: moderateScale(width / 18),
                 width: moderateScale(width / 18),
@@ -87,7 +90,7 @@ function BottomTabNAvigation() {
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              source={imagePaths.NOTIFICATION}
+              source={imagePaths.notification}
               style={{
                 height: moderateScale(width / 18),
                 width: moderateScale(width / 18),
@@ -99,12 +102,12 @@ function BottomTabNAvigation() {
           ),
         }} />
 
-      <Tab.Screen name={navigationString.PROFILE} 
-      component={Profile}
+      <Tab.Screen name={navigationString.PROFILE}
+        component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image
-              source={imagePaths.PROFILE}
+              source={imagePaths.profile}
               style={{
                 height: moderateScale(width / 18),
                 width: moderateScale(width / 18),

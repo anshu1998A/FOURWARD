@@ -1,17 +1,16 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
-// import {style} from '../Screens/Main/Home/style';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import imagePaths from '../constants/imagePaths';
+import strings from '../constants/lang';
+import colors from '../styles/colors';
 import {
     height,
     moderateScale,
     moderateScaleVertical,
     textScale,
-    width,
+    width
 } from '../styles/responsiveSize';
-import imagePaths from '../constants/imagePaths';
-import strings from '../constants/lang';
-import colors from '../styles/colors';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function HomeCard({
     userProfile = '',
@@ -24,7 +23,7 @@ export default function HomeCard({
 }) {
     return (
         <View style={styles.viewContainer}>
-            <View style={{ flexDirection: 'row', paddingTop: moderateScale(15), justifyContent: "space-between", alignItems: 'center', marginHorizontal: moderateScale(16) }}>
+            <View style={styles.headView}>
                 <View style={{ flexDirection: "row" }}>
                     <View >
                         <Image source={userProfile} style={styles.userProfile} />
@@ -35,7 +34,7 @@ export default function HomeCard({
                     </View>
                 </View>
                 <View style={{ justifyContent: 'center', height: height / 20 }}>
-                    <Image source={imagePaths.DIRECTION} />
+                    <Image source={imagePaths.setting} />
                 </View>
             </View>
             <TouchableOpacity onPress={onPress}>
@@ -49,13 +48,7 @@ export default function HomeCard({
                 <Text style={{ color: colors.whiteOpacity50 }}>{strings.TIME}</Text>
             </View>
             <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    marginHorizontal: moderateScaleVertical(16),
-                    flexWrap: "wrap",
-                    paddingBottom: moderateScale(12)
-                }}>
+                style={styles.footerView}>
                 <View style={{ alignItems: 'center' }}>
                     <Text style={{ color: colors.white }}>Comments</Text>
                 </View>
@@ -63,7 +56,7 @@ export default function HomeCard({
                     <Text style={{ color: colors.white }}> {strings.LIKES} </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={imagePaths.DIRECTION} style={{ height: 10 }} />
+                    <Image source={imagePaths.direction} style={{ height: height/ 50 }} />
                 </View>
             </View>
         </View>
@@ -76,7 +69,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginVertical: moderateScaleVertical(8),
         marginHorizontal: moderateScale(16),
-        // backgroundColor:"pink",
         backgroundColor: '#4C4C4C',
         borderRadius: moderateScale(10),
 
@@ -98,4 +90,17 @@ const styles = StyleSheet.create({
         marginVertical: moderateScaleVertical(16),
         alignSelf: 'center',
     },
+    headView:{ flexDirection: 'row', 
+    paddingTop: moderateScale(15),
+     justifyContent: "space-between", 
+     alignItems: 'center',
+      marginHorizontal: moderateScale(16) 
+    },
+    footerView:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: moderateScaleVertical(16),
+        flexWrap: "wrap",
+        paddingBottom: moderateScale(12)
+    }
 });
