@@ -50,7 +50,10 @@ export default {
     USER_NAME2: 'Sara ',
     NEW_POST: 'added a new post.',
     SAVE: 'Save',
-    LOCATION: 'Sector 28 D, Chandigarh'
+    LOCATION: 'Sector 28 D, Chandigarh',
+    SAVE_CHANGES: 'SAVE CHANGES',
+    HIDE: 'Hide',
+    ENTER_LOC_MANUALLY: 'Enter location manually'
 
 
 }

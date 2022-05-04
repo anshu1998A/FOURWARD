@@ -12,7 +12,6 @@ export default Routes = () => {
     const userData = useSelector(state => state?.userStatus?.userData)
     console.log("Userdata>>>", userData)
     const intro = useSelector(state => state?.appIntro?.introData)
-
     console.log('intro', intro);
 
     return (
@@ -25,8 +24,6 @@ export default Routes = () => {
                             ? MainStack(Stack)
                             : AuthStack(Stack)
                 }
-
-                {/* {userData ? MainStack(Stack) : AuthStack(Stack)} */}
 
 
             </Stack.Navigator>

@@ -20,5 +20,6 @@ export default {
     SIGNOUT: require('../assets/images/ic_logout.png'),
     PROFILE_IMAGE1: require('../assets/images/postIamge.jpeg'),
     POST_IMAGE1: require('../assets/images/PostIMAGES.jpeg'),
-    PROFILE_IMAGE2: require('../assets/images/Pro.jpeg')
+    PROFILE_IMAGE2: require('../assets/images/Pro.jpeg'),
+    EDIT_IMAGE: require('../assets/images/ic_edit.png')
 };

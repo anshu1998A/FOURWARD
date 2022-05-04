@@ -18,34 +18,35 @@ export default function HomeCard({
     menuButton = '',
     postImage = '',
     name = false,
+    onPress,
     userName = '',
     location = '',
 }) {
     return (
         <View style={styles.viewContainer}>
-            <View style={{ flexDirection: 'row', paddingTop: moderateScale(15),justifyContent:"space-between",alignItems: 'center',marginHorizontal:moderateScale(16) }}>
-                <View style={{flexDirection:"row"}}>
-                <View >
-                    <Image source={userProfile} style={styles.userProfile} />
+            <View style={{ flexDirection: 'row', paddingTop: moderateScale(15), justifyContent: "space-between", alignItems: 'center', marginHorizontal: moderateScale(16) }}>
+                <View style={{ flexDirection: "row" }}>
+                    <View >
+                        <Image source={userProfile} style={styles.userProfile} />
+                    </View>
+                    <View style={{ justifyContent: 'center', marginLeft: moderateScale(10) }}>
+                        <Text style={{ color: colors.white, fontSize: textScale(16) }} >{userName}</Text>
+                        <Text style={{ color: '#AEAEAE' }} >{location}  </Text>
+                    </View>
                 </View>
-                <View style={{ justifyContent: 'center',marginLeft:moderateScale(10) }}>
-                    <Text style={{ color: colors.white, fontSize: textScale(16) }} >{userName}</Text>
-                    <Text style={{ color: '#AEAEAE' }} >{location}  </Text>
-                </View>
-                </View>
-                <View style={{ justifyContent: 'center', height: height/20}}>
+                <View style={{ justifyContent: 'center', height: height / 20 }}>
                     <Image source={imagePaths.DIRECTION} />
                 </View>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onPress}>
                 <Image source={postImage} style={styles.postStyle} />
             </TouchableOpacity>
-            <View style={{ 
+            <View style={{
                 marginHorizontal: moderateScale(16),
                 marginVertical: moderateScale(10)
-                }}>
-              <Text style={{color:colors.white}}> {strings.LOREM_TEXT}</Text>
-              <Text style={{color:colors.whiteOpacity50}}>{strings.TIME}</Text>
+            }}>
+                <Text style={{ color: colors.white }}> {strings.LOREM_TEXT}</Text>
+                <Text style={{ color: colors.whiteOpacity50 }}>{strings.TIME}</Text>
             </View>
             <View
                 style={{
@@ -56,10 +57,10 @@ export default function HomeCard({
                     paddingBottom: moderateScale(12)
                 }}>
                 <View style={{ alignItems: 'center' }}>
-                    <Text  style={{color:colors.white}}>Comments</Text>
+                    <Text style={{ color: colors.white }}>Comments</Text>
                 </View>
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{color:colors.white}}> {strings.LIKES} </Text>
+                    <Text style={{ color: colors.white }}> {strings.LIKES} </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image source={imagePaths.DIRECTION} style={{ height: 10 }} />
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
         width: moderateScale(width - 48),
         alignSelf: 'center',
         marginVertical: moderateScaleVertical(8),
-        marginHorizontal :moderateScale(16),
+        marginHorizontal: moderateScale(16),
         // backgroundColor:"pink",
         backgroundColor: '#4C4C4C',
         borderRadius: moderateScale(10),

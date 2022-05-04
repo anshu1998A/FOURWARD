@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, KeyboardAvoidingView, TouchableOpacity, Platform } from 'react-native'
 import React, { useState } from 'react';
 import { styles } from './styels';
-// import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSize';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import strings from '../../../constants/lang';
 import colors from '../../../styles/colors';
@@ -16,13 +15,22 @@ import { moderateScale, moderateScaleVertical } from '../../../styles/responsive
 import imagePaths from '../../../constants/imagePaths';
 
 const PhoneLogIn = ({ navigation }) => {
+
+
+  const [countryCode, setCountryCode] = useState('91');
+  const [countryFlag, setCountryFlag] = useState('IN');
+
+ 
+
+
   const [data, setData] = useState({
     phone: '',
     password: '',
-    logInType: 'admin',
   })
-  const { phone, password, logInType } = data
-  const updateData = data => setData(state => ({ ...state, ...data }));
+  const { phone, password} = data
+
+
+  const changeHandler = data => setData(state => ({ ...state, ...data }));
 
   const [show, setShow] = useState();
 
@@ -32,34 +40,29 @@ const PhoneLogIn = ({ navigation }) => {
   const onLogin = async () => {
     let apiData = {
       phone: phone,
-      phone_code: "91",
+      phone_code: countryCode,
       device_token: 'KDKFJDKFDFKDFDF',
       device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
       password: password,
-      loginType: logInType
+      loginType: 'admin'
     }
-    actions.login(apiData).then( res=>{
-        console.log("fdhgf",res)
-    })
-    .catch( err=>{
-      alert(err)
-    })
-  //   try {
-  //     const res = await actions.login(apiData)
-  //     console.log("Login api res_+++++",res)
-  //     alert("User Login successfully....!!!")
-  //     actions.login(navigation.navigate(navigationString.HOME))
-  // } catch (error) {
-  //     console.log("error raised", error)
-  //     alert(error?.message)
-  // }
+    try {
+      const res = await actions.login(apiData);
+      console.log('Login api res_+++++', res);
+      // actions.login;
+      alert('User Login successfully....!!!');
+    } catch (error) {
+      console.log('error raised', error);
+      alert(error?.message);
+    }
+
   }
   return (
     <WrapperContainer>
       <HeadComp
         leftImage={true}
         leftImageIcon={imagePaths.BACK_ARROW}
-        onPress={() => { navigation.navigate(navigationString.LOGIN)}} />
+        onPress={() => { navigation.navigate(navigationString.LOGIN) }} />
       <ScrollView >
         <View style={styles.mainContainer}>
           <View>
@@ -68,19 +71,24 @@ const PhoneLogIn = ({ navigation }) => {
           </View>
           <View>
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-              <View style={{ flex: 0.35 }}>
-                <CountryCodePicker />
+              <View style={{ flex: 0.38 }}>
+                <CountryCodePicker
+               countryCode={countryCode}
+               countryFlag={countryFlag}
+               setCountryCode={setCountryCode}
+               setCountryFlag={setCountryFlag}
+                />
               </View>
-              <View style={{ flex: 0.6 }}>
+              <View style={{ flex: 0.57 }}>
+
                 <TextInputComponent
                   viewstyle={styles.inputView}
                   placeholder={strings.MOBILE_NUMBER}
                   placeholderTextColor={colors.whiteOpacity50}
                   value={phone}
-                  onChangetext={(phone) => updateData({ phone })}
-
+                  maxLength={10}
+                  onChangetext={(phone) => changeHandler({ phone })}
                 />
-
               </View>
             </View>
             <TextInputComponent
@@ -89,8 +97,8 @@ const PhoneLogIn = ({ navigation }) => {
               placeholderTextColor={colors.whiteOpacity50}
               rightText={true}
               value={password}
-              onChangetext={(password) => updateData({ password })}
-              rightTextVal={strings.SHOW}
+              onChangetext={(password) => changeHandler({ password })}
+              rightTextVal={show ? strings.SHOW : strings.HIDE}
               showPassword={showPassword}
               secureTextEntry={show}
             />
@@ -101,7 +109,7 @@ const PhoneLogIn = ({ navigation }) => {
 
               <Text style={styles.otpStyle}>{strings.OTP_USE}</Text>
             </View>
-            <TouchableOpacity onPress={() => {navigation.navigate(navigationString.SET_PASSWORD)}}
+            <TouchableOpacity onPress={() => { navigation.navigate(navigationString.SET_PASSWORD) }}
               style={{
                 flex: 0.5,
                 marginLeft: moderateScale(42)

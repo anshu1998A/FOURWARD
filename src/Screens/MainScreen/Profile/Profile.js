@@ -26,7 +26,7 @@ const Profile = ({navigation}) => {
     navigation.navigate(navigationString.EDIT_PROFILE)
   }
 const changePassword = () => {
-  navigation.navigate(navigationString.SET_PASSWORD)
+  navigation.navigate(navigationString.CAHNGE_PASSWORD)
 }
   return (
     <WrapperContainer>

@@ -14,6 +14,15 @@ export const logIN = (data) => {
       });
 }
 
+
+export const saveUserData = (data) => {
+    console.log("calledd>>>" ,data)
+   dispatch({
+     type: type.LOGIN,
+     payload: data,
+   });
+ };
+
 export function signUp(data) {
     console.log("user data****************", data)
     return apiPost(SIGNUP, data)
@@ -40,12 +49,11 @@ export const login = (data) => {
     return new Promise((resolve, reject) => {
       apiPost(LOGIN, data)
         .then((res) => {
-          logIN(res.data)
+          saveUserData(res.data)
           resolve(res)
         })
-        .catch(() => {
-      
-        alert("dbfgggfgcb")
+        .catch((error) => {
+          reject(error);
         });
     });
   };

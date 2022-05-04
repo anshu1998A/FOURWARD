@@ -17,14 +17,15 @@ const TextInputComponent = ({
   value = '',
   viewstyle,
   rightText=false,
-  rightTextVal='fghbvbhnjk',
+  rightTextVal='',
   showPassword,
+  secureTextEntry,
   ...props
 }) => {
   return (
     <View style={{...styles.viewcss,...viewstyle}}>
       {leftIcon && (
-        <View style={{flex: 0.15}}>
+        <View >
           <Image source={icon} style={styles.image} />
         </View>
       )}
@@ -37,13 +38,14 @@ const TextInputComponent = ({
           style={styles.inputtext}
           keyboardType={keyboardtype}
           value={value}
+          secureTextEntry={secureTextEntry}
           onChangeText={onChangetext}
           keyboardAppearance={'dark'}
           keybo
         />
       </View>
       {rightText && (
-        <View style={{flex: 0.15}}>
+        <View >
           <TouchableOpacity onPress={showPassword} >
           <Text style={{color:colors.sub_Text}}>{rightTextVal}</Text>
           </TouchableOpacity> 
@@ -51,7 +53,7 @@ const TextInputComponent = ({
       )}
 
       {rightIcon && (
-        <View style={{flex: 0.15}}>
+        <View >
           <Image source={img} style={styles.image} />
         </View>
       )}
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
   inputtext: {
     paddingVertical: moderateScaleVertical(10),
     color: colors.white,
-    flex: 1,
+    // flex: 1,
   },
 });
 

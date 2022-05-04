@@ -6,6 +6,7 @@ import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import {ScrollView,View} from 'react-native';
 import strings from '../../../constants/lang';
+import navigationString from '../../../navigation/navigationString';
 
 const Home = ({navigation, route}) => {
   const data = useSelector(state => state.userStatus);
@@ -37,15 +38,19 @@ const Home = ({navigation, route}) => {
       {
         id: '4',
         userProfile: imagePaths.PROFILE_IMAGE1,
-        postImage: imagePaths.POST_IMAGE1,
-        userName: strings.USER_NAME1,
-        LOCATION: strings.LOCATION,
+        postImage: {...imagePaths.POST_IMAGE1},
+        userName: 'strings.USER_NAME1',
+        LOCATION: 'strings.LOCATION',
       },
     ],
   });
   const {cardData} = state;
 
+  console.log("drvfstgyhuijnkml,;./'", cardData)
+
+  
   return (
+
     <WrapperContainer>
       <HeadComp
         leftImage={true}
@@ -63,6 +68,7 @@ const Home = ({navigation, route}) => {
                 postImage={item.postImage}
                 userName={item.userName}
                 location={item.LOCATION}
+                onPress={() => navigation.navigate(navigationString.POST_DETAILS,{postDetail:item}) }
               />
             </View>
           );

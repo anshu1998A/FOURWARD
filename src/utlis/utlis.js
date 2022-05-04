@@ -142,7 +142,7 @@ console.log("api hit",endPoint)
 }
 
 
-export function apiPost(endPoint, data, headers = {}) {
+export function 	apiPost(endPoint, data, headers = {}) {
 	return apiReq(endPoint, data, 'post', headers);
 }
 

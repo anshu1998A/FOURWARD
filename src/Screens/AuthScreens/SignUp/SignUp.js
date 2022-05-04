@@ -5,7 +5,6 @@ import strings from '../../../constants/lang';
 import colors from '../../../styles/colors';
 import TextInputComponent from '../../../Component/TextInput';
 import HeadComp from '../../../Component/Header';
-
 import { styles } from './styles';
 import { commonStyles } from '../../../styles/commonStyles';
 import ButtonComponent from '../../../Component/Button';
@@ -13,12 +12,33 @@ import navigationString from '../../../navigation/navigationString';
 import actions from '../../../redux/actions';
 import CountryCodePicker from '../../../Component/CountryCodePicker';
 import imagePaths from '../../../constants/imagePaths';
-// import actions from '../../redux/actions';
-
-
+// import vali
+import DeviceInfo from 'react-native-device-info'
 
 const SignUp = ({ navigation }) => {
 
+  const [countryCode, setCountryCode] = useState('91');
+  const [countryFlag, setCountryFlag] = useState('IN');
+
+  // const onSelect = country => {
+  //   setCountryFlag(country.cca2);
+  //   setCountryCode(country.callingCode[0]);
+  // };
+
+  console.log(DeviceInfo.getUniqueId())
+
+
+  // ****************************************************HIDE OR WHOW THE PASSWORD*****************************************
+  const [show, setShow] = useState();
+  const [confirmShow, setConfirmShow] = useState();
+
+  const showPassword = () => {
+    setShow(!show);
+  };
+
+  const showConfirmPassword = () => {
+    setConfirmShow(!confirmShow);
+  };
 
   const [allValues, setAllValues] = useState({
     fisrt_name: '',
@@ -36,31 +56,31 @@ const SignUp = ({ navigation }) => {
 
   const verifyData = async () => {
 
+    let apiData = {
+      first_name: fisrt_name,
+      last_name: last_name,
+      email: email,
+      phone: phone,
+      phoneCode: countryCode,
+      county_Code: countryFlag,
+      device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
+      password: password,
+      confirmPassword: confirmPassword,
+      device_token: DeviceInfo.getUniqueId()
 
-    if (password === confirmPassword) {
+    }
 
-      let apiData = {
-        first_name: fisrt_name,
-        last_name: last_name,
-        email: email,
-        phone: phone,
-        device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
-        password: password,
-        confirmPassword: confirmPassword
-      }
-      console.log("user Data", apiData)
-      actions.signUp(apiData)
-        .then(res => {
-          alert('User SignUp Succesfully')
-          navigation.navigate(navigationString.OTP)
-        })
-        .catch(e => {
-          alert(e)
-        })
+
+    try {
+      const res = await actions.signUp(apiData);
+      console.log('singnup api res_+++++', res);
+      navigation.navigate(navigationString.OTP, { data: res?.data });
+      alert('User signup successfully....!!!');
+    } catch (error) {
+      console.log('error raised', error);
+      // showSuccess(error?.message);
     }
-    else {
-      alert("Password and confirm password does not match")
-    }
+
   }
 
   return (
@@ -107,7 +127,12 @@ const SignUp = ({ navigation }) => {
             />
             <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
               <View style={{ flex: 0.38 }}>
-                <CountryCodePicker />
+                <CountryCodePicker
+                  countryCode={countryCode}
+                  countryFlag={countryFlag}
+                  setCountryCode={setCountryCode}
+                  setCountryFlag={setCountryFlag}
+                />
               </View>
               <View style={{ flex: 0.57 }}>
 
@@ -116,6 +141,7 @@ const SignUp = ({ navigation }) => {
                   placeholder={strings.MOBILE_NUMBER}
                   placeholderTextColor={colors.whiteOpacity50}
                   value={phone}
+                  maxLength={10}
                   onChangetext={(phone) => changeHandler({ phone })}
                 />
               </View>
@@ -124,6 +150,8 @@ const SignUp = ({ navigation }) => {
           <TextInputComponent
             viewstyle={styles.inputView}
             placeholder={strings.PASSWORD}
+            showPassword={showPassword}
+            secureTextEntry={show}
             placeholderTextColor={colors.whiteOpacity50}
             rightText={true}
             rightTextVal={strings.SHOW}
@@ -134,6 +162,8 @@ const SignUp = ({ navigation }) => {
           <TextInputComponent
             viewstyle={styles.inputView}
             placeholder={strings.CONFIRM_PSWRD}
+            showPassword={showConfirmPassword}
+            secureTextEntry={show}
             placeholderTextColor={colors.whiteOpacity50}
             rightText={true}
             rightTextVal={strings.SHOW}

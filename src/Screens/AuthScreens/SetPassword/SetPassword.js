@@ -5,15 +5,11 @@ import strings from '../../../constants/lang';
 import colors from '../../../styles/colors';
 import TextInputComponent from '../../../Component/TextInput';
 import HeadComp from '../../../Component/Header';
-
 import { styles } from './styles';
-import { commonStyles } from '../../../styles/commonStyles';
 import ButtonComponent from '../../../Component/Button';
 import navigationString from '../../../navigation/navigationString';
-import actions from '../../../redux/actions';
-import CountryCodePicker from '../../../Component/CountryCodePicker';
 import imagePaths from '../../../constants/imagePaths';
-// import actions from '../../redux/actions';
+
 
 
 
@@ -31,18 +27,18 @@ const SetPassword = ({ navigation }) => {
 
   return (
     <WrapperContainer>
-         <HeadComp 
+      <HeadComp
         leftImage={true}
         leftImageIcon={imagePaths.BACK_ARROW}
         leftText={true}
         leftTextTitle={strings.CHANGE_PASSWORD}
         leftTextStyle={styles.leftTextStyle}
-        onPress={() => navigation.navigate(navigationString.PHONE_LOGIN) }/>
-    
+        onPress={() => navigation.navigate(navigationString.PHONE_LOGIN)} />
+
       <ScrollView >
         <View style={styles.mainContainer}>
-         
-        
+
+
           <TextInputComponent
             viewstyle={styles.inputView}
             placeholder={strings.PASSWORD}
@@ -67,7 +63,11 @@ const SetPassword = ({ navigation }) => {
       </ScrollView>
       <KeyboardAvoidingView enabled={true}>
         <View>
-          <ButtonComponent buttonText={strings.SAVE} textColor={colors.white} onpress={() => navigation.navigate(navigationString.LOGIN)} />
+          <ButtonComponent
+            buttonText={strings.SAVE}
+            textColor={colors.white}
+            onpress={() => navigation.navigate(navigationString.LOGIN)}
+          />
         </View>
       </KeyboardAvoidingView>
     </WrapperContainer>

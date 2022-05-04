@@ -13,6 +13,8 @@ export default {
     PROFILE: 'Profile',
     EDIT_PROFILE: 'Edit Profile',
     BOTTOM: 'bottom',
-    HOMESTACK: 'Home stack'
+    HOMESTACK: 'Home stack',
+    CAHNGE_PASSWORD: "Change Password",
+    POST_DETAILS: 'Post Details'
    
 }
