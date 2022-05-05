@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Text, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { moderateScale, moderateScaleVertical, textScale, width } from '../styles/responsiveSize';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { moderateScale, moderateScaleVertical, width } from '../styles/responsiveSize';
 
 function HeadComp({
   // Title = '',

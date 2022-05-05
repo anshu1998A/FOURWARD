@@ -108,7 +108,7 @@ const LogIn = ({ navigation }) => {
 
           <ButtonComponent leftIcon={true}
             icon={imagePaths.google_Logo}
-            style={{ backgroundColor: "white", }}
+            style={{ backgroundColor: "white"}}
             textColor={colors.black}
             buttonText={strings.GOOGLE_LOGIN}
             onpress={googleLogin} />

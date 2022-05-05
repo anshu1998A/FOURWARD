@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import WrapperContainer from './WrapperContainer'
 
 const PostAdd = ({

@@ -4,7 +4,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import imagePaths from '../constants/imagePaths';
 import strings from '../constants/lang';
 import colors from '../styles/colors';
-import fontFamily from '../styles/fontFamily';
 import {
     height,
     moderateScale,

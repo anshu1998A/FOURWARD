@@ -1,8 +1,7 @@
 import React from 'react';
-import {Image, StyleSheet, TextInput, View,Text,TouchableOpacity,} from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import colors from '../styles/colors';
-// import fontfamily from '../styles/fontFamily';
-import {moderateScale, moderateScaleVertical} from '../styles/responsiveSize';
+import { moderateScale } from '../styles/responsiveSize';
 
 
 const TextInputComponent = ({

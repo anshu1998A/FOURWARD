@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-import CountryPicker, { Flag } from 'react-native-country-picker-modal';
+import React from 'react';
+import { Image, StyleSheet, View } from 'react-native';
+import CountryPicker from 'react-native-country-picker-modal';
 import imagePaths from '../constants/imagePaths';
 import colors from '../styles/colors';
 import {
   moderateScale,
   moderateScaleVertical,
-  width,
+  width
 } from '../styles/responsiveSize';
 
 

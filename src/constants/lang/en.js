@@ -56,7 +56,8 @@ export default {
     ENTER_LOC_MANUALLY: 'Enter location manually',
     MAP: 'VIEW MAP',
     CURRENT_PASSOWRD: 'Current Password',
-    NEW_PASSWORD: "New Password"
+    NEW_PASSWORD: "New Password",
+    SELECT_PHOTO: 'Select '
 
 
 }

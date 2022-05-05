@@ -1,8 +1,7 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
-import React from 'react'
-import { moderateScale, textScale } from '../styles/responsiveSize';
-import fontFamily from '../styles/fontFamily';
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../styles/colors';
+import { moderateScale, textScale, width } from '../styles/responsiveSize';
 
 const ButtonComponent = ({
     buttonText = '',
@@ -40,7 +39,7 @@ const buttonStyles = StyleSheet.create({
         borderRadius: moderateScale(8),
         margin: moderateScale(10),
         justifyContent: 'space-between',
-        width: moderateScale(328),
+        width: width-46,
         height: moderateScale(48),
         alignSelf: 'center',
         flexDirection: 'row',
@@ -51,15 +50,11 @@ const buttonStyles = StyleSheet.create({
         backgroundColor: 'red',
         borderRadius: moderateScale(4),
         margin: moderateScale(10),
-        // justifyContent: 'center',
         width: moderateScale(250),
         height: moderateScale(40),
-        // alignSelf: 'center',
-        // fontFamily: fontFamily.MULISh_BOLD
     },
     textStyle: {
         fontSize: textScale(14),
-        // fontFamily: fontFamily.MULISH_REGULAR
     },
     image: {
         height: moderateScale(20),
