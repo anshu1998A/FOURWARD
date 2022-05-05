@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { FlatList } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import HeadComp from '../../../Component/Header';
 import HomeCard from '../../../Component/HomeCard';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
-import { ScrollView, View } from 'react-native';
 import strings from '../../../constants/lang';
 import navigationString from '../../../navigation/navigationString';
 
@@ -55,11 +54,6 @@ const Home = ({ navigation, route }) => {
   });
   const { cardData } = state;
 
-  const renderItem = (item) => {
-
-
-  }
-
 
   return (
 
@@ -71,19 +65,20 @@ const Home = ({ navigation, route }) => {
         rightImageIcon={imagePaths.location}
       />
 
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ marginBottom: 20 }} >
         {cardData.map((item, index) => {
-          console.log(item,"item>>>>")
+          console.log(item, "item>>>>")
           return (
-            <View key={index}>
+            <View key={index} >
               <HomeCard
                 userProfile={item.userProfile}
                 postImage={item.postImage}
                 userName={item.userName}
-                location={item.LOCATION}
+                location={item.location}
                 postDetails={item.postDetail}
                 postTime={item.postTime}
                 onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: item })}
+
               />
             </View>
           );

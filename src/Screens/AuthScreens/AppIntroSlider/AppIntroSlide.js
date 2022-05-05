@@ -1,40 +1,32 @@
-import {View, Text, Image, ScrollView} from 'react-native';
-import React, {useState} from 'react';
-// import WrapperContainer from '../../../Component/WrapperContainer';
-import imagePaths from '../../../constants/imagePaths';
+import React from 'react';
+import { Image, Text, View } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {
-  height,
-  moderateScale,
-  moderateScaleVertical,
-  textScale,
-} from '../../../styles/responsiveSize';
-import colors from '../../../styles/colors';
-import fontFamily from '../../../styles/fontFamily';
-import LogIn from '../LogIn/LogIn';
-import {introStyles} from './style';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import navigationString from '../../../navigation/navigationString';
-import actions from '../../../redux/actions';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import WrapperContainer from '../../../Component/WrapperContainer';
+import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
+import actions from '../../../redux/actions';
+import {
+  moderateScale
+} from '../../../styles/responsiveSize';
+import { introStyles } from './style';
 
 const slides = [
   {
     key: '1',
-    image: imagePaths.INTRO_IMAGE,
+    image: imagePaths.intro_Image,
     tittle: strings.Intro,
     description: strings.tut_Des,
   },
   {
     key: '2',
-    image: imagePaths.INTRO_IMAGE,
+    image: imagePaths.intro_Image,
     tittle: strings.Intro,
     description: strings.tut_Des,
   },
   {
     key: '3',
-    image: imagePaths.INTRO_IMAGE,
+    image: imagePaths.intro_Image,
     tittle: strings.Intro,
     description: strings.tut_Des,
   },
@@ -66,13 +58,13 @@ const AppIntroSlide = () => {
   const renderDoneButton = () => {
     return (
       <TouchableOpacity onPress={data}>
-        <Text style={introStyles.getStartStyle}>Get started</Text>
+        <Text style={introStyles.getStartStyle}>{strings.GET_STARTED}</Text>
       </TouchableOpacity>
     );
   };
 
   const renderNextButton = () => {
-    return <Text style={introStyles.getStartStyle}>Next</Text>;
+    return <Text style={introStyles.getStartStyle}>{strings.NEXT}</Text>;
   };
   return (
     <WrapperContainer>

@@ -1,12 +1,12 @@
-import { View, Text, FlatList, ScrollView, Image } from 'react-native'
-import React, { useState } from 'react'
-import WrapperContainer from '../../../Component/WrapperContainer'
-import HeadComp from '../../../Component/Header'
-import strings from '../../../constants/lang'
-import imagePaths from '../../../constants/imagePaths'
-import styles from './styles';
+import React from 'react'
+import { FlatList, Image, Text, View } from 'react-native'
 import { Divider } from 'react-native-elements/dist/divider/Divider'
+import HeadComp from '../../../Component/Header'
+import WrapperContainer from '../../../Component/WrapperContainer'
+import imagePaths from '../../../constants/imagePaths'
+import strings from '../../../constants/lang'
 import { moderateScale } from '../../../styles/responsiveSize'
+import styles from './styles'
 
 const notificationsData = [
   {

@@ -25,7 +25,7 @@ export default {
     MOBILE_NUMBER: 'Mobile Number',
     NEXT: 'NEXT',
     EDIT_MOBILE_NUM: 'Edit my mobile number',
-    RESEND_CODE: 'Resend code in 0:16',
+    RESEND_CODE: 'Resend code in',
     ENTER_CODE: 'Enter the 4-digit code sent to you at Number',
     VERIFY: 'VERIFY',
     SET_PSWRD: 'Set password',
@@ -54,7 +54,9 @@ export default {
     SAVE_CHANGES: 'SAVE CHANGES',
     HIDE: 'Hide',
     ENTER_LOC_MANUALLY: 'Enter location manually',
-    MAP: 'VIEW MAP'
+    MAP: 'VIEW MAP',
+    CURRENT_PASSOWRD: 'Current Password',
+    NEW_PASSWORD: "New Password"
 
 
 }

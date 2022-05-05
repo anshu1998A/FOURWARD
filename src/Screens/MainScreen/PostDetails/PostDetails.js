@@ -1,11 +1,11 @@
-import { StyleSheet, ImageBackground, Text, Image, View, Platform, KeyboardAvoidingView } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { Image, ImageBackground, Text, View } from 'react-native';
 import ButtonComponent from '../../../Component/Button';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
 import colors from '../../../styles/colors';
-import styles from './styles';
 import { textScale } from '../../../styles/responsiveSize';
+import styles from './styles';
 
 const PostDetails = ({ navigation, route }) => {
   const profile = route?.params?.postDetail;
@@ -22,7 +22,7 @@ const PostDetails = ({ navigation, route }) => {
             </View>
             <View style={{ flex: 0.8 }}>
               <Text style={{color:colors.white}}>{profile?.userName}</Text>
-              <Text style={{color:colors.white}}>{profile?.LOCATION}</Text>
+              <Text style={{color:colors.white}}>{profile?.location}</Text>
             </View>
             <View>
 
@@ -30,7 +30,7 @@ const PostDetails = ({ navigation, route }) => {
             </View>
           </View>
 
-          <View >
+          <View style={{paddingVertical: 20}}>
             <Text style={{color:colors.white, fontSize:textScale(15)}}>{profile?.postDetail}</Text>
             <Text  style={{color:colors.white, fontSize:textScale(13)}}>{profile?.postTime}</Text>
             <ButtonComponent buttonText={strings.MAP}

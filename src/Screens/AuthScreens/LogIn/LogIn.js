@@ -1,17 +1,16 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, { useEffect } from 'react'
-import WrapperContainer from '../../../Component/WrapperContainer'
-import imagePaths from '../../../constants/imagePaths';
-import { styles } from './style';
-import strings from '../../../constants/lang';
-import ButtonComponent from '../../../Component/Button';
-import colors from '../../../styles/colors';
-import { height, moderateScale, textScale, width } from '../../../styles/responsiveSize';
-import navigationString from '../../../navigation/navigationString';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
+import React, { useEffect } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
+import ButtonComponent from '../../../Component/Button';
+import WrapperContainer from '../../../Component/WrapperContainer';
+import imagePaths from '../../../constants/imagePaths';
+import strings from '../../../constants/lang';
+import navigationString from '../../../navigation/navigationString';
 import actions from '../../../redux/actions';
-import { introStyles } from '../AppIntroSlider/style';
+import colors from '../../../styles/colors';
+import { height, textScale } from '../../../styles/responsiveSize';
+import { styles } from './style';
 
 const LogIn = ({ navigation }) => {
 

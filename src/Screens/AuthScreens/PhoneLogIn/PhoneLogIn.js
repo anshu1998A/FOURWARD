@@ -1,20 +1,20 @@
-import { View, Text, ScrollView, KeyboardAvoidingView, TouchableOpacity, Platform } from 'react-native'
 import React, { useState } from 'react';
-import { styles } from './styels';
-import WrapperContainer from '../../../Component/WrapperContainer';
-import strings from '../../../constants/lang';
-import colors from '../../../styles/colors';
+import { KeyboardAvoidingView, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import ButtonComponent from '../../../Component/Button';
-import HeadComp from '../../../Component/Header';
-import navigationString from '../../../navigation/navigationString';
-import { commonStyles } from '../../../styles/commonStyles';
-import TextInputComponent from '../../../Component/TextInput';
 import CountryCodePicker from '../../../Component/CountryCodePicker';
-import actions from '../../../redux/actions';
-import { moderateScale, moderateScaleVertical } from '../../../styles/responsiveSize';
+import HeadComp from '../../../Component/Header';
+import TextInputComponent from '../../../Component/TextInput';
+import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
-import validator from '../../../utlis/validations';
+import strings from '../../../constants/lang';
+import navigationString from '../../../navigation/navigationString';
+import actions from '../../../redux/actions';
+import colors from '../../../styles/colors';
+import { commonStyles } from '../../../styles/commonStyles';
+import { moderateScale, moderateScaleVertical } from '../../../styles/responsiveSize';
 import { showError } from '../../../utlis/helperFunctions';
+import validator from '../../../utlis/validations';
+import { styles } from './styels';
 const PhoneLogIn = ({ navigation }) => {
 
 

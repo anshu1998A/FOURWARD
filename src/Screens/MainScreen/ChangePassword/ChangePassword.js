@@ -1,18 +1,18 @@
-import { View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native'
-import React, { useState } from 'react'
-import WrapperContainer from '../../../Component/WrapperContainer';
-import strings from '../../../constants/lang';
-import colors from '../../../styles/colors';
-import TextInputComponent from '../../../Component/TextInput';
-import HeadComp from '../../../Component/Header';
-import { styles } from './styles';
-import ButtonComponent from '../../../Component/Button';
-import navigationString from '../../../navigation/navigationString';
-import imagePaths from '../../../constants/imagePaths';
-import { moderateScaleVertical } from '../../../styles/responsiveSize';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, Platform, ScrollView, View } from 'react-native';
 import { useSelector } from 'react-redux';
+import ButtonComponent from '../../../Component/Button';
+import HeadComp from '../../../Component/Header';
+import TextInputComponent from '../../../Component/TextInput';
+import WrapperContainer from '../../../Component/WrapperContainer';
 import { CHANGE_PASSWORD } from '../../../config/urls';
+import imagePaths from '../../../constants/imagePaths';
+import strings from '../../../constants/lang';
+import navigationString from '../../../navigation/navigationString';
+import colors from '../../../styles/colors';
+import { moderateScaleVertical } from '../../../styles/responsiveSize';
 import { apiPost } from '../../../utlis/utlis';
+import { styles } from './styles';
 
 
 const ChangePassword = ({ navigation, route }) => {
@@ -30,7 +30,7 @@ const ChangePassword = ({ navigation, route }) => {
         setAllValues({ ...allValues, ...val })
     }
 
-    const [show, setShow] = useState();
+    const [show, setShow] = useState(!show);
     const [confirmShow, setConfirmShow] = useState();
 
     const showPassword = () => {
@@ -71,7 +71,7 @@ const ChangePassword = ({ navigation, route }) => {
                 <View style={styles.mainContainer}>
                     <TextInputComponent
                         viewstyle={styles.inputView}
-                        placeholder={strings.PASSWORD}
+                        placeholder={strings.CURRENT_PASSOWRD}
                         placeholderTextColor={colors.whiteOpacity50}
                         rightText={true}
                         rightTextVal={show ? strings.SHOW : strings.HIDE}
@@ -83,7 +83,7 @@ const ChangePassword = ({ navigation, route }) => {
 
                     <TextInputComponent
                         viewstyle={styles.inputView}
-                        placeholder={strings.CONFIRM_PSWRD}
+                        placeholder={strings.NEW_PASSWORD}
                         placeholderTextColor={colors.whiteOpacity50}
                         rightText={true}
                         rightTextVal={confirmShow ? strings.SHOW : strings.HIDE}

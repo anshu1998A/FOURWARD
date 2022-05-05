@@ -1,14 +1,14 @@
-import { Text, View, ScrollView, KeyboardAvoidingView } from 'react-native'
-import React, { useState } from 'react'
-import WrapperContainer from '../../../Component/WrapperContainer';
-import strings from '../../../constants/lang';
-import colors from '../../../styles/colors';
-import TextInputComponent from '../../../Component/TextInput';
-import HeadComp from '../../../Component/Header';
-import { styles } from './styles';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
 import ButtonComponent from '../../../Component/Button';
-import navigationString from '../../../navigation/navigationString';
+import HeadComp from '../../../Component/Header';
+import TextInputComponent from '../../../Component/TextInput';
+import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
+import strings from '../../../constants/lang';
+import navigationString from '../../../navigation/navigationString';
+import colors from '../../../styles/colors';
+import { styles } from './styles';
 
 
 

@@ -1,20 +1,20 @@
-import { Text, View, ScrollView, KeyboardAvoidingView } from 'react-native'
-import React, { useState } from 'react'
-import WrapperContainer from '../../../Component/WrapperContainer';
-import strings from '../../../constants/lang';
-import colors from '../../../styles/colors';
-import TextInputComponent from '../../../Component/TextInput';
-import HeadComp from '../../../Component/Header';
-import { styles } from './styles';
-import { commonStyles } from '../../../styles/commonStyles';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, ScrollView, Text, View } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import ButtonComponent from '../../../Component/Button';
+import CountryCodePicker from '../../../Component/CountryCodePicker';
+import HeadComp from '../../../Component/Header';
+import TextInputComponent from '../../../Component/TextInput';
+import WrapperContainer from '../../../Component/WrapperContainer';
+import imagePaths from '../../../constants/imagePaths';
+import strings from '../../../constants/lang';
 import navigationString from '../../../navigation/navigationString';
 import actions from '../../../redux/actions';
-import CountryCodePicker from '../../../Component/CountryCodePicker';
-import validator from '../../../utlis/validations';
-import imagePaths from '../../../constants/imagePaths';
-import DeviceInfo from 'react-native-device-info'
+import colors from '../../../styles/colors';
+import { commonStyles } from '../../../styles/commonStyles';
 import { showError } from '../../../utlis/helperFunctions';
+import validator from '../../../utlis/validations';
+import { styles } from './styles';
 
 const SignUp = ({ navigation }) => {
 
@@ -26,8 +26,8 @@ const SignUp = ({ navigation }) => {
 
 
   // ****************************************************HIDE OR WHOW THE PASSWORD*****************************************
-  const [show, setShow] = useState();
-  const [confirmShow, setConfirmShow] = useState();
+  const [show, setShow] = useState(!show);
+  const [confirmShow, setConfirmShow] = useState(!confirmShow);
 
   const showPassword = () => {
     setShow(!show);
@@ -36,7 +36,7 @@ const SignUp = ({ navigation }) => {
   const showConfirmPassword = () => {
     setConfirmShow(!confirmShow);
   };
-
+  // ********************************************STATE TO HANDLE TEXT INPUT VALUES************************************
   const [allValues, setAllValues] = useState({
     first_Name: '',
     last_Name: '',
@@ -51,19 +51,18 @@ const SignUp = ({ navigation }) => {
     setAllValues({ ...allValues, ...val })
   }
 
-
+  // ****************************************************VALIDATIONS *******************************************************
   const isValidData = () => {
-    const error = validator({first_Name , last_Name, email,  phoneNumber, password, confirmPassword});
+    const error = validator({ first_Name, last_Name, email, phoneNumber, password, confirmPassword });
     if (error) {
-   showError(error)
-  // alert(error)
+      showError(error)
       return;
     }
     return true;
   };
 
 
-  const verifyData = async () => {
+  const phoneSignUp = async () => {
 
     const checkValid = isValidData();
     if (!checkValid) {
@@ -92,7 +91,7 @@ const SignUp = ({ navigation }) => {
       alert('User signup successfully....!!!');
     } catch (error) {
       console.log('error raised', error);
-      
+
     }
 
   }
@@ -168,7 +167,7 @@ const SignUp = ({ navigation }) => {
             secureTextEntry={show}
             placeholderTextColor={colors.whiteOpacity50}
             rightText={true}
-            rightTextVal={strings.SHOW}
+            rightTextVal={show ? strings.SHOW : strings.HIDE}
             value={password}
             onChangetext={(password) => changeHandler({ password })}
           />
@@ -177,10 +176,10 @@ const SignUp = ({ navigation }) => {
             viewstyle={styles.inputView}
             placeholder={strings.CONFIRM_PSWRD}
             showPassword={showConfirmPassword}
-            secureTextEntry={show}
+            secureTextEntry={confirmShow}
             placeholderTextColor={colors.whiteOpacity50}
             rightText={true}
-            rightTextVal={strings.SHOW}
+            rightTextVal={confirmShow? strings.SHOW : strings.HIDE}
             value={confirmPassword}
             onChangetext={(confirmPassword) => changeHandler({ confirmPassword })}
           />
@@ -189,7 +188,7 @@ const SignUp = ({ navigation }) => {
       </ScrollView>
       <KeyboardAvoidingView enabled={true}>
         <View>
-          <ButtonComponent buttonText={strings.NEXT} textColor={colors.white} onpress={verifyData} />
+          <ButtonComponent buttonText={strings.NEXT} textColor={colors.white} onpress={phoneSignUp} />
         </View>
       </KeyboardAvoidingView>
     </WrapperContainer>

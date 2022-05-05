@@ -23,7 +23,7 @@ const styles= StyleSheet.create({
     { flexDirection: 'row', flex: 1, marginLeft: moderateScale(20) },
     resendCode:{
         color: colors.white,
-        fontSize: textScale(15)
+        fontSize: textScale(15), 
     }
 })
 export default styles

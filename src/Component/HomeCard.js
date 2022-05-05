@@ -58,7 +58,7 @@ export default function HomeCard({
                     <Text style={{ color: colors.white }}>Comments</Text>
                 </View>
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: colors.white, fontFamily:fontFamily.Barlow_Bold}}> {strings.LIKES} </Text>
+                    <Text style={{ color: colors.white, }}> {strings.LIKES} </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image source={imagePaths.direction} style={{ height: height/ 60 }} />

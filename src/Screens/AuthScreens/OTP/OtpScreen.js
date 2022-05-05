@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import CountDown from 'react-native-countdown-component';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import ButtonComponent from '../../../Component/Button';
 import HeadComp from '../../../Component/Header';
@@ -11,7 +12,6 @@ import actions from '../../../redux/actions';
 import colors from '../../../styles/colors';
 import { height, moderateScale, textScale } from '../../../styles/responsiveSize';
 import styles from './styles';
-// import CountDown from 'react-native-countdown-component';
 
 const OtpScreen = ({ navigation, route }) => {
 
@@ -23,10 +23,10 @@ const OtpScreen = ({ navigation, route }) => {
 
     const [code, setCode] = useState();
 
-    
-    const signupWithOtp = () =>{
-        
-        if (otp ==code) {
+
+    const signupWithOtp = () => {
+
+        if (otp == code) {
             actions.saveUserData(apiData)
             alert("Login successfully")
         } else {
@@ -71,18 +71,22 @@ const OtpScreen = ({ navigation, route }) => {
             </ScrollView>
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS === 'android' ? 'height' : 'padding'}>
                 <View style={styles.otpEnetrView}>
-                    <Text style={styles.resendCode}>{strings.RESEND_CODE}</Text>
-                    {/* <CountDown 
-                    timeToShow={'S'}
-                    digitStyle={{backgroundColor:colors.themeColor}}
-                    until={40}
-                    digitTxtStyle={{color: colors.white,
-                    fontSize:textScale(13)}}
-                    /> */}
+                    <View style={{ flexDirection: 'row', alignItems:'center' }}>
+                        <Text style={styles.resendCode}>{strings.RESEND_CODE}</Text>
+                        <CountDown
+                            timeToShow={'S'}
+                            digitStyle={{ backgroundColor: colors.black }}
+                            until={30}
+                            digitTxtStyle={{
+                                color: colors.white,
+                                fontSize: textScale(13)
+                            }}
+                        />
+                    </View>
 
                     <ButtonComponent buttonText={strings.VERIFY}
                         textColor={colors.white}
-                        onpress={signupWithOtp}/>
+                        onpress={signupWithOtp} />
                 </View>
             </KeyboardAvoidingView>
         </WrapperContainer>

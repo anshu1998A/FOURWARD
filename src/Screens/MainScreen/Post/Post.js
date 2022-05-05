@@ -1,11 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import WrapperContainer from '../../../Component/WrapperContainer'
 
 const Post = () => {
   return (
-    <View>
-      <Text>Post</Text>
-    </View>
+    <WrapperContainer>
+      
+    </WrapperContainer>
   )
 }
 

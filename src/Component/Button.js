@@ -59,7 +59,7 @@ const buttonStyles = StyleSheet.create({
     },
     textStyle: {
         fontSize: textScale(14),
-        fontFamily: fontFamily.MULISH_REGULAR
+        // fontFamily: fontFamily.MULISH_REGULAR
     },
     image: {
         height: moderateScale(20),
