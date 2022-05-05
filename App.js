@@ -19,12 +19,12 @@ const App = () => {
 
     
 
-    getItem('login').then((res)=>{
-      if(!!res){
-        console.log("res",res)
-        actions.logIN(res)
+    getItem('userLogin').then(res => {
+      console.log('store data------------', res);
+      if (!!res) {
+        actions.saveUserData(res);
       }
-    })
+    });
   
    
   }, [])

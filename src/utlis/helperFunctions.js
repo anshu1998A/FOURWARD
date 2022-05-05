@@ -7,7 +7,6 @@ const showError = message => {
     icon: 'danger',
     message,
   });
-  // Toast.show(message);
 };
 const showSuccess = message => {
   showMessage({
@@ -16,7 +15,6 @@ const showSuccess = message => {
     message,
   });
 
-  // Toast.show(message);
 };
 export {
   showError,

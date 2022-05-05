@@ -31,7 +31,7 @@ const PhoneLogIn = ({ navigation }) => {
 
   const changeHandler = data => setData(state => ({ ...state, ...data }));
 
-  const [show, setShow] = useState();
+  const [show, setShow] = useState(!show);
 
   const showPassword = () => {
     setShow(!show);
@@ -40,7 +40,7 @@ const PhoneLogIn = ({ navigation }) => {
   const isValidData = () => {
     const error = validator({phoneNumber, password});
     if (error) {
-  //  showError(error)
+   showError(error)
   alert(error)
       return;
     }
@@ -55,7 +55,7 @@ const PhoneLogIn = ({ navigation }) => {
     }
 
     let apiData = {
-      phoneNumber: phone,
+      phone: phoneNumber,
       phone_code: countryCode,
       device_token: 'KDKFJDKFDFKDFDF',
       device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',

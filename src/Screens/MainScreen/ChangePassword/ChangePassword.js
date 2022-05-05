@@ -12,14 +12,16 @@ import imagePaths from '../../../constants/imagePaths';
 import { moderateScaleVertical } from '../../../styles/responsiveSize';
 import { useSelector } from 'react-redux';
 import { CHANGE_PASSWORD } from '../../../config/urls';
+import { apiPost } from '../../../utlis/utlis';
 
 
 const ChangePassword = ({ navigation, route }) => {
-const userData = useSelector(state => state?.auth?.useData)
+    const userData = useSelector(state => state?.userStatus?.userData)
+    console.log( " USERDATA FOR CHANGE PASSWORD", userData)
 
 
-console.log(userData," USERDAT FOR CHANGE PASSWORD")
-const [allValues, setAllValues] = useState({
+
+    const [allValues, setAllValues] = useState({
         oldPassword: '',
         newPassword: '',
     });
@@ -39,27 +41,27 @@ const [allValues, setAllValues] = useState({
         setConfirmShow(!confirmShow);
     };
 
-const changePassword =() => {
-    let apiData ={
-        user_id: userData?.id,
-        password: newPassword,
-    };
-    apiPost(CHANGE_PASSWORD,apiData)
-    .then( res => {
-        alert("Password changes successfully")
-        console.log(res,"NEW PASSWORD:")
-    })
-    .catch( e => {
-        console.log(e, "error raised")
-        alert("cdfgdc")
-    })
-}
+    const changePassword = () => {
+        let apiData = {
+            user_id: userData?.id,
+            password: newPassword,
+        };
+        apiPost(CHANGE_PASSWORD, apiData)
+            .then(res => {
+                alert("Password changes successfully")
+                console.log(res, "NEW PASSWORD:")
+            })
+            .catch(e => {
+                console.log(e, "error raised")
+                alert("cdfgdc")
+            })
+    }
 
     return (
         <WrapperContainer>
             <HeadComp
                 leftImage={true}
-                leftImageIcon={imagePaths.BACK_ARROW}
+                leftImageIcon={imagePaths.back_Arrow}
                 leftText={true}
                 leftTextTitle={strings.CHANGE_PASSWORD}
                 leftTextStyle={styles.leftTextStyle}
@@ -94,12 +96,12 @@ const changePassword =() => {
 
             </ScrollView>
             <KeyboardAvoidingView enabled={true}
-            behavior={Platform.OS =='android' ? 'height' : 'padding'}>
+                behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                 <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
                     <ButtonComponent buttonText={strings.CHANGE_PASSWORD}
                         textColor={colors.white}
                         onpress={changePassword}
-                         />
+                    />
                 </View>
             </KeyboardAvoidingView>
         </WrapperContainer>

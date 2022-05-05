@@ -11,7 +11,7 @@ import actions from '../../../redux/actions';
 import colors from '../../../styles/colors';
 import { height, moderateScale, textScale } from '../../../styles/responsiveSize';
 import styles from './styles';
-import CountDown from 'react-native-countdown-component';
+// import CountDown from 'react-native-countdown-component';
 
 const OtpScreen = ({ navigation, route }) => {
 
@@ -39,7 +39,7 @@ const OtpScreen = ({ navigation, route }) => {
         <WrapperContainer>
             <HeadComp
                 leftImage={true}
-                leftImageIcon={imagePaths.BACK_ARROW}
+                leftImageIcon={imagePaths.back_Arrow}
                 onPress={() => { navigation.navigate(navigationString.PHONE_LOGIN) }} />
             <ScrollView>
                 <View style={{ height: height }}>
@@ -72,13 +72,13 @@ const OtpScreen = ({ navigation, route }) => {
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS === 'android' ? 'height' : 'padding'}>
                 <View style={styles.otpEnetrView}>
                     <Text style={styles.resendCode}>{strings.RESEND_CODE}</Text>
-                    <CountDown 
+                    {/* <CountDown 
                     timeToShow={'S'}
                     digitStyle={{backgroundColor:colors.themeColor}}
                     until={40}
                     digitTxtStyle={{color: colors.white,
                     fontSize:textScale(13)}}
-                    />
+                    /> */}
 
                     <ButtonComponent buttonText={strings.VERIFY}
                         textColor={colors.white}

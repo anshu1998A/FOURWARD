@@ -18,37 +18,42 @@ const Home = ({ navigation, route }) => {
       {
         id: '1',
         userProfile: imagePaths.profile_Image1,
-        postImage: imagePaths.post_Image1,
+        postImage: imagePaths.post_Image2,
         userName: strings.USER_NAME1,
-        LOCATION: strings.LOCATION,
+        location: strings.LOCATION,
+        postDetail: strings.LOREM_TEXT,
+        postTime: strings.TIME
       },
       {
         id: '2',
         userProfile: imagePaths.profile_Image2,
         postImage: imagePaths.post_Image1,
         userName: strings.USER_NAME1,
-        LOCATION: strings.LOCATION,
+        location: strings.LOCATION,
+        postDetail: strings.LOREM_TEXT,
+        postTime: strings.TIME
       },
       {
         id: '3',
         userProfile: imagePaths.profile_Image1,
         postImage: imagePaths.post_Image1,
         userName: strings.USER_NAME1,
-        LOCATION: strings.LOCATION,
+        location: strings.LOCATION,
+        postDetail: strings.LOREM_TEXT,
+        postTime: strings.TIME
       },
       {
         id: '4',
         userProfile: imagePaths.profile_Image1,
         postImage: imagePaths.post_Image1,
         userName: 'strings.USER_NAME1',
-        LOCATION: 'strings.LOCATION',
+        location: 'strings.LOCATION',
+        postDetail: strings.LOREM_TEXT,
+        postTime: strings.TIME
       },
     ],
   });
   const { cardData } = state;
-
-  console.log("drvfstgyhuijnk", cardData)
-
 
   const renderItem = (item) => {
 
@@ -66,21 +71,9 @@ const Home = ({ navigation, route }) => {
         rightImageIcon={imagePaths.location}
       />
 
-      {/* <FlatList
-        data={cardData}
-        renderItem={(element, index) => {
-          <HomeCard
-            userProfile={element.item.userProfile}
-            postImage={element.item.postImage}
-            userName={element.item.userName}
-            location={element.item.LOCATION}
-            onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: item })}
-          />
-        }}
-      /> */}
-
       <ScrollView>
         {cardData.map((item, index) => {
+          console.log(item,"item>>>>")
           return (
             <View key={index}>
               <HomeCard
@@ -88,6 +81,8 @@ const Home = ({ navigation, route }) => {
                 postImage={item.postImage}
                 userName={item.userName}
                 location={item.LOCATION}
+                postDetails={item.postDetail}
+                postTime={item.postTime}
                 onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: item })}
               />
             </View>

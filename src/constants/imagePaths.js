@@ -21,5 +21,7 @@ export default {
     profile_Image1: require('../assets/images/postIamge.jpeg'),
     post_Image1: require('../assets/images/PostIMAGES.jpeg'),
     profile_Image2: require('../assets/images/Pro.jpeg'),
-    edit_image: require('../assets/images/ic_edit.png')
+    edit_image: require('../assets/images/ic_edit.png'),
+    post_Image2: require('../assets/images/pexels-photo-2715004.jpeg'),
+    cross: require('../assets/images/ic_cross.png')
 };

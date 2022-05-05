@@ -53,7 +53,8 @@ export default {
     LOCATION: 'Sector 28 D, Chandigarh',
     SAVE_CHANGES: 'SAVE CHANGES',
     HIDE: 'Hide',
-    ENTER_LOC_MANUALLY: 'Enter location manually'
+    ENTER_LOC_MANUALLY: 'Enter location manually',
+    MAP: 'VIEW MAP'
 
 
 }

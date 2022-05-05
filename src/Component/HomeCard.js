@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import imagePaths from '../constants/imagePaths';
 import strings from '../constants/lang';
 import colors from '../styles/colors';
+import fontFamily from '../styles/fontFamily';
 import {
     height,
     moderateScale,
@@ -20,7 +21,11 @@ export default function HomeCard({
     onPress,
     userName = '',
     location = '',
+    postDetails='',
+    postTime=''
 }) {
+
+
     return (
         <View style={styles.viewContainer}>
             <View style={styles.headView}>
@@ -44,8 +49,8 @@ export default function HomeCard({
                 marginHorizontal: moderateScale(16),
                 marginVertical: moderateScale(10)
             }}>
-                <Text style={{ color: colors.white }}> {strings.LOREM_TEXT}</Text>
-                <Text style={{ color: colors.whiteOpacity50 }}>{strings.TIME}</Text>
+                <Text style={{ color: colors.white }}> {postDetails}</Text>
+                <Text style={{ color: colors.whiteOpacity50 }}>{postTime}</Text>
             </View>
             <View
                 style={styles.footerView}>
@@ -53,10 +58,10 @@ export default function HomeCard({
                     <Text style={{ color: colors.white }}>Comments</Text>
                 </View>
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: colors.white }}> {strings.LIKES} </Text>
+                    <Text style={{ color: colors.white, fontFamily:fontFamily.Barlow_Bold}}> {strings.LIKES} </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={imagePaths.direction} style={{ height: height/ 50 }} />
+                    <Image source={imagePaths.direction} style={{ height: height/ 60 }} />
                 </View>
             </View>
         </View>

@@ -31,7 +31,7 @@ const TextInputComponent = ({
         </View>
       )}
 
-      <View style={{flex: 1, marginLeft: moderateScale(5)}}>
+      <View style={{flex: 1, }}>
         <TextInput
           {...props}
           placeholder={placeholder}
@@ -42,19 +42,18 @@ const TextInputComponent = ({
           secureTextEntry={secureTextEntry}
           onChangeText={onChangetext}
           keyboardAppearance={'dark'}
-          keybo
         />
       </View>
       {rightText && (
-        <View >
-          <TouchableOpacity onPress={showPassword} >
+        
+          <TouchableOpacity onPress={showPassword} style={{paddingHorizontal:20}} >
           <Text style={{color:colors.sub_Text}}>{rightTextVal}</Text>
           </TouchableOpacity> 
-        </View>
+    
       )}
  {longText && (
         <View style={{flex: 0.86}}>
-          <TouchableOpacity activeOpacity={1} onPress={showpass}>
+          <TouchableOpacity activeOpacity={1}>
             <Text style={{...styles.showcolour, ...textcolour}}>
               {rightTextVal}
             </Text>
@@ -85,8 +84,9 @@ const styles = StyleSheet.create({
     height: moderateScale(50),
   },
   inputtext: {
-    paddingVertical: moderateScaleVertical(10),
+    // paddingVertical: moderateScaleVertical(10),
     color: colors.white,
+    paddingHorizontal:moderateScale(10)
     // flex: 1,
   },
 });

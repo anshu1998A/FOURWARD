@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
-import EditProfile from '../Screens/EditProfile/EditProfile';
 import ChangePassword from '../Screens/MainScreen/ChangePassword/ChangePassword';
+import EditProfile from '../Screens/MainScreen/EditProfile/EditProfile';
 import PostDetails from '../Screens/MainScreen/PostDetails/PostDetails';
 import BottomTabNAvigation from './BottomTabNAvigation'
 import navigationString from './navigationString'

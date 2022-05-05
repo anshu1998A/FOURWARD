@@ -63,20 +63,6 @@ export default function (data) {
     }
   }
 
-  // if(emailMobile!==undefined){
-  //  let emptyValidationText = checkEmpty(emailMobile, 'Email or mobile');
-  //  if (emptyValidationText !== '') {
-  //    return emptyValidationText;
-  //  }
-  //  if (!/^[0][1-9]$|^[1-9]\d{8,14}$/.test(emailMobile)) {
-  //    if (!validator.email(emailMobile)) {
-  //      return 'Please enter valid email or mobile';
-  //    }
-  //  }
-  // }
-
-
-
 
   if (phoneNumber !== undefined) {
    let emptyValidationText = checkEmpty(phoneNumber, 'phone number');

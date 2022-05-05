@@ -6,6 +6,7 @@ import strings from '../../../constants/lang'
 import imagePaths from '../../../constants/imagePaths'
 import styles from './styles';
 import { Divider } from 'react-native-elements/dist/divider/Divider'
+import { moderateScale } from '../../../styles/responsiveSize'
 
 const notificationsData = [
   {
@@ -33,8 +34,8 @@ const notificationsData = [
 
 const notificationItems = ({ item }) => {
   return (
-
-    <View style={styles.mainView}>
+    <>   
+     <View style={styles.mainView}>
       <View>
         <Image source={item.image} style={styles.iconStyle} />
       </View>
@@ -46,15 +47,13 @@ const notificationItems = ({ item }) => {
         <Text style={styles.timeText}>{strings.TIME}</Text>
       </View>
     </View>
+      <Divider style={{ marginLeft: moderateScale(80) }} />
+    </>
+
 
   )
 }
 const Notification = () => {
-
-  // const [state, setState] = useState({
-  //   notificationData: [{}, {}, {}, {}]
-  // })
-  // const { notificationData } = state
 
   return (
     <WrapperContainer>
@@ -66,6 +65,7 @@ const Notification = () => {
 
       <View>
         <FlatList
+          scrollEnabled={false}
           data={notificationsData}
           renderItem={notificationItems}
         />

@@ -14,6 +14,7 @@ import CountryCodePicker from '../../../Component/CountryCodePicker';
 import validator from '../../../utlis/validations';
 import imagePaths from '../../../constants/imagePaths';
 import DeviceInfo from 'react-native-device-info'
+import { showError } from '../../../utlis/helperFunctions';
 
 const SignUp = ({ navigation }) => {
 
@@ -54,8 +55,8 @@ const SignUp = ({ navigation }) => {
   const isValidData = () => {
     const error = validator({first_Name , last_Name, email,  phoneNumber, password, confirmPassword});
     if (error) {
-  //  showError(error)
-  alert(error)
+   showError(error)
+  // alert(error)
       return;
     }
     return true;
@@ -74,8 +75,8 @@ const SignUp = ({ navigation }) => {
       last_name: last_Name,
       email: email,
       phone: phoneNumber,
-      phoneCode: countryCode,
-      county_Code: countryFlag,
+      phone_code: countryCode,
+      country_code: countryFlag,
       device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
       password: password,
       confirmPassword: confirmPassword,

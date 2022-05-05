@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
 import ImagePicker from 'react-native-image-crop-picker'
@@ -18,7 +18,7 @@ import styles from './styles'
 const EditProfile = ({ navigation }) => {
 
 
- const userData = useSelector(state => state?.userStatus?.userData)
+  const userData = useSelector(state => state?.userStatus?.userData)
   console.log(userData, 'edit prof data');
 
   const [countryCode, setCountryCode] = useState('91');
@@ -31,23 +31,38 @@ const EditProfile = ({ navigation }) => {
     lastName: userData?.last_name,
     email: userData?.email,
     phone: userData?.phone,
-    profileImage:'',
-    imageType:null,
+    profileImage: '',
+    imageType: null,
   });
-  const {firstName, lastName, email, phone, profileImage} = state;
-  const changeHandler = data => setState(state => ({...state, ...data}));
+  const { firstName, lastName, email, phone, profileImage } = state;
+  const changeHandler = data => setState(state => ({ ...state, ...data }));
+
+  useEffect(() => {
+    if (userData) {
+      setState({
+        email: userData?.email,
+        phone: userData?.phone,
+        firstName: userData?.first_name,
+        lastName: userData?.last_name,
+        profileImage: userData?.profileImage,
+      });
+    }
+  }, [userData]);
 
 
   const uploadImage = () => {
-    ImagePicker.openCamera({
-
-    }). then(image =>{
+    ImagePicker.openPicker({
+    }).then(image => {
       console.log("user Image:", image);
-     
+      changeHandler({
+        profileImage: image?.sourceURL || image?.path,
+        imageType: image?.mime,
+      })
+
     })
-    .catch(e =>{
-      console.log("sedrftgyhujk")
-    })
+      .catch(e => {
+        console.log(e, "sedrftgyhujk")
+      })
   }
 
   return (
@@ -61,7 +76,7 @@ const EditProfile = ({ navigation }) => {
         onPress={() => navigation.navigate(navigationString.PROFILE)} />
       <ScrollView >
         < View style={styles.imageView} >
-          <Image source={imagePaths.profile_Image1} style={styles.imageStyle} resizeMode="cover" />
+          <Image source={profileImage?{uri:profileImage}:imagePaths.profile_Image1} style={styles.imageStyle} resizeMode="cover" />
 
 
           <TouchableOpacity

@@ -9,15 +9,15 @@ const userStatus = (state = inititalState, action) => {
 
       case type.LOGIN: 
         data=action.payload
-        console.log("ghihghr",data)
-        saveLogin(data)
+        console.log('user login details',data)
+        setItem('userLogin',data)
         return {
             userData:data
         }; 
 
     case type.LOGOUT: {
-      removeItem('login').then((res) => {
-        console.log('res', res)
+      removeItem('userLogin').then((res) => {
+        console.log('res............', res)
       })
       return {
         userData: null
