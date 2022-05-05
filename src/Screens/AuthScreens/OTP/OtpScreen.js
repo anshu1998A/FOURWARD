@@ -1,17 +1,17 @@
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-// import { styles } from './styles';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
-import WrapperContainer from '../../../Component/WrapperContainer'
-import HeadComp from '../../../Component/Header'
-import navigationString from '../../../navigation/navigationString';
-import strings from '../../../constants/lang';
 import ButtonComponent from '../../../Component/Button';
+import HeadComp from '../../../Component/Header';
+import WrapperContainer from '../../../Component/WrapperContainer';
+import imagePaths from '../../../constants/imagePaths';
+import strings from '../../../constants/lang';
+import navigationString from '../../../navigation/navigationString';
+import actions from '../../../redux/actions';
 import colors from '../../../styles/colors';
 import { height, moderateScale, textScale } from '../../../styles/responsiveSize';
-import imagePaths from '../../../constants/imagePaths';
 import styles from './styles';
-import actions from '../../../redux/actions';
+import CountDown from 'react-native-countdown-component';
 
 const OtpScreen = ({ navigation, route }) => {
 
@@ -30,7 +30,7 @@ const OtpScreen = ({ navigation, route }) => {
             actions.saveUserData(apiData)
             alert("Login successfully")
         } else {
-            alert("otp is wrong")
+            alert("wrong OTP")
         }
     }
 
@@ -47,7 +47,7 @@ const OtpScreen = ({ navigation, route }) => {
                         <Text style={styles.headText}>{strings.ENTER_CODE}</Text>
                     </View>
                     <TouchableOpacity onPress={() => navigation.navigate(navigationString.SIGNUP)} style={styles.numEditView}>
-                        <Text style={styles.editNum}> {strings.EDIT_MOBILE_NUM} {otp}</Text>
+                        <Text style={styles.editNum}> {strings.EDIT_MOBILE_NUM} </Text>
                     </TouchableOpacity>
                     <View style={{ flexDirection: 'row', flex: 1, marginLeft: moderateScale(20) }}>
                         <SmoothPinCodeInput
@@ -72,6 +72,14 @@ const OtpScreen = ({ navigation, route }) => {
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS === 'android' ? 'height' : 'padding'}>
                 <View style={styles.otpEnetrView}>
                     <Text style={styles.resendCode}>{strings.RESEND_CODE}</Text>
+                    <CountDown 
+                    timeToShow={'S'}
+                    digitStyle={{backgroundColor:colors.themeColor}}
+                    until={40}
+                    digitTxtStyle={{color: colors.white,
+                    fontSize:textScale(13)}}
+                    />
+
                     <ButtonComponent buttonText={strings.VERIFY}
                         textColor={colors.white}
                         onpress={signupWithOtp}/>

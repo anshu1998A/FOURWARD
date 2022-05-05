@@ -4,7 +4,8 @@ import WrapperContainer from '../../../Component/WrapperContainer'
 import HeadComp from '../../../Component/Header'
 import strings from '../../../constants/lang'
 import imagePaths from '../../../constants/imagePaths'
-import styles from './styles'
+import styles from './styles';
+import { Divider } from 'react-native-elements/dist/divider/Divider'
 
 const notificationsData = [
   {

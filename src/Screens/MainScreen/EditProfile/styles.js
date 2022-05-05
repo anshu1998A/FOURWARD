@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
-import colors from '../../styles/colors'
-import { height, moderateScale, moderateScaleVertical, textScale, width } from '../../styles/responsiveSize'
+import { StyleSheet } from 'react-native'
+import colors from '../../../styles/colors'
+import { height, moderateScale, moderateScaleVertical, textScale, width } from '../../../styles/responsiveSize'
 
 
 const styles = StyleSheet.create({
@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     imageView: {
-        // justifyContent: 'center',
-        // alignItems: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: moderateScaleVertical(20),

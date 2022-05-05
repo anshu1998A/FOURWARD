@@ -1,19 +1,19 @@
-import { Image, View, ScrollView, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
-import WrapperContainer from '../../Component/WrapperContainer';
-import strings from '../../constants/lang';
-import colors from '../../styles/colors';
-import TextInputComponent from '../../Component/TextInput';
-import HeadComp from '../../Component/Header';
-import ButtonComponent from '../../Component/Button';
-import navigationString from '../../navigation/navigationString';
-import CountryCodePicker from '../../Component/CountryCodePicker';
-import imagePaths from '../../constants/imagePaths';
-import styles from './styles'
-import {  moderateScaleVertical} from '../../styles/responsiveSize'
 import ImagePicker from 'react-native-image-crop-picker'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
+import ButtonComponent from '../../../Component/Button'
+import CountryCodePicker from '../../../Component/CountryCodePicker'
+import HeadComp from '../../../Component/Header'
+import TextInputComponent from '../../../Component/TextInput'
+import WrapperContainer from '../../../Component/WrapperContainer'
+import imagePaths from '../../../constants/imagePaths'
+import strings from '../../../constants/lang'
+import navigationString from '../../../navigation/navigationString'
+import colors from '../../../styles/colors'
+import { moderateScaleVertical } from '../../../styles/responsiveSize'
+import styles from './styles'
 
 const EditProfile = ({ navigation }) => {
 

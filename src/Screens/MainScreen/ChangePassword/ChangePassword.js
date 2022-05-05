@@ -10,11 +10,16 @@ import ButtonComponent from '../../../Component/Button';
 import navigationString from '../../../navigation/navigationString';
 import imagePaths from '../../../constants/imagePaths';
 import { moderateScaleVertical } from '../../../styles/responsiveSize';
+import { useSelector } from 'react-redux';
+import { CHANGE_PASSWORD } from '../../../config/urls';
 
 
-const ChangePassword = ({ navigation }) => {
+const ChangePassword = ({ navigation, route }) => {
+const userData = useSelector(state => state?.auth?.useData)
 
-    const [allValues, setAllValues] = useState({
+
+console.log(userData," USERDAT FOR CHANGE PASSWORD")
+const [allValues, setAllValues] = useState({
         oldPassword: '',
         newPassword: '',
     });
@@ -33,6 +38,23 @@ const ChangePassword = ({ navigation }) => {
     const shownewPassword = () => {
         setConfirmShow(!confirmShow);
     };
+
+const changePassword =() => {
+    let apiData ={
+        user_id: userData?.id,
+        password: newPassword,
+    };
+    apiPost(CHANGE_PASSWORD,apiData)
+    .then( res => {
+        alert("Password changes successfully")
+        console.log(res,"NEW PASSWORD:")
+    })
+    .catch( e => {
+        console.log(e, "error raised")
+        alert("cdfgdc")
+    })
+}
+
     return (
         <WrapperContainer>
             <HeadComp
@@ -74,8 +96,9 @@ const ChangePassword = ({ navigation }) => {
             <KeyboardAvoidingView enabled={true}
             behavior={Platform.OS =='android' ? 'height' : 'padding'}>
                 <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
-                    <ButtonComponent buttonText={strings.LOGIN}
+                    <ButtonComponent buttonText={strings.CHANGE_PASSWORD}
                         textColor={colors.white}
+                        onpress={changePassword}
                          />
                 </View>
             </KeyboardAvoidingView>

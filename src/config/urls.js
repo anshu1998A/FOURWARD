@@ -3,3 +3,5 @@ export const getApiUrl = (endpoint) => API_BASE_URL + endpoint;
 
 export const SIGNUP = getApiUrl('/signup');
 export const LOGIN = getApiUrl('/userlogin');
+export const CHANGE_PASSWORD = getApiUrl('/chnage_password');
+export const VERIFY_OTP = getApiUrl('/verify_otp');
