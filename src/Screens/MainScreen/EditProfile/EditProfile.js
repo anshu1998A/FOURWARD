@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View } from 'react-native'
-import DeviceInfo from 'react-native-device-info'
-import ImagePicker from 'react-native-image-crop-picker'
+import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, SafeAreaView, Text } from 'react-native'
 import { useSelector } from 'react-redux'
 import ButtonComponent from '../../../Component/Button'
 import CountryCodePicker from '../../../Component/CountryCodePicker'
@@ -11,10 +9,13 @@ import WrapperContainer from '../../../Component/WrapperContainer'
 import imagePaths from '../../../constants/imagePaths'
 import strings from '../../../constants/lang'
 import navigationString from '../../../navigation/navigationString'
-import colors from '../../../styles/colors'
-import { moderateScaleVertical } from '../../../styles/responsiveSize'
-import styles from './styles';
 import actions from '../../../redux/actions'
+import colors from '../../../styles/colors'
+import { height, moderateScale, moderateScaleVertical } from '../../../styles/responsiveSize'
+import styles from './styles'
+import Modal from 'react-native-modal'
+import ImageCropPicker from 'react-native-image-crop-picker'
+import { setItem } from '../../../utlis/utlis'
 
 const EditProfile = ({ navigation }) => {
 
@@ -23,6 +24,8 @@ const EditProfile = ({ navigation }) => {
 
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [image, setImage] = useState("")
 
   const [state, setState] = useState({
     firstName: userData?.first_name,
@@ -54,22 +57,77 @@ const EditProfile = ({ navigation }) => {
       last_name: lastName,
       email: email,
     }
-    
+
     actions
-    .editDetails(apiData)
-    .then(res =>{
-      console.log('editProfile api res_+++++', res);
-      alert('profile updated')
-      navigation.goBack();
-    }).catch(err => {
-          console.log(err, 'err');
-          alert(err?.message);
-        });
-}
+      .editDetails(apiData)
+      .then(res => {
+        console.log('editProfile api res_+++++', res);
+        alert('profile updated')
+        navigation.goBack();
+      }).catch(err => {
+        console.log(err, 'err');
+        alert(err?.message);
+      });
+  }
+
+  // const takePhotoFromCamera = async () => {
+  //   // const permissionStatus = await androidCameraPermission();
+  //   // if (permissionStatus) {
+  //   ImageCropPicker.openCamera({
+  //     width: 300,
+  //     height: 400,
+  //     cropping: true,
+  //     multiple: false,
+  //   }).then((image) => {
+  //     console.log(image, "image from camera");
+  //     imageUpload(image.path);
+  //     setModalVisible(!modalVisible);
+  //   });
+  //   // }
+  // };
 
 
-  const uploadImage = () => {
-    ImagePicker.openPicker({
+
+  // const imageUpload = async (imagePath) => {
+  //   const imgData = new FormData();
+  //   imgData.append("image", {
+  //     uri: imagePath,
+  //     name: "image.png",
+  //     fileName: "image",
+  //     type: "image/png",
+  //   });
+  //   setImage(imgData?._parts[0][1]?.uri, "IMAGE")
+  //   .then(image => {
+  //         console.log("user Image:", image);
+  //         changeHandler({
+  //           profileImage: image?.sourceURL || image?.path,
+  //           imageType: image?.mime,
+  //         })
+
+  //       })
+  //         .catch(e => {
+  //           console.log(e, "error raised*********")
+  //         })
+  // };
+
+  const takePhotoFromLibrary = async () => {
+    ImageCropPicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+      multiple: false,
+    }).then((image) => {
+      console.log(image, "image from library");
+      uploadImage(image.path);
+      setModalVisible(!modalVisible);
+    });
+    // }
+  };
+
+
+  const uploadImage = () => 
+  {
+    ImageCropPicker.openPicker({
     }).then(image => {
       console.log("user Image:", image);
       changeHandler({
@@ -94,16 +152,31 @@ const EditProfile = ({ navigation }) => {
         onPress={() => navigation.navigate(navigationString.PROFILE)} />
       <ScrollView >
         < View style={styles.imageView} >
-          <Image source={profileImage?{uri:profileImage}:imagePaths.profile_Image1} style={styles.imageStyle} resizeMode="cover" />
+          <Image source={profileImage ? { uri: profileImage } : imagePaths.profile_Image1} style={styles.imageStyle} resizeMode="cover" />
 
 
           <TouchableOpacity
-            onPress={uploadImage}
-            style={styles.imagePickerStyle}>
+            // onPress={() => setModalVisible(true)}
+            onPress={takePhotoFromLibrary}
 
-            <Image
+            style={styles.imagePickerStyle}>
+            {!!image && image !== "" ? (
+              <Image
+                source={{ uri: image }}
+              // style={styles.defaultImage}
+              />
+              // <Image source={{ uri: profileImage }} style={styles.imageStyle} resizeMode="cover" />
+            ) : (
+              <Image
+                style={styles.defaultImage}
+                source={imagePaths.edit_image}
+              />
+            )}
+
+
+            {/* <Image
               source={imagePaths.edit_image}
-            />
+            /> */}
           </TouchableOpacity>
         </View >
         <View style={styles.mainContainer}>
@@ -114,7 +187,7 @@ const EditProfile = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.FIRST_NAME}
                   placeholderTextColor={colors.sub_Text}
-                  onChangetext={(firstName) => changeHandler({firstName})}
+                  onChangetext={(firstName) => changeHandler({ firstName })}
                   value={firstName}
                 />
               </View>
@@ -124,7 +197,7 @@ const EditProfile = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.LAST_NAME}
                   placeholderTextColor={colors.sub_Text}
-                  onChangetext={(lastName) => changeHandler({lastName})}
+                  onChangetext={(lastName) => changeHandler({ lastName })}
                   value={lastName}
                 />
               </View>
@@ -136,10 +209,10 @@ const EditProfile = ({ navigation }) => {
               placeholderTextColor={colors.sub_Text}
               onChangetext={(email) => changeHandler({ email })}
               value={email}
-              
+
             />
-            <View style={{ flexDirection: "row", justifyContent: "space-between" ,}}>
-              <View style={{ flex: 0.38 ,}}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", }}>
+              <View style={{ flex: 0.38, }}>
                 <CountryCodePicker
                   countryCode={countryCode}
                   countryFlag={countryFlag}
@@ -168,9 +241,36 @@ const EditProfile = ({ navigation }) => {
         <View style={{
           paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20)
         }}>
-          <ButtonComponent buttonText={strings.SAVE_CHANGES} textColor={colors.white}  onPress={onEditProfile}/>
+          <ButtonComponent buttonText={strings.SAVE_CHANGES} textColor={colors.white} onPress={onEditProfile} />
         </View>
       </KeyboardAvoidingView>
+
+
+      {/* <Modal isVisible={modalVisible}>
+        <SafeAreaView style={{ backgroundColor: 'white', height: moderateScale(400)}}>
+          <TouchableOpacity onPress={() => takePhotoFromLibrary()}>
+            <View style={{backgroundColor:colors.sub_theme, height: height/20, margin: moderateScale(20), justifyContent:'center'}} >
+              <Text >Take Image from gallery</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => takePhotoFromCamera()}>
+            <View  style={{backgroundColor:colors.sub_theme, height: height/20, margin: moderateScale(20), justifyContent:'center'}} >
+              <Text>Take photo with Camera </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => takePhotoFromCamera()}>
+            <View  style={{backgroundColor:colors.sub_theme, height: height/20, margin: moderateScale(20), justifyContent:'center'}} >
+              <Text>Take photo with Camera </Text>
+            </View>
+          </TouchableOpacity >
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <View  style={{backgroundColor:colors.sub_theme, height: height/20, margin: moderateScale(20), justifyContent:'center'}} >
+              <Text>HIDE OPTIONS</Text>
+            </View>
+          </TouchableOpacity>
+        </SafeAreaView>
+
+      </Modal> */}
     </WrapperContainer>
   )
 }

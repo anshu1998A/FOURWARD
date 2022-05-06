@@ -1,10 +1,8 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React from 'react';
+// import CameraRoll from "@react-native-community/cameraroll";
 import WrapperContainer from '../../../Component/WrapperContainer'
-import strings from '../../../constants/lang'
-import HeadComp from '../../../Component/Header'
 import ButtonComponent from '../../../Component/Button'
-import ImageCropPicker from 'react-native-image-crop-picker'
 
 const Post = () => {
 

@@ -6,7 +6,7 @@ import type from "../type";
 const { dispatch } = store;
 
 
-export const logIN = (data) => {
+export const logIn = (data) => {
     console.log('userdata----', data);
     dispatch({
         type: type.LOGIN,

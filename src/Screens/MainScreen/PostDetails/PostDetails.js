@@ -8,6 +8,7 @@ import colors from '../../../styles/colors';
 import { textScale } from '../../../styles/responsiveSize';
 import styles from './styles';
 
+
 const PostDetails = ({ navigation, route }) => {
   const profile = route?.params?.postDetail;
   const bg = profile.userName;

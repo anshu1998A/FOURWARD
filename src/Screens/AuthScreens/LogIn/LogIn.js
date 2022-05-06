@@ -26,7 +26,7 @@ const LogIn = ({ navigation }) => {
       console.log("userInfo", userInfo1)
       const userInfo = userInfo1?.user
       // actions.saveUserData(userInfo)
-      actions.logIN(userInfo)
+      actions.logI(userInfo)
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         console.log('error raise', error);
@@ -83,7 +83,7 @@ const LogIn = ({ navigation }) => {
     }
     else {
       const userData = result
-      actions.logIN(userData)
+      actions.logIn(userData)
       console.log("userData **********", userData)
     }
   }

@@ -29,7 +29,7 @@ const SetPassword = ({ navigation }) => {
     <WrapperContainer>
       <HeadComp
         leftImage={true}
-        leftImageIcon={imagePaths.BACK_ARROW}
+        leftImageIcon={imagePaths.back_Arrow}
         leftText={true}
         leftTextTitle={strings.CHANGE_PASSWORD}
         leftTextStyle={styles.leftTextStyle}
