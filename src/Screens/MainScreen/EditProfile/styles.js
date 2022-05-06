@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         flex: 0.48,
     },
     inputView: {
-        marginTop: moderateScaleVertical(32)
+        marginTop: moderateScaleVertical(16)
     },
     mainContainer: {
         height: height,

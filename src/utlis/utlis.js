@@ -64,12 +64,12 @@ export const removeLogin = async () => {
 
 
 export async function getHeaders() {
-	let loginUser = await AsyncStorage.getItem('loginUser');
+	let loginUser = await AsyncStorage.getItem('userLogin');
+	console.log("login user header",loginUser)
 	if (loginUser) {
 		loginUser = JSON.parse(loginUser);
-		
 		return {
-			authorization: `${loginUser?.access_token}`,
+			authorization: `Bearer ${loginUser?.access_token}`,
 		};
 	}
 	return {};
@@ -116,16 +116,15 @@ console.log("api hit",endPoint)
 					clearUserData();
 					clearLoginUser();	
 					// NavigationService.resetNavigation();
-					//NavigationService.navigate('loginUsingEmailScreen');
-					dispatch({
-						type: types.CLEAR_REDUX_STATE,
-						payload: {}
-					});
-					dispatch({
-						type: types.NO_INTERNET,
-						payload: { internetConnection: true },
-					});
-
+					// NavigationService.navigate('loginUsingEmailScreen');
+					// dispatch({
+					// 	type: types.CLEAR_REDUX_STATE,
+					// 	payload: {}
+					// });
+					// dispatch({
+					// 	type: types.NO_INTERNET,
+					// 	payload: { internetConnection: true },
+					// });
 
 				}
 				if (error && error.response && error.response.data) {

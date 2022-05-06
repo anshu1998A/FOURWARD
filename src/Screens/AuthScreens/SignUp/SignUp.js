@@ -188,7 +188,7 @@ const SignUp = ({ navigation }) => {
       </ScrollView>
       <KeyboardAvoidingView enabled={true}>
         <View>
-          <ButtonComponent buttonText={strings.NEXT} textColor={colors.white} onpress={phoneSignUp} />
+          <ButtonComponent buttonText={strings.NEXT} textColor={colors.white} onPress={phoneSignUp} />
         </View>
       </KeyboardAvoidingView>
     </WrapperContainer>

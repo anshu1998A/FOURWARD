@@ -13,18 +13,16 @@ import strings from '../../../constants/lang'
 import navigationString from '../../../navigation/navigationString'
 import colors from '../../../styles/colors'
 import { moderateScaleVertical } from '../../../styles/responsiveSize'
-import styles from './styles'
+import styles from './styles';
+import actions from '../../../redux/actions'
 
 const EditProfile = ({ navigation }) => {
-
 
   const userData = useSelector(state => state?.userStatus?.userData)
   console.log(userData, 'edit prof data');
 
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
-
-  console.log(DeviceInfo.getUniqueId())
 
   const [state, setState] = useState({
     firstName: userData?.first_name,
@@ -50,6 +48,26 @@ const EditProfile = ({ navigation }) => {
   }, [userData]);
 
 
+  const onEditProfile = async () => {
+    let apiData = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+    }
+    
+    actions
+    .editDetails(apiData)
+    .then(res =>{
+      console.log('editProfile api res_+++++', res);
+      alert('profile updated')
+      navigation.goBack();
+    }).catch(err => {
+          console.log(err, 'err');
+          alert(err?.message);
+        });
+}
+
+
   const uploadImage = () => {
     ImagePicker.openPicker({
     }).then(image => {
@@ -61,7 +79,7 @@ const EditProfile = ({ navigation }) => {
 
     })
       .catch(e => {
-        console.log(e, "sedrftgyhujk")
+        console.log(e, "error raised*********")
       })
   }
 
@@ -96,7 +114,7 @@ const EditProfile = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.FIRST_NAME}
                   placeholderTextColor={colors.sub_Text}
-                  onChangetext={(fisrt_name) => changeHandler({ fisrt_name })}
+                  onChangetext={(firstName) => changeHandler({firstName})}
                   value={firstName}
                 />
               </View>
@@ -106,7 +124,7 @@ const EditProfile = ({ navigation }) => {
                   viewstyle={styles.inputView}
                   placeholder={strings.LAST_NAME}
                   placeholderTextColor={colors.sub_Text}
-                  onChangetext={(last_name) => changeHandler({ last_name })}
+                  onChangetext={(lastName) => changeHandler({lastName})}
                   value={lastName}
                 />
               </View>
@@ -118,9 +136,10 @@ const EditProfile = ({ navigation }) => {
               placeholderTextColor={colors.sub_Text}
               onChangetext={(email) => changeHandler({ email })}
               value={email}
+              
             />
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-              <View style={{ flex: 0.38 }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" ,}}>
+              <View style={{ flex: 0.38 ,}}>
                 <CountryCodePicker
                   countryCode={countryCode}
                   countryFlag={countryFlag}
@@ -135,7 +154,6 @@ const EditProfile = ({ navigation }) => {
                   placeholder={strings.MOBILE_NUMBER}
                   placeholderTextColor={colors.whiteOpacity50}
                   value={phone}
-
                   maxLength={10}
                   onChangetext={(phone) => changeHandler({ phone })}
                 />
@@ -146,12 +164,11 @@ const EditProfile = ({ navigation }) => {
 
       </ScrollView>
       <KeyboardAvoidingView enabled={true}
-        behavior={Platform.OS == 'android' ? 'height' : 'padding'}
-      >
+        behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
         <View style={{
           paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20)
         }}>
-          <ButtonComponent buttonText={strings.SAVE_CHANGES} textColor={colors.white} />
+          <ButtonComponent buttonText={strings.SAVE_CHANGES} textColor={colors.white}  onPress={onEditProfile}/>
         </View>
       </KeyboardAvoidingView>
     </WrapperContainer>

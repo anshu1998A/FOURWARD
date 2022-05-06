@@ -86,7 +86,7 @@ const OtpScreen = ({ navigation, route }) => {
 
                     <ButtonComponent buttonText={strings.VERIFY}
                         textColor={colors.white}
-                        onpress={signupWithOtp} />
+                        onPress={signupWithOtp} />
                 </View>
             </KeyboardAvoidingView>
         </WrapperContainer>

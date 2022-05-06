@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         marginBottom:moderateScale(10)
     },
     inputView:{
-        marginTop: moderateScaleVertical(32)
+        marginTop: moderateScaleVertical(16)
     }
 
 })

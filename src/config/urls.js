@@ -5,3 +5,4 @@ export const SIGNUP = getApiUrl('/signup');
 export const LOGIN = getApiUrl('/userlogin');
 export const CHANGE_PASSWORD = getApiUrl('/change_password');
 export const VERIFY_OTP = getApiUrl('/verify_otp');
+export const EDIT_DETAILS = getApiUrl('/edit_profile');

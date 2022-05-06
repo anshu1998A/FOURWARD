@@ -66,7 +66,7 @@ const SetPassword = ({ navigation }) => {
           <ButtonComponent
             buttonText={strings.SAVE}
             textColor={colors.white}
-            onpress={() => navigation.navigate(navigationString.LOGIN)}
+            onPress={() => navigation.navigate(navigationString.LOGIN)}
           />
         </View>
       </KeyboardAvoidingView>

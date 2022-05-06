@@ -1,4 +1,4 @@
-import { SIGNUP, LOGIN } from "../../config/urls";
+import { SIGNUP, LOGIN, EDIT_DETAILS } from "../../config/urls";
 import { apiPost } from "../../utlis/utlis";
 import store from "../store";
 import type from "../type";
@@ -57,3 +57,19 @@ export const login = (data) => {
         });
     });
   };
+
+///Edit profile
+export const editDetails = (data) => {
+  console.log(data, 'the given data');
+  return new Promise((resolve, reject) => {
+    apiPost(EDIT_DETAILS, data)
+      .then((res) => {
+        saveUserData(res.data);
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  });
+};
+ 

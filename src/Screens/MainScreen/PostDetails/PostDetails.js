@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, ImageBackground, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import ButtonComponent from '../../../Component/Button';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
@@ -24,10 +25,10 @@ const PostDetails = ({ navigation, route }) => {
               <Text style={{color:colors.white}}>{profile?.userName}</Text>
               <Text style={{color:colors.white}}>{profile?.location}</Text>
             </View>
-            <View>
+            <TouchableOpacity onPress={() => {navigation.goBack()}}>
 
-              <Image source={imagePaths.cross} />
-            </View>
+              <Image source={imagePaths.cross}  />
+            </TouchableOpacity>
           </View>
 
           <View style={{paddingVertical: 20}}>

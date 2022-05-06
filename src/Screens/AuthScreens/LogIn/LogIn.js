@@ -101,7 +101,7 @@ const LogIn = ({ navigation }) => {
           <ButtonComponent
             buttonText={strings.PHONE_LOGIN}
             textColor={colors.white}
-            onpress={() => { navigation.navigate(navigationString.PHONE_LOGIN) }}
+            onPress={() => { navigation.navigate(navigationString.PHONE_LOGIN) }}
           />
           <Text style={styles.orText}> {strings.OR}</Text>
 
@@ -111,7 +111,7 @@ const LogIn = ({ navigation }) => {
             style={{ backgroundColor: "white"}}
             textColor={colors.black}
             buttonText={strings.GOOGLE_LOGIN}
-            onpress={googleLogin} />
+            onPress={googleLogin} />
 
 
           <ButtonComponent
@@ -120,7 +120,7 @@ const LogIn = ({ navigation }) => {
             style={{ backgroundColor: "white", }}
             textColor={colors.black}
             buttonText={strings.FACEBOOK_LOGIN}
-            onpress={onFBlogIn} />
+            onPress={onFBlogIn} />
 
           <ButtonComponent
             leftIcon={true}

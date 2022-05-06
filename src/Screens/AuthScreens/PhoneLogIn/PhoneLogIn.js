@@ -141,7 +141,7 @@ const PhoneLogIn = ({ navigation }) => {
         <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
           <ButtonComponent buttonText={strings.LOGIN}
             textColor={colors.white}
-            onpress={onLogin} />
+            onPress={onLogin} />
         </View>
       </KeyboardAvoidingView>
     </WrapperContainer>

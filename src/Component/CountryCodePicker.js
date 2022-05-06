@@ -61,10 +61,8 @@ const style = StyleSheet.create({
     justifyContent:'center',
     backgroundColor: colors.sliderBGColor,
     borderRadius: moderateScale(10),
-    // paddingLeft: moderateScale(20),
-    // paddingHorizontal: moderateScale(10),
     height: moderateScale(50),
-    marginTop: moderateScaleVertical(32),
+    marginTop: moderateScaleVertical(16),
   },
 });
 

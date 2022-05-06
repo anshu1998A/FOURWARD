@@ -9,6 +9,7 @@ import { CHANGE_PASSWORD } from '../../../config/urls';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
 import navigationString from '../../../navigation/navigationString';
+import actions from '../../../redux/actions';
 import colors from '../../../styles/colors';
 import { moderateScaleVertical } from '../../../styles/responsiveSize';
 import { apiPost } from '../../../utlis/utlis';
@@ -49,6 +50,7 @@ const ChangePassword = ({ navigation, route }) => {
         apiPost(CHANGE_PASSWORD, apiData)
             .then(res => {
                 alert("Password changes successfully")
+                actions.Logout()
                 console.log(res, "NEW PASSWORD:")
             })
             .catch(e => {
@@ -100,7 +102,7 @@ const ChangePassword = ({ navigation, route }) => {
                 <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
                     <ButtonComponent buttonText={strings.CHANGE_PASSWORD}
                         textColor={colors.white}
-                        onpress={changePassword}
+                        onPress={changePassword}
                     />
                 </View>
             </KeyboardAvoidingView>
