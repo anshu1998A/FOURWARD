@@ -57,7 +57,9 @@ export default {
     MAP: 'VIEW MAP',
     CURRENT_PASSOWRD: 'Current Password',
     NEW_PASSWORD: "New Password",
-    SELECT_PHOTO: 'Select '
+    SELECT_PHOTO: 'Select Photo',
+    GALLERY: "Gallery",
+    RECENT: "Recent"
 
 
 }

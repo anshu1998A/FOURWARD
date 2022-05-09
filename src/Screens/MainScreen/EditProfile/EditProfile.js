@@ -15,7 +15,9 @@ import { height, moderateScale, moderateScaleVertical } from '../../../styles/re
 import styles from './styles'
 import Modal from 'react-native-modal'
 import ImageCropPicker from 'react-native-image-crop-picker'
-import { setItem } from '../../../utlis/utlis'
+import { apiPost, setItem } from '../../../utlis/utlis'
+import axios from 'axios'
+import { EDIT_DETAILS, getApiUrl } from '../../../config/urls'
 
 const EditProfile = ({ navigation }) => {
 
@@ -70,63 +72,8 @@ const EditProfile = ({ navigation }) => {
       });
   }
 
-  // const takePhotoFromCamera = async () => {
-  //   // const permissionStatus = await androidCameraPermission();
-  //   // if (permissionStatus) {
-  //   ImageCropPicker.openCamera({
-  //     width: 300,
-  //     height: 400,
-  //     cropping: true,
-  //     multiple: false,
-  //   }).then((image) => {
-  //     console.log(image, "image from camera");
-  //     imageUpload(image.path);
-  //     setModalVisible(!modalVisible);
-  //   });
-  //   // }
-  // };
 
-
-
-  // const imageUpload = async (imagePath) => {
-  //   const imgData = new FormData();
-  //   imgData.append("image", {
-  //     uri: imagePath,
-  //     name: "image.png",
-  //     fileName: "image",
-  //     type: "image/png",
-  //   });
-  //   setImage(imgData?._parts[0][1]?.uri, "IMAGE")
-  //   .then(image => {
-  //         console.log("user Image:", image);
-  //         changeHandler({
-  //           profileImage: image?.sourceURL || image?.path,
-  //           imageType: image?.mime,
-  //         })
-
-  //       })
-  //         .catch(e => {
-  //           console.log(e, "error raised*********")
-  //         })
-  // };
-
-  const takePhotoFromLibrary = async () => {
-    ImageCropPicker.openPicker({
-      width: 300,
-      height: 400,
-      cropping: true,
-      multiple: false,
-    }).then((image) => {
-      console.log(image, "image from library");
-      uploadImage(image.path);
-      setModalVisible(!modalVisible);
-    });
-    // }
-  };
-
-
-  const uploadImage = () => 
-  {
+  const uploadImage = () => {
     ImageCropPicker.openPicker({
     }).then(image => {
       console.log("user Image:", image);
@@ -134,12 +81,50 @@ const EditProfile = ({ navigation }) => {
         profileImage: image?.sourceURL || image?.path,
         imageType: image?.mime,
       })
+      // imageUpload(image.path)
 
     })
       .catch(e => {
         console.log(e, "error raised*********")
       })
   }
+
+  // const imageUpload = async(imagePath) => {
+  //   alert(imagePath)
+  //   const imageData = new FormData()
+  //   imageData.append('image', {
+  //     uri: imagePath,
+  //     name: 'image.png',
+  //     fileName: 'image',
+  //     type: 'image/png'
+  //   })
+  //   console.log("Form Data:", imageData)
+    // setImage("IMAGE",imageData?._parts[0][1]?.uri );
+
+
+    // try {
+    //   const res = await actions.editDetails(imageData);
+    //   console.log("res==>>>>>123", res);
+    //   setImage(res.data);
+    //   changeHandler({ profileImage: res.data.profileImage });
+    // } catch (error) {
+    //   console.log("error raised", error);
+    // }
+//     axios({
+//   method: 'post',
+//   url: EDIT_DETAILS,
+//   data: imageData
+
+// })
+//   .then(function (response) {
+//     console.log("API RES:*****************",response)
+//   })
+//   .catch( e => {
+//     console.log("eroor raised in uploading image:", e)
+//   })
+
+  // }
+
 
   return (
     <WrapperContainer>
@@ -156,16 +141,14 @@ const EditProfile = ({ navigation }) => {
 
 
           <TouchableOpacity
-            // onPress={() => setModalVisible(true)}
-            onPress={takePhotoFromLibrary}
+            onPress={uploadImage}
 
             style={styles.imagePickerStyle}>
             {!!image && image !== "" ? (
               <Image
                 source={{ uri: image }}
-              // style={styles.defaultImage}
               />
-              // <Image source={{ uri: profileImage }} style={styles.imageStyle} resizeMode="cover" />
+
             ) : (
               <Image
                 style={styles.defaultImage}
