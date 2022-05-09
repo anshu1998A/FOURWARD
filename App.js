@@ -5,6 +5,7 @@ import store from './src/redux/store';
 import actions from './src/redux/actions';
 import { getItem } from './src/utlis/utlis';
 import FlashMessage from "react-native-flash-message";
+import SplashScreen from 'react-native-splash-screen';
 
 
 const App = () => {
@@ -17,20 +18,18 @@ const App = () => {
       }
     })
 
-    
-
     getItem('userLogin').then(res => {
       console.log('store data------------', res);
       if (!!res) {
         actions.saveUserData(res);
       }
     });
+
+    setTimeout(() => {
+      SplashScreen.hide()
+    }, 5000);
   
-   
   }, [])
-
-
-
   
   return (
     <>
