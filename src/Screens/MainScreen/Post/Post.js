@@ -73,10 +73,10 @@ const launchCamera = () => {
         renderItem={(element) => {
           console.log("element", element)
           return (
-            <>
+        
               <Image source={{ uri: element.item.node.image.uri }}
                 style={styles.galleryPhoto} />
-            </>
+           
           )
         }}
         numColumns={3}
