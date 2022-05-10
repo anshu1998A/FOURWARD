@@ -52,6 +52,10 @@ const styles = StyleSheet.create({
         width: width - 24,
         margin: moderateScale(10),
         borderRadius: moderateScale(8)
+    },
+    inputView: {
+        height: moderateScale(48),
+        width: width - 24,
     }
 })
 export default styles

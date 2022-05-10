@@ -32,7 +32,7 @@ const ChangePassword = ({ navigation, route }) => {
     }
 
     const [show, setShow] = useState(!show);
-    const [confirmShow, setConfirmShow] = useState();
+    const [confirmShow, setConfirmShow] = useState(!confirmShow);
 
     const showPassword = () => {
         setShow(!show);

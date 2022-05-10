@@ -8,7 +8,7 @@ import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
 import colors from '../../../styles/colors';
-import { height, moderateScaleVertical } from '../../../styles/responsiveSize';
+import { height, moderateScale, moderateScaleVertical, width } from '../../../styles/responsiveSize';
 import styles from './styles';
 
 const AddInfo = ({ navigation, route }) => {
@@ -17,48 +17,51 @@ const AddInfo = ({ navigation, route }) => {
     const [allValues, setAllValues] = useState({
         description: '',
         location: '',
-        post: []
+        post: [],
+        imageType: null,
     });
-    const { description, location, post } = allValues
+    const { description, location, post, imageType } = allValues
     const changeHandler = (val) => {
         setAllValues({ ...allValues, ...val })
     }
 
     const launchCamera = () => {
         ImageCropPicker.openCamera({
-          width: 300,
-          height: 400,
-          cropping: true,
+            width: 300,
+            height: 400,
+            cropping: true,
         }).then(image => {
-          console.log(image);
+            console.log(image);
         });
-      }
-    
-    const launchGallery = () =>{
-      ImageCropPicker.openPicker({
-        width: 300,
-        height: 400,
-        cropping: true,
-      }).then(image => {
-        console.log(image);
-      });
     }
-      const selectImage = () =>
+
+    const launchGallery = () => {
+        ImageCropPicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true,
+        })
+            .then(res => {
+                changeHandler({ post: post.concat(res.path || res.sourceURL) });
+                console.log('post', post);
+            });
+    }
+    const selectImage = () =>
         Alert.alert(
-          "Upload Image",
-          "Choose an option",
-          [
-            {
-              text: "Camera",
-              onPress: launchCamera
-            },
-            {
-              text: "Gallery",
-              onPress: launchGallery,
-              
-            },
-            { text: "Cancel", onPress: () => console.log("OK Pressed") ,style: "cancel"}
-          ]
+            "Upload Image",
+            "Choose an option",
+            [
+                {
+                    text: "Camera",
+                    onPress: launchCamera
+                },
+                {
+                    text: "Gallery",
+                    onPress: launchGallery,
+
+                },
+                { text: "Cancel", onPress: () => console.log("OK Pressed"), style: "cancel" }
+            ]
         );
 
     return (
@@ -68,22 +71,30 @@ const AddInfo = ({ navigation, route }) => {
                 leftImageIcon={imagePaths.back_Arrow}
                 leftText={true}
                 leftTextTitle={strings.ADD_INFO}
-                leftTextStyle={styles.leftText}
-            />
-            <ScrollView style={{ height: height }}>
+                leftTextStyle={styles.leftText} />
+            <ScrollView style={{ height: height }} bounces={false}>
                 <View style={{ flexDirection: 'row', }}>
                     <View style={styles.imageView}>
                         <Image source={image} style={styles.imageStyle} />
                     </View>
+
+                    {post?post.map((element, index) => {
+                        return (
+                        <View style={styles.imageView}>
+                            <Image source={{uri: element}} style={styles.imageStyle} />
+                        </View>
+                        )
+                    }) : null
+                    }
+
                     <TouchableOpacity style={styles.addImageView} onPress={selectImage}>
                         <Image source={imagePaths.add} style={styles.addImage} />
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.descriptionView}>
-                    {/* <Text style={styles.descriptionText}>{strings.WRITE_DESCRIPTION}</Text> */}
                     <TextInputComponent
-                        // viewstyle={styles.inputView}
+                        viewstyle={styles.inputView}
                         placeholder={strings.WRITE_DESCRIPTION}
                         placeholderTextColor={colors.whiteOpacity50}
                         value={description}
@@ -94,7 +105,6 @@ const AddInfo = ({ navigation, route }) => {
 
                 <View style={styles.locationView}>
                     <TextInputComponent
-                        // viewstyle={styles.inputView}
                         placeholder={strings.ADD_LOCATION}
                         placeholderTextColor={colors.whiteOpacity50}
                         value={location}

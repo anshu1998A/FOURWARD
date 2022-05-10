@@ -9,7 +9,7 @@ import strings from '../../../constants/lang';
 import navigationString from "../../../navigation/navigationString";
 import styles from './styles';
 
-const Post = ({navigation, route}) => {
+const Post = ({ navigation, route }) => {
   const [state, setState] = useState({
     photos: []
   });
@@ -42,7 +42,7 @@ const Post = ({navigation, route}) => {
     })
       .then(r => {
         setState({ photos: r.edges });
-        console.log("rtwddsfv", r)
+        // console.log("rtwddsfv", r)
       })
       .catch(err => {
         console.log('erre', err);
@@ -60,15 +60,15 @@ const Post = ({navigation, route}) => {
     });
   }
 
-const launchGallery = () =>{
-  ImageCropPicker.openPicker({
-    width: 300,
-    height: 400,
-    cropping: true,
-  }).then(image => {
-    console.log(image);
-  });
-}
+  const launchGallery = () => {
+    ImageCropPicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+    });
+  }
   const selectImage = () =>
     Alert.alert(
       "Upload Image",
@@ -81,9 +81,9 @@ const launchGallery = () =>{
         {
           text: "Gallery",
           onPress: launchGallery,
-          
+
         },
-        { text: "Cancel", onPress: () => console.log("OK Pressed") ,style: "cancel"}
+        { text: "Cancel", onPress: () => console.log("OK Pressed"), style: "cancel" }
       ]
     );
   return (
@@ -92,44 +92,42 @@ const launchGallery = () =>{
         leftTextTitle={strings.SELECT_PHOTO}
         leftTextStyle={styles.headTextStyle}
       />
+      <View style={{ flex: 1 }}>
       <View style={styles.detailsView}>
         <Text>{strings.GALLERY}</Text>
         <Text>{strings.RECENT}</Text>
       </View>
-      <View style={{flex: 1}}>
-      <FlatList data={photos}
-        scrollEnabled={true}
-        renderItem={(element) => {
-          // console.log("element", element)
-          let index = element.index
-          // console.log("index of images is:", index)
-          if (index == 0) {
-            return (
-              <View>
-                <Image
-                style={styles.firstImage}
-                  key={index}
-                  source={{ uri: element.item.node.image.uri }}
-                />
-              </View>
-            )
-          }
-          else {
-            return (
-              <TouchableOpacity onPress={() => navigation.navigate(navigationString.ADD_INFO, {image:element.item.node.image})}>
-              <Image
-                key={index}
-                source={{ uri: element.item.node.image.uri }}
-                style={styles.galleryPhoto} />
+        <FlatList data={photos}
+          scrollEnabled={true}
+          renderItem={(element) => {
+            let index = element.index
+            if (index == 0) {
+              return (
+                <View>
+                  <Image
+                    style={styles.firstImage}
+                    key={index}
+                    source={{ uri: element.item.node.image.uri }}
+                  />
+                </View>
+              )
+            }
+            else {
+              return (
+                <TouchableOpacity onPress={() => navigation.navigate(navigationString.ADD_INFO, { image: element.item.node.image })}>
+                  <Image
+                    key={index}
+                    source={{ uri: element.item.node.image.uri }}
+                    style={styles.galleryPhoto} />
                 </TouchableOpacity>
-            )
-          }
-        }}
-        numColumns={3}
-      />
-      <TouchableOpacity onPress={selectImage} >
-        <Image source={imagePaths.camera} style={styles.cameraIcon} />
-      </TouchableOpacity>
+              )
+            }
+          }}
+          numColumns={3}
+        />
+        <TouchableOpacity onPress={selectImage} >
+          <Image source={imagePaths.camera} style={styles.cameraIcon} />
+        </TouchableOpacity>
       </View>
     </WrapperContainer>
   )

@@ -67,7 +67,6 @@ const Home = ({ navigation, route }) => {
 
       <ScrollView showsVerticalScrollIndicator={false} style={{ marginBottom: 20 }} >
         {cardData.map((item, index) => {
-          // console.log(item, "item>>>>")
           return (
             <View key={index} >
               <HomeCard
