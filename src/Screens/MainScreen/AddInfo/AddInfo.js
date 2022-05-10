@@ -20,9 +20,11 @@ const AddInfo = ({ navigation, route }) => {
         post: [],
         imageType: null,
     });
+
     const { description, location, post, imageType } = allValues
+    
     const changeHandler = (val) => {
-        setAllValues({ ...allValues, ...val })
+        setAllValues (allValues=>( { ...allValues, ...val }))
     }
 
     const launchCamera = () => {
@@ -42,7 +44,7 @@ const AddInfo = ({ navigation, route }) => {
             cropping: true,
         })
             .then(res => {
-                changeHandler({ post: post.concat(res.path || res.sourceURL) });
+                changeHandler({ post: post.concat(res.path) });
                 console.log('post', post);
             });
     }
@@ -73,11 +75,11 @@ const AddInfo = ({ navigation, route }) => {
                 leftTextTitle={strings.ADD_INFO}
                 leftTextStyle={styles.leftText} />
             <ScrollView style={{ height: height }} bounces={false}>
-                <View style={{ flexDirection: 'row', }}>
+                <View style={{ flexDirection: 'row',flexWrap:'wrap'}}>
+
                     <View style={styles.imageView}>
                         <Image source={image} style={styles.imageStyle} />
                     </View>
-
                     {post?post.map((element, index) => {
                         return (
                         <View style={styles.imageView}>
@@ -86,7 +88,6 @@ const AddInfo = ({ navigation, route }) => {
                         )
                     }) : null
                     }
-
                     <TouchableOpacity style={styles.addImageView} onPress={selectImage}>
                         <Image source={imagePaths.add} style={styles.addImage} />
                     </TouchableOpacity>

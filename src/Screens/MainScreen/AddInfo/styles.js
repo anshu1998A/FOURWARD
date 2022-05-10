@@ -28,9 +28,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    // addImage:{
-    //     justifyContent:'center'
-    // }
     descriptionView: {
         backgroundColor: colors.sliderBGColor,
         height: moderateScale(96),
