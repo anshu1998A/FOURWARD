@@ -59,7 +59,10 @@ export default {
     NEW_PASSWORD: "New Password",
     SELECT_PHOTO: 'Select Photo',
     GALLERY: "Gallery",
-    RECENT: "Recent"
+    RECENT: "Recent",
+    ADD_INFO: 'Add info',
+    ADD_LOCATION: 'Add location',
+    POST: 'POST'
 
 
 }

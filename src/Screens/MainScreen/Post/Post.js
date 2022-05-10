@@ -1,15 +1,15 @@
 import CameraRoll from "@react-native-community/cameraroll";
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, PermissionsAndroid, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Image, PermissionsAndroid, Text, TouchableOpacity, View, Alert } from 'react-native';
 import ImageCropPicker from "react-native-image-crop-picker";
 import HeadComp from '../../../Component/Header';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
+import navigationString from "../../../navigation/navigationString";
 import styles from './styles';
 
-
-const Post = () => {
+const Post = ({navigation, route}) => {
   const [state, setState] = useState({
     photos: []
   });
@@ -18,7 +18,7 @@ const Post = () => {
   useEffect(() => {
     hasGalleryPermissions()
   });
-// ***************************************************Android Permissions*************************************************
+  // ***************************************************Android Permissions*************************************************
   const hasAndroidPermissions = async () => {
     const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
 
@@ -42,6 +42,7 @@ const Post = () => {
     })
       .then(r => {
         setState({ photos: r.edges });
+        console.log("rtwddsfv", r)
       })
       .catch(err => {
         console.log('erre', err);
@@ -49,8 +50,18 @@ const Post = () => {
   }
   // **************************************************************LAUNCH CAMERA****************************************
 
-const launchCamera = () => {
-  ImageCropPicker.openCamera({
+  const launchCamera = () => {
+    ImageCropPicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+    });
+  }
+
+const launchGallery = () =>{
+  ImageCropPicker.openPicker({
     width: 300,
     height: 400,
     cropping: true,
@@ -58,6 +69,23 @@ const launchCamera = () => {
     console.log(image);
   });
 }
+  const selectImage = () =>
+    Alert.alert(
+      "Upload Image",
+      "Choose an option",
+      [
+        {
+          text: "Camera",
+          onPress: launchCamera
+        },
+        {
+          text: "Gallery",
+          onPress: launchGallery,
+          
+        },
+        { text: "Cancel", onPress: () => console.log("OK Pressed") ,style: "cancel"}
+      ]
+    );
   return (
     <WrapperContainer>
       <HeadComp leftText={true}
@@ -68,22 +96,41 @@ const launchCamera = () => {
         <Text>{strings.GALLERY}</Text>
         <Text>{strings.RECENT}</Text>
       </View>
+      <View style={{flex: 1}}>
       <FlatList data={photos}
         scrollEnabled={true}
         renderItem={(element) => {
-          console.log("element", element)
-          return (
-        
-              <Image source={{ uri: element.item.node.image.uri }}
+          // console.log("element", element)
+          let index = element.index
+          // console.log("index of images is:", index)
+          if (index == 0) {
+            return (
+              <View>
+                <Image
+                style={styles.firstImage}
+                  key={index}
+                  source={{ uri: element.item.node.image.uri }}
+                />
+              </View>
+            )
+          }
+          else {
+            return (
+              <TouchableOpacity onPress={() => navigation.navigate(navigationString.ADD_INFO, {image:element.item.node.image})}>
+              <Image
+                key={index}
+                source={{ uri: element.item.node.image.uri }}
                 style={styles.galleryPhoto} />
-           
-          )
+                </TouchableOpacity>
+            )
+          }
         }}
         numColumns={3}
       />
-      <TouchableOpacity onPress={launchCamera} >
-      <Image source={imagePaths.camera} style={styles.cameraIcon} />
+      <TouchableOpacity onPress={selectImage} >
+        <Image source={imagePaths.camera} style={styles.cameraIcon} />
       </TouchableOpacity>
+      </View>
     </WrapperContainer>
   )
 }

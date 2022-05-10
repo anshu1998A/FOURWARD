@@ -24,5 +24,6 @@ export default {
     edit_image: require('../assets/images/ic_edit.png'),
     post_Image2: require('../assets/images/pexels-photo-2715004.jpeg'),
     cross: require('../assets/images/ic_cross.png'),
-    camera: require('../assets/images/photo-camera-interface-symbol-for-button.png')
+    camera: require('../assets/images/photo-camera-interface-symbol-for-button.png'),
+    add : require('../assets/images/ic_plus.png')
 };

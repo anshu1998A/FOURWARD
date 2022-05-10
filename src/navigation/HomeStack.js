@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
+import AddInfo from '../Screens/MainScreen/AddInfo/AddInfo';
 import ChangePassword from '../Screens/MainScreen/ChangePassword/ChangePassword';
 import EditProfile from '../Screens/MainScreen/EditProfile/EditProfile';
 import PostDetails from '../Screens/MainScreen/PostDetails/PostDetails';
@@ -21,15 +22,20 @@ const HomeStack = () => {
         component={EditProfile}
       />
 
-      <Stack.Screen 
-      name={navigationString.CAHNGE_PASSWORD} 
-      component={ChangePassword}
+      <Stack.Screen
+        name={navigationString.CAHNGE_PASSWORD}
+        component={ChangePassword}
       />
 
-      
-<Stack.Screen 
-      name={navigationString.POST_DETAILS} 
-      component={PostDetails}
+
+      <Stack.Screen
+        name={navigationString.POST_DETAILS}
+        component={PostDetails}
+      />
+
+      <Stack.Screen
+        name={navigationString.ADD_INFO}
+        component={AddInfo}
       />
     </Stack.Navigator>
   )

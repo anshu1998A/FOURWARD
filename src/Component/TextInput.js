@@ -15,11 +15,13 @@ const TextInputComponent = ({
   keyboardtype,
   value = '',
   viewstyle,
+multiline= false,
   rightText=false,
   rightTextVal='',
   showPassword,
   secureTextEntry,
   longText=false,
+  // multiline={false}
   ...props
 }) => {
   return (
@@ -41,6 +43,7 @@ const TextInputComponent = ({
           secureTextEntry={secureTextEntry}
           onChangeText={onChangetext}
           keyboardAppearance={'dark'}
+          multiline={multiline}
         />
       </View>
       {rightText && (

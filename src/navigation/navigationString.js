@@ -15,6 +15,7 @@ export default {
     BOTTOM: 'bottom',
     HOMESTACK: 'Home stack',
     CAHNGE_PASSWORD: "Change Password",
-    POST_DETAILS: 'Post Details'
+    POST_DETAILS: 'Post Details',
+    ADD_INFO: 'Add info'
    
 }
