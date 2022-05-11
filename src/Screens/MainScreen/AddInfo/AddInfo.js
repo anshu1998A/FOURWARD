@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, Alert, FlatList } from 'react-native';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import ButtonComponent from '../../../Component/Button';
@@ -7,6 +7,7 @@ import TextInputComponent from '../../../Component/TextInput';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
+import actions from '../../../redux/actions';
 import colors from '../../../styles/colors';
 import { height, moderateScale, moderateScaleVertical, width } from '../../../styles/responsiveSize';
 import styles from './styles';
@@ -17,12 +18,12 @@ const AddInfo = ({ navigation, route }) => {
     const [allValues, setAllValues] = useState({
         description: '',
         location: '',
-        post: [],
-        imageType: null,
+        post: [image],
+        imageType: 'image.jpeg',
     });
 
     const { description, location, post, imageType } = allValues
-
+    console.log("Selected image is : ", post);
     const changeHandler = (val) => {
         setAllValues(allValues => ({ ...allValues, ...val }))
     }
@@ -45,7 +46,7 @@ const AddInfo = ({ navigation, route }) => {
         })
             .then(res => {
                 changeHandler({ post: post.concat(res.path) });
-                console.log('post', post);
+                // console.log('post', post);
             });
     }
     const selectImage = () =>
@@ -67,17 +68,31 @@ const AddInfo = ({ navigation, route }) => {
         );
 
 
-        const cancelImage = (index) => {
+    const cancelImage = (index) => {
+        // console.log("indexxxxxxx>>>>", index)
+        let newArray = [...post];
+        newArray.splice(index, 1);
+        changeHandler({ post: newArray });
 
-            console.log("indexxxxxxx>>>>", index)
-            let newArray = [...post];
-        
-            newArray.splice(index, 1);
-        
-            changeHandler({ post: newArray });
-        
-          }
-    console.log()
+    }
+    useEffect(() =>{
+        const imageData = new FormData();
+
+        imageData.append('image', {
+         uri: image,
+         name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+         type: imageType, 
+        })
+        console.log(imageData);
+        actions.addPost(imageData)
+        .then(res =>{
+            console.log(res)
+            changeHandler(res)
+        })
+        .catch(error => {
+            console.log(error);
+          });
+    },[])
     return (
         <WrapperContainer>
             <HeadComp
@@ -88,38 +103,38 @@ const AddInfo = ({ navigation, route }) => {
                 leftTextStyle={styles.leftText} />
             <ScrollView style={{ height: height }} bounces={false}>
                 <View style={{ flexDirection: 'row' }}>
-                    <ScrollView horizontal={true} 
-                    bounces={false}
-                    showsHorizontalScrollIndicator={false}>
+                    <ScrollView horizontal={true}
+                        bounces={false}
+                        showsHorizontalScrollIndicator={false}>
 
-                    <View style={styles.imageView}>
-                        <Image source={image} style={styles.imageStyle} />
-                    </View>
-                    {post?post.map((element, index) => 
-                    {
-                        return (
-                            <>
-                        <View style={styles.imageView}>
-                            <Image source={{uri: element}} style={styles.imageStyle} />
-                            <View style={{ position: 'absolute', right: -10, top: -7 }}>
-                      <TouchableOpacity onPress={() => { cancelImage(index) }}>
-                        <Image
+                        {/* <View style={styles.imageView}>
+                        <Image source={{uri: image}} style={styles.imageStyle} />
+                    </View> */}
+                        {post ? post.map((element, index) => {
+                            return (
+                                <>
+                                    <View style={styles.imageView}>
+                                        <Image source={{ uri: element }} style={styles.imageStyle} />
+                                        <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                                            <TouchableOpacity onPress={() => { cancelImage(index) }}>
+                                                <Image
+                                                    style={styles.crosssimage}
+                                                    source={imagePaths.cross} />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
 
-                          style={styles.crosssimage}
-                          source={imagePaths.cross} />
-                      </TouchableOpacity>
-                    </View>
-                        </View>
-                       
-                            </>
-                        )
-                    }) : null
-                    }
-                    <TouchableOpacity style={styles.addImageView} onPress={selectImage}>
-                        <Image source={imagePaths.add} style={styles.addImage} />
-                    </TouchableOpacity>
+                                </>
+                            )
+                        }) : null
+                        }
+                        <TouchableOpacity style={styles.addImageView} 
+                        // onPress={uploadMultipleImage}
+                        >
+                            <Image source={imagePaths.add} style={styles.addImage} />
+                        </TouchableOpacity>
                     </ScrollView>
-                    
+
                 </View>
 
                 <View style={styles.descriptionView}>
@@ -144,7 +159,9 @@ const AddInfo = ({ navigation, route }) => {
             </ScrollView>
             <KeyboardAvoidingView enabled={true}
                 behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
-                <View style={{ paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20) }}>
+                <View style={{
+                    paddingBottom: Platform.OS === 'ios' ? moderateScaleVertical(45) : moderateScaleVertical(20)
+                }}>
                     <ButtonComponent
                         buttonText={strings.POST}
                         textColor={colors.white} />

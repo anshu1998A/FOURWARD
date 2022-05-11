@@ -25,5 +25,7 @@ export default {
     post_Image2: require('../assets/images/pexels-photo-2715004.jpeg'),
     cross: require('../assets/images/ic_cross.png'),
     camera: require('../assets/images/photo-camera-interface-symbol-for-button.png'),
-    add : require('../assets/images/ic_plus.png')
+    add : require('../assets/images/ic_plus.png'),
+    blue_tick: require('../assets/images/ic_blue_tick.png'),
+    add_Post: require('../assets/images/ic_add.png')
 };

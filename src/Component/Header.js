@@ -30,6 +30,7 @@ function HeadComp({
   rightTextStyle = '',
 
   onPress = '',
+  rightIconPress,
   ...props
 }) {
   const navigation = useNavigation();
@@ -67,7 +68,10 @@ function HeadComp({
       </View>
       <View style={{ flex: 0.33, flexDirection: 'row', justifyContent:'flex-end' }}>
         {rightImage && (
-          <Image source={rightImageIcon} style={rightImageStyle} />
+          <TouchableOpacity onPress={rightIconPress}>
+
+            <Image source={rightImageIcon} style={rightImageStyle} />
+          </TouchableOpacity>
         )}
         {rightText && (
           <TouchableOpacity {...props}>

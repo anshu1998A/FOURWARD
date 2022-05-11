@@ -1,26 +1,24 @@
 import CameraRoll from "@react-native-community/cameraroll";
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, PermissionsAndroid, Text, TouchableOpacity, View, Alert } from 'react-native';
+import { FlatList, Image, PermissionsAndroid, Text, TouchableOpacity, View, Alert, ImageBackgroundBase, ImageBackground } from 'react-native';
 import ImageCropPicker from "react-native-image-crop-picker";
 import HeadComp from '../../../Component/Header';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
 import navigationString from "../../../navigation/navigationString";
+import actions from "../../../redux/actions";
 import { height, moderateScale, width } from "../../../styles/responsiveSize";
 import styles from './styles';
 
 const Post = ({ navigation, route }) => {
   const [state, setState] = useState({
     photos: '',
-    imageSelect: ''
+    selctedImaged: ''
   });
-  const { photos, imageSelect } = state;
+  const { photos, selctedImaged } = state;
   const updateState = data => setState(state => ({ ...state, ...data }));
 
-  // useEffect(() => {
-  //   hasGalleryPermissions()
-  // });
   // ***************************************************Android Permissions*************************************************
   const hasAndroidPermissions = async () => {
     const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
@@ -35,7 +33,7 @@ const Post = ({ navigation, route }) => {
     return status === 'granted'
   };
 
-  const hasGalleryPermissions = async () => {
+  const imagesData = async () => {
     if (Platform.OS === 'android' && !(await hasAndroidPermissions())) {
       return;
     }
@@ -45,18 +43,18 @@ const Post = ({ navigation, route }) => {
     })
       .then(r => {
         updateState({ photos: r.edges })
-        console.log("rtwddsfv", r)
-        updateState({ imageSelect: r.edges[0].node.image.uri });
+        // console.log("rtwddsfv", r)
+        updateState({ selctedImaged: r.edges[0].node.image.uri });
       })
       .catch(err => {
         console.log('error raised:', err);
       });
   }
 
-  console.log("imageSelectimageSelect",imageSelect)
+  // console.log("selctedImagedselctedImaged", selctedImaged)
   useEffect(() => {
-    hasGalleryPermissions()
-  },[]);
+    imagesData()
+  }, []);
   // **************************************************************LAUNCH CAMERA****************************************
   const launchCamera = () => {
     ImageCropPicker.openCamera({
@@ -95,10 +93,32 @@ const Post = ({ navigation, route }) => {
       ]
     );
 
+
+    const uploadImage = () =>{
+      const imageData = new FormData();
+
+        imageData.append('image', {
+         uri: selctedImaged,
+         name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+        //  type: imageType, 
+        })
+        console.log("selected image ++++++++++++++++++++",imageData);
+        actions.addPost(imageData)
+        .then(res =>{
+            console.log("tdgxsgrdes",res)
+            // updateState(res)
+        })
+        .catch(error => {
+            console.log(error);
+          });
+    }
+useEffect(() =>{
+uploadImage()
+},[])
   const selectImg = element => {
     console.log('selcted image data', element);
-    updateState({ imageSelect: element.item.node.image.uri });
-    // updateState({imageSelect: element.item.node.image.uri});
+    updateState({ selctedImaged: element.item.node.image.uri });
+    // updateState({selctedImaged: element.item.node.image.uri});
 
   }
   return (
@@ -106,15 +126,29 @@ const Post = ({ navigation, route }) => {
       <HeadComp leftText={true}
         leftTextTitle={strings.SELECT_PHOTO}
         leftTextStyle={styles.headTextStyle}
+        rightImage={true}
+        rightImageIcon={imagePaths.add_Post}
+        rightIconPress={uploadImage}
       />
-      <Image
-        source={{ uri: imageSelect }}
-        style={{ height: height/2, width: width, resizeMode: 'cover', justifyContent: "flex-end" }}
-      />
+      <ImageBackground
+        source={{ uri: selctedImaged }}
+        style={{ height: height / 2, width: width, resizeMode: 'cover', justifyContent: "flex-end" }}>
+        <Image />
+      </ImageBackground>
+
       <View style={{ flex: 1 }}>
         <View style={styles.detailsView}>
-          <Text>{strings.GALLERY}</Text>
-          <Text>{strings.RECENT}</Text>
+          <View>
+            <Text style={styles.headTextStyle}>{strings.GALLERY}</Text>
+          </View>
+          <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <View>
+              <Text style={styles.headTextStyle}>{strings.RECENT}</Text>
+            </View>
+            <View >
+              <Image source={imagePaths.drop_Down} />
+            </View>
+          </TouchableOpacity>
         </View>
         <FlatList data={photos}
           renderItem={(element, index) => {
