@@ -1,14 +1,13 @@
 import CameraRoll from "@react-native-community/cameraroll";
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, PermissionsAndroid, Text, TouchableOpacity, View, Alert, ImageBackgroundBase, ImageBackground } from 'react-native';
+import { Alert, FlatList, Image, ImageBackground, PermissionsAndroid, Text, TouchableOpacity, View } from 'react-native';
 import ImageCropPicker from "react-native-image-crop-picker";
 import HeadComp from '../../../Component/Header';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
-import navigationString from "../../../navigation/navigationString";
 import actions from "../../../redux/actions";
-import { height, moderateScale, width } from "../../../styles/responsiveSize";
+import { height, width } from "../../../styles/responsiveSize";
 import styles from './styles';
 
 const Post = ({ navigation, route }) => {

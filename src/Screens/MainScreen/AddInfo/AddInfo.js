@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, Alert, FlatList } from 'react-native';
+import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import ButtonComponent from '../../../Component/Button';
 import HeadComp from '../../../Component/Header';
@@ -9,7 +9,7 @@ import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
 import actions from '../../../redux/actions';
 import colors from '../../../styles/colors';
-import { height, moderateScale, moderateScaleVertical, width } from '../../../styles/responsiveSize';
+import { height, moderateScaleVertical } from '../../../styles/responsiveSize';
 import styles from './styles';
 
 const AddInfo = ({ navigation, route }) => {

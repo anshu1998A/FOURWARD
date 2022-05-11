@@ -1,4 +1,4 @@
-import { SIGNUP, LOGIN, EDIT_DETAILS, UPLOAD_IMAGE } from "../../config/urls";
+import { EDIT_DETAILS, LOGIN, SIGNUP, UPLOAD_IMAGE } from "../../config/urls";
 import { apiPost } from "../../utlis/utlis";
 import store from "../store";
 import type from "../type";
