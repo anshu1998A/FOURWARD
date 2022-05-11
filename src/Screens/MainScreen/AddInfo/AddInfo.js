@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, Alert } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, Alert, FlatList } from 'react-native';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import ButtonComponent from '../../../Component/Button';
 import HeadComp from '../../../Component/Header';
@@ -22,9 +22,9 @@ const AddInfo = ({ navigation, route }) => {
     });
 
     const { description, location, post, imageType } = allValues
-    
+
     const changeHandler = (val) => {
-        setAllValues (allValues=>( { ...allValues, ...val }))
+        setAllValues(allValues => ({ ...allValues, ...val }))
     }
 
     const launchCamera = () => {
@@ -66,6 +66,18 @@ const AddInfo = ({ navigation, route }) => {
             ]
         );
 
+
+        const cancelImage = (index) => {
+
+            console.log("indexxxxxxx>>>>", index)
+            let newArray = [...post];
+        
+            newArray.splice(index, 1);
+        
+            changeHandler({ post: newArray });
+        
+          }
+    console.log()
     return (
         <WrapperContainer>
             <HeadComp
@@ -75,22 +87,39 @@ const AddInfo = ({ navigation, route }) => {
                 leftTextTitle={strings.ADD_INFO}
                 leftTextStyle={styles.leftText} />
             <ScrollView style={{ height: height }} bounces={false}>
-                <View style={{ flexDirection: 'row',flexWrap:'wrap'}}>
+                <View style={{ flexDirection: 'row' }}>
+                    <ScrollView horizontal={true} 
+                    bounces={false}
+                    showsHorizontalScrollIndicator={false}>
 
                     <View style={styles.imageView}>
                         <Image source={image} style={styles.imageStyle} />
                     </View>
-                    {post?post.map((element, index) => {
+                    {post?post.map((element, index) => 
+                    {
                         return (
+                            <>
                         <View style={styles.imageView}>
                             <Image source={{uri: element}} style={styles.imageStyle} />
+                            <View style={{ position: 'absolute', right: -10, top: -7 }}>
+                      <TouchableOpacity onPress={() => { cancelImage(index) }}>
+                        <Image
+
+                          style={styles.crosssimage}
+                          source={imagePaths.cross} />
+                      </TouchableOpacity>
+                    </View>
                         </View>
+                       
+                            </>
                         )
                     }) : null
                     }
                     <TouchableOpacity style={styles.addImageView} onPress={selectImage}>
                         <Image source={imagePaths.add} style={styles.addImage} />
                     </TouchableOpacity>
+                    </ScrollView>
+                    
                 </View>
 
                 <View style={styles.descriptionView}>

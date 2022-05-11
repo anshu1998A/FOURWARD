@@ -7,20 +7,20 @@ import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
 import navigationString from "../../../navigation/navigationString";
-import { height, moderateScale } from "../../../styles/responsiveSize";
+import { height, moderateScale, width } from "../../../styles/responsiveSize";
 import styles from './styles';
 
 const Post = ({ navigation, route }) => {
   const [state, setState] = useState({
-    photos: [],
-    selectPhoto: ''
+    photos: '',
+    imageSelect: ''
   });
-  const { photos, selectPhoto } = state;
+  const { photos, imageSelect } = state;
   const updateState = data => setState(state => ({ ...state, ...data }));
-  
-  useEffect(() => {
-    hasGalleryPermissions()
-  });
+
+  // useEffect(() => {
+  //   hasGalleryPermissions()
+  // });
   // ***************************************************Android Permissions*************************************************
   const hasAndroidPermissions = async () => {
     const permission = PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE;
@@ -40,18 +40,23 @@ const Post = ({ navigation, route }) => {
       return;
     }
     CameraRoll.getPhotos({
-      first: 100,
+      first: 20,
       assetType: 'Photos',
     })
       .then(r => {
-        setState({ photos: r.edges });
-        // console.log("rtwddsfv", r)
-        updateState({ selectPhoto: r.edges[0].node.image.uri });
+        updateState({ photos: r.edges })
+        console.log("rtwddsfv", r)
+        updateState({ imageSelect: r.edges[0].node.image.uri });
       })
       .catch(err => {
         console.log('error raised:', err);
       });
   }
+
+  console.log("imageSelectimageSelect",imageSelect)
+  useEffect(() => {
+    hasGalleryPermissions()
+  },[]);
   // **************************************************************LAUNCH CAMERA****************************************
   const launchCamera = () => {
     ImageCropPicker.openCamera({
@@ -91,8 +96,10 @@ const Post = ({ navigation, route }) => {
     );
 
   const selectImg = element => {
-    updateState({selectPhoto: element.item.node.image});
-    console.log("bgvhbgdbhgbhcvjhndfgcv",selectPhoto)
+    console.log('selcted image data', element);
+    updateState({ imageSelect: element.item.node.image.uri });
+    // updateState({imageSelect: element.item.node.image.uri});
+
   }
   return (
     <WrapperContainer>
@@ -101,8 +108,8 @@ const Post = ({ navigation, route }) => {
         leftTextStyle={styles.headTextStyle}
       />
       <Image
-      source={selectPhoto}
-      style={{height:height/2}}
+        source={{ uri: imageSelect }}
+        style={{ height: height/2, width: width, resizeMode: 'cover', justifyContent: "flex-end" }}
       />
       <View style={{ flex: 1 }}>
         <View style={styles.detailsView}>
@@ -113,14 +120,14 @@ const Post = ({ navigation, route }) => {
           renderItem={(element, index) => {
             return (
               <TouchableOpacity
-              onPress={() => selectImg(element)}
-                // onPress={() => navigation.navigate(navigationString.ADD_INFO, { image: element.item.node.image })}
+                onPress={() => selectImg(element)}
+              // onPress={() => navigation.navigate(navigationString.ADD_INFO, { image: element.item.node.image })}
               >
                 <Image
                   key={index}
                   source={{ uri: element.item.node.image.uri }}
                   style={styles.galleryPhoto} />
-              
+
               </TouchableOpacity>
             )
 
