@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003AB75B7C6E4E0482F77A5A /* Barlow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF49B97C28F34B12A5A0A556 /* Barlow-Regular.ttf */; };
 		00E356F31AD99517003FC87E /* TASK_PROJECTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TASK_PROJECTTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		172F161E2FD54D939EFC42B9 /* Barlow-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 972D00E329D4422E8ED74654 /* Barlow-SemiBold.ttf */; };
 		7A3026EEE74B0B4CBCA98BCA /* libPods-TASK_PROJECT-TASK_PROJECTTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ACDBC9DD7E2424B4C1CF601 /* libPods-TASK_PROJECT-TASK_PROJECTTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		83AAB1F533A64E43A8294606 /* Barlow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 135CF5ACC614410B801E6C1B /* Barlow-Bold.ttf */; };
 		C0808DFC12DD521765B511F6 /* libPods-TASK_PROJECT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35049E2DB090AEB4461DC058 /* libPods-TASK_PROJECT.a */; };
+		CBB09E7C64E3467191C79A99 /* Barlow-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 718E720B565840399B3C980B /* Barlow-Medium.ttf */; };
 		F4559A28281ACAD40017D50C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4559A27281ACAD40017D50C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +35,7 @@
 		00E356EE1AD99517003FC87E /* TASK_PROJECTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TASK_PROJECTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* TASK_PROJECTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TASK_PROJECTTests.m; sourceTree = "<group>"; };
+		135CF5ACC614410B801E6C1B /* Barlow-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-Bold.ttf"; path = "../src/assets/fonts/Barlow-Bold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* TASK_PROJECT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TASK_PROJECT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = TASK_PROJECT/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = TASK_PROJECT/AppDelegate.mm; sourceTree = "<group>"; };
@@ -42,7 +47,10 @@
 		35049E2DB090AEB4461DC058 /* libPods-TASK_PROJECT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TASK_PROJECT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64FD17A8F8AB652246441274 /* Pods-TASK_PROJECT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TASK_PROJECT.debug.xcconfig"; path = "Target Support Files/Pods-TASK_PROJECT/Pods-TASK_PROJECT.debug.xcconfig"; sourceTree = "<group>"; };
 		6ACDBC9DD7E2424B4C1CF601 /* libPods-TASK_PROJECT-TASK_PROJECTTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TASK_PROJECT-TASK_PROJECTTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		718E720B565840399B3C980B /* Barlow-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-Medium.ttf"; path = "../src/assets/fonts/Barlow-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = TASK_PROJECT/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		972D00E329D4422E8ED74654 /* Barlow-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-SemiBold.ttf"; path = "../src/assets/fonts/Barlow-SemiBold.ttf"; sourceTree = "<group>"; };
+		BF49B97C28F34B12A5A0A556 /* Barlow-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-Regular.ttf"; path = "../src/assets/fonts/Barlow-Regular.ttf"; sourceTree = "<group>"; };
 		E8C40AFB03B142939D902AFA /* Pods-TASK_PROJECT-TASK_PROJECTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TASK_PROJECT-TASK_PROJECTTests.debug.xcconfig"; path = "Target Support Files/Pods-TASK_PROJECT-TASK_PROJECTTests/Pods-TASK_PROJECT-TASK_PROJECTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F4559A27281ACAD40017D50C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				A688B009397147FE8E8FDC01 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -138,6 +147,18 @@
 				00E356EE1AD99517003FC87E /* TASK_PROJECTTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A688B009397147FE8E8FDC01 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				135CF5ACC614410B801E6C1B /* Barlow-Bold.ttf */,
+				718E720B565840399B3C980B /* Barlow-Medium.ttf */,
+				BF49B97C28F34B12A5A0A556 /* Barlow-Regular.ttf */,
+				972D00E329D4422E8ED74654 /* Barlow-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -249,6 +270,10 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				F4559A28281ACAD40017D50C /* GoogleService-Info.plist in Resources */,
+				83AAB1F533A64E43A8294606 /* Barlow-Bold.ttf in Resources */,
+				CBB09E7C64E3467191C79A99 /* Barlow-Medium.ttf in Resources */,
+				003AB75B7C6E4E0482F77A5A /* Barlow-Regular.ttf in Resources */,
+				172F161E2FD54D939EFC42B9 /* Barlow-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

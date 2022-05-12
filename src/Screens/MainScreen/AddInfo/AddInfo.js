@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import ImageCropPicker from 'react-native-image-crop-picker';
 import ButtonComponent from '../../../Component/Button';
 import HeadComp from '../../../Component/Header';
@@ -14,19 +14,17 @@ import styles from './styles';
 
 const AddInfo = ({ navigation, route }) => {
     const image = route?.params?.image;
-    console.log("Selected image is : ", image);
+    console.log("Selected image is: ", image);
     const [allValues, setAllValues] = useState({
         description: '',
         location: '',
         post: [image],
-        imageType: 'image.jpeg',
+        imageType: null,
     });
 
     const { description, location, post, imageType } = allValues
-    console.log("Selected image is : ", post);
-    const changeHandler = (val) => {
-        setAllValues(allValues => ({ ...allValues, ...val }))
-    }
+    // console.log("Selected image is+++++++++++++++++ : ", post);
+    const changeHandler = (val) => { setAllValues(() => ({ ...allValues, ...val })) }
 
     const launchCamera = () => {
         ImageCropPicker.openCamera({
@@ -44,9 +42,10 @@ const AddInfo = ({ navigation, route }) => {
             height: 400,
             cropping: true,
         })
-            .then(res => {
-                changeHandler({ post: post.concat(res.path) });
-                // console.log('post', post);
+            .then(image => {
+                uploadImage(image.path)
+                console.log("dfvsg@@@@@@@@@", image)
+
             });
     }
     const selectImage = () =>
@@ -69,30 +68,34 @@ const AddInfo = ({ navigation, route }) => {
 
 
     const cancelImage = (index) => {
-        // console.log("indexxxxxxx>>>>", index)
         let newArray = [...post];
         newArray.splice(index, 1);
         changeHandler({ post: newArray });
 
     }
-    useEffect(() =>{
+    const uploadImage = (image) => {
         const imageData = new FormData();
-
         imageData.append('image', {
-         uri: image,
-         name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-         type: imageType, 
+            uri: image,
+            name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+            type: 'image/jpeg',
         })
-        console.log(imageData);
-        actions.addPost(imageData)
-        .then(res =>{
-            console.log(res)
-            changeHandler(res)
-        })
-        .catch(error => {
-            console.log(error);
-          });
-    },[])
+        actions.addImage(imageData, { "Content-Type": "multipart/form-data" })
+            .then(res => {
+                console.log("tdgxsgrdes********************gdcvfgd********", res)
+                changeHandler({ post: post.concat(res.data) });
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    const sendPost = () => {
+      const apiData = new FormData();
+      apiData.append()
+    }
+
     return (
         <WrapperContainer>
             <HeadComp
@@ -107,9 +110,6 @@ const AddInfo = ({ navigation, route }) => {
                         bounces={false}
                         showsHorizontalScrollIndicator={false}>
 
-                        {/* <View style={styles.imageView}>
-                        <Image source={{uri: image}} style={styles.imageStyle} />
-                    </View> */}
                         {post ? post.map((element, index) => {
                             return (
                                 <>
@@ -128,10 +128,10 @@ const AddInfo = ({ navigation, route }) => {
                             )
                         }) : null
                         }
-                        <TouchableOpacity style={styles.addImageView} 
-                        // onPress={uploadMultipleImage}
+                        <TouchableOpacity style={styles.addImageView}
+                            onPress={selectImage}
                         >
-                            <Image source={imagePaths.add} style={styles.addImage} />
+                            <Image source={imagePaths.add} style={[styles.addImage]} />
                         </TouchableOpacity>
                     </ScrollView>
 
@@ -144,7 +144,7 @@ const AddInfo = ({ navigation, route }) => {
                         placeholderTextColor={colors.whiteOpacity50}
                         value={description}
                         multiline={true}
-                        onChangetext={(description) => changeHandler({ description })}
+                        onChangetext={text => changeHandler({ description: text })}
                     />
                 </View>
 
@@ -155,6 +155,7 @@ const AddInfo = ({ navigation, route }) => {
                         value={location}
                         onChangetext={(location) => changeHandler({ location })}
                     />
+                    <ActivityIndicator />
                 </View>
             </ScrollView>
             <KeyboardAvoidingView enabled={true}
@@ -164,7 +165,8 @@ const AddInfo = ({ navigation, route }) => {
                 }}>
                     <ButtonComponent
                         buttonText={strings.POST}
-                        textColor={colors.white} />
+                        textColor={colors.white}
+                        onPress={sendPost} />
                 </View>
             </KeyboardAvoidingView>
         </WrapperContainer>

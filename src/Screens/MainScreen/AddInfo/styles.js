@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         borderRadius: moderateScale(8)
     },
     inputView: {
-        height: moderateScale(48),
+        height: moderateScale(96),
         width: width - 24,
     }
 })

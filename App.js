@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Route from './src/navigation/Route';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import store from './src/redux/store';
 import actions from './src/redux/actions';
 import { getItem } from './src/utlis/utlis';

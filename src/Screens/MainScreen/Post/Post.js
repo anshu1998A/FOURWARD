@@ -6,6 +6,7 @@ import HeadComp from '../../../Component/Header';
 import WrapperContainer from '../../../Component/WrapperContainer';
 import imagePaths from '../../../constants/imagePaths';
 import strings from '../../../constants/lang';
+import navigationString from "../../../navigation/navigationString";
 import actions from "../../../redux/actions";
 import { height, width } from "../../../styles/responsiveSize";
 import styles from './styles';
@@ -38,7 +39,7 @@ const Post = ({ navigation, route }) => {
     }
     CameraRoll.getPhotos({
       first: 20,
-      assetType: 'Photos',
+      assetType: 'Camera',
     })
       .then(r => {
         updateState({ photos: r.edges })
@@ -49,7 +50,6 @@ const Post = ({ navigation, route }) => {
         console.log('error raised:', err);
       });
   }
-
   // console.log("selctedImagedselctedImaged", selctedImaged)
   useEffect(() => {
     imagesData()
@@ -95,25 +95,24 @@ const Post = ({ navigation, route }) => {
 
     const uploadImage = () =>{
       const imageData = new FormData();
-
         imageData.append('image', {
          uri: selctedImaged,
          name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
          type: 'image/jpeg',
         })
         console.log("selected image ++++++++++++++++++++",imageData);
-        actions.addPost(imageData, { "Content-Type": "multipart/form-data" })
+        actions.addImage(imageData, { "Content-Type": "multipart/form-data" })
         .then(res =>{
-            console.log("tdgxsgrdes",res)
-            // updateState(res)
+            console.log("tdgxsgrdes",res.data)
+            navigation.navigate(navigationString.ADD_INFO,{image: res.data})
         })
         .catch(error => {
             console.log(error);
           });
     }
-useEffect(() =>{
-uploadImage()
-},[])
+// useEffect(() =>{
+// uploadImage()
+// },[])
   const selectImg = element => {
     console.log('selcted image data', element);
     updateState({ selctedImaged: element.item.node.image.uri });
