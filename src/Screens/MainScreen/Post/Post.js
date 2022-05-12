@@ -99,10 +99,10 @@ const Post = ({ navigation, route }) => {
         imageData.append('image', {
          uri: selctedImaged,
          name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
-        //  type: imageType, 
+         type: 'image/jpeg',
         })
         console.log("selected image ++++++++++++++++++++",imageData);
-        actions.addPost(imageData)
+        actions.addPost(imageData, { "Content-Type": "multipart/form-data" })
         .then(res =>{
             console.log("tdgxsgrdes",res)
             // updateState(res)
