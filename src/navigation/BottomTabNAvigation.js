@@ -29,8 +29,8 @@ function BottomTabNAvigation() {
         borderTopRightRadius: moderateScale(8),
         borderTopWidth: moderateScale(0),
         // paddingVertical: moderateScaleVertical(10)
-        alignSelf:'center',
-        justifyContent:'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
       },
 
 

@@ -39,7 +39,7 @@ const Post = ({ navigation, route }) => {
     }
     CameraRoll.getPhotos({
       first: 20,
-      assetType: 'Camera',
+      assetType: 'photos',
     })
       .then(r => {
         updateState({ photos: r.edges })
@@ -110,9 +110,7 @@ const Post = ({ navigation, route }) => {
             console.log(error);
           });
     }
-// useEffect(() =>{
-// uploadImage()
-// },[])
+
   const selectImg = element => {
     console.log('selcted image data', element);
     updateState({ selctedImaged: element.item.node.image.uri });

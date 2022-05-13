@@ -7,4 +7,5 @@ export const CHANGE_PASSWORD = getApiUrl('/change_password');
 export const VERIFY_OTP = getApiUrl('/verify_otp');
 export const EDIT_DETAILS = getApiUrl('/edit_profile');
 export const UPLOAD_IMAGE= getApiUrl('/img_upload');
-export const UPLOAD_POST = getApiUrl('/post_send')
+export const UPLOAD_POST = getApiUrl('/post_send');
+export const GET_POST = getApiUrl('/posts')

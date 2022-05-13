@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, View } from 'react-native';
 import colors from '../styles/colors';
+import Loader from './Loader';
 
 
 const WrapperContainer = ({
@@ -8,6 +9,8 @@ const WrapperContainer = ({
   bgColor = colors.bgColor,
   statusBarColor = colors.bgColor,
   barStyle = 'light-content',
+  isLoading='',
+  withModal='',
 }) => {
   return (
     <SafeAreaView
@@ -17,6 +20,7 @@ const WrapperContainer = ({
         
       }}>
       <StatusBar backgroundColor={statusBarColor} barStyle={barStyle} />
+      <Loader isLoading={isLoading} withModal={withModal} />
       <View style={{backgroundColor: bgColor, flex: 1}}>{children}</View>
     </SafeAreaView>
   );

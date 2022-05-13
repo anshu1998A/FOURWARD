@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View, SafeAreaView, Text } from 'react-native'
+import { Image, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity, View } from 'react-native'
+import ImageCropPicker from 'react-native-image-crop-picker'
 import { useSelector } from 'react-redux'
 import ButtonComponent from '../../../Component/Button'
 import CountryCodePicker from '../../../Component/CountryCodePicker'
 import HeadComp from '../../../Component/Header'
 import TextInputComponent from '../../../Component/TextInput'
 import WrapperContainer from '../../../Component/WrapperContainer'
+import { UPLOAD_IMAGE, UPLOAD_POST } from '../../../config/urls'
 import imagePaths from '../../../constants/imagePaths'
 import strings from '../../../constants/lang'
 import navigationString from '../../../navigation/navigationString'
 import actions from '../../../redux/actions'
 import colors from '../../../styles/colors'
-import { height, moderateScale, moderateScaleVertical } from '../../../styles/responsiveSize'
+import { moderateScaleVertical } from '../../../styles/responsiveSize'
+import { apiPost } from '../../../utlis/utlis'
 import styles from './styles'
-import Modal from 'react-native-modal'
-import ImageCropPicker from 'react-native-image-crop-picker'
-import { apiPost, setItem } from '../../../utlis/utlis'
-import axios from 'axios'
-import { EDIT_DETAILS, getApiUrl } from '../../../config/urls'
 
 const EditProfile = ({ navigation }) => {
 
@@ -26,20 +24,18 @@ const EditProfile = ({ navigation }) => {
 
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
-  const [modalVisible, setModalVisible] = useState(false);
-  const [image, setImage] = useState("")
 
   const [state, setState] = useState({
-    firstName: userData?.first_name,
-    lastName: userData?.last_name,
-    email: userData?.email,
-    phone: userData?.phone,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
     profileImage: '',
     imageType: null,
   });
-  const { firstName, lastName, email, phone, profileImage } = state;
+  const { firstName, lastName, email, phone, profileImage, imageType } = state;
   const changeHandler = data => setState(state => ({ ...state, ...data }));
-
+  const [isLoading, setIsLoading] = useState(false)
   useEffect(() => {
     if (userData) {
       setState({
@@ -47,41 +43,16 @@ const EditProfile = ({ navigation }) => {
         phone: userData?.phone,
         firstName: userData?.first_name,
         lastName: userData?.last_name,
-        profileImage: userData?.profileImage,
+        profileImage: userData?.profile,
       });
     }
   }, [userData]);
-
-
-  const onEditProfile = async () => {
-    let apiData = {
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
-    }
-
-    actions
-      .editDetails(apiData)
-      .then(res => {
-        console.log('editProfile api res_+++++', res);
-        alert('profile updated')
-        navigation.goBack();
-      }).catch(err => {
-        console.log(err, 'err');
-        alert(err?.message);
-      });
-  }
-
 
   const uploadImage = () => {
     ImageCropPicker.openPicker({
     }).then(image => {
       console.log("user Image:", image);
-      changeHandler({
-        profileImage: image?.sourceURL || image?.path,
-        imageType: image?.mime,
-      })
-      // imageUpload(image.path)
+      _imageUpload(image);
 
     })
       .catch(e => {
@@ -89,9 +60,58 @@ const EditProfile = ({ navigation }) => {
       })
   }
 
+  const onEditProfile = () => {
+    console.log(profileImage, "submitEditProfileData")
+    let form = new FormData();
+    form.append('first_name', firstName);
+    form.append('last_name', lastName);
+    form.append('email', email);
+    form.append('image', {
+      uri: profileImage,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      type: imageType,
+    });
+
+    actions
+      .editDetails(form, { 'Content-Type': 'multipart/form-data' })
+      .then(res => {
+        console.log('editProfile api res_+++++', res);
+        alert('profile updated');
+
+        navigation.goBack();
+      })
+      .catch(err => {
+        console.log(err, 'err');
+        alert(err?.message);
+      });
+  };
+
+  const _imageUpload = data => {
+    console.log('data>>>', data);
+    let image = data.sourceURL
+    console.log("SELCTE PROFILE IMAGE+++++", image)
+    // setIsLoading(true);
+    const form = new FormData();
+    form.append('image', {
+      uri: image,
+      name: `${(Math.random() + 1).toString(36).substring(7)}.jpg`,
+      type: 'image/jpeg',
+    });
+    let header = { 'Content-Type': 'multipart/form-data' }
+    apiPost(UPLOAD_IMAGE, form, header).then(res => {
+      console.log(res);
+      changeHandler({ profileImage: res.data })
+    }).catch(err => {
+      alert(err)
+    })
+
+  };
+
+
+
 
   return (
-    <WrapperContainer>
+    <WrapperContainer isLoading={isLoading} withModal={isLoading}>
       <HeadComp
         leftImage={true}
         leftImageIcon={imagePaths.back_Arrow}
@@ -101,10 +121,10 @@ const EditProfile = ({ navigation }) => {
         onPress={() => navigation.navigate(navigationString.PROFILE)} />
       <ScrollView >
         < View style={styles.imageView} >
-          <Image source={profileImage ? { uri: profileImage } : imagePaths.profile_Image1} style={styles.imageStyle} resizeMode="cover" />
-
-
-          <TouchableOpacity
+          <Image source={{ uri: profileImage }} style={styles.imageStyle} resizeMode="cover" />
+          {/* 
+          source={profileImage ? { uri: profileImage } : profileImage}  */}
+          {/* <TouchableOpacity
             onPress={uploadImage}
 
             style={styles.imagePickerStyle}>
@@ -120,10 +140,12 @@ const EditProfile = ({ navigation }) => {
               />
             )}
 
+          </TouchableOpacity> */}
+          <TouchableOpacity style={styles.imagePickerStyle} onPress={uploadImage} >
 
-            {/* <Image
+            <Image
               source={imagePaths.edit_image}
-            /> */}
+            />
           </TouchableOpacity>
         </View >
         <View style={styles.mainContainer}>

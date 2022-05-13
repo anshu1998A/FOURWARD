@@ -1,21 +1,39 @@
-import { UPLOAD_IMAGE, UPLOAD_POST } from "../../config/urls";
-import { apiPost } from "../../utlis/utlis";
+import { GET_POST, UPLOAD_IMAGE, UPLOAD_POST } from "../../config/urls";
+import { apiGet, apiPost } from "../../utlis/utlis";
 
 export const addImage =(data, header ) =>{
-    console.log( "the image*************************", data);
+  console.log( "the image*************************", data);
+  return apiPost(UPLOAD_IMAGE, data, header);
+    // return new Promise((resolve, reject) => {
+      //   apiPost(UPLOAD_IMAGE, data, header)
+      //     .then((res) => {
+      //       console.log("profile Image==========",res);
+      //       resolve(res);
+      // })
+      //     .catch((error) => {
+      //       console.log(error);
+      //       reject(error);
+      //     });
+      // });
+  }
+
+  export const addpost = (data, header) =>{
+    console.log("tdgcfyfgyrgdfvgfdvct*****************************************",data);
     return new Promise((resolve, reject) => {
-      apiPost(UPLOAD_IMAGE, data, header)
-        .then((res) => {
-          console.log("tdgcfyfgyrgdfvgfdvct*****************************************",res);
+      apiPost(UPLOAD_POST, data, header)
+      .then((res) => {
+          console.log("tdgcfyfg",res);
           resolve(res);
     })
         .catch((error) => {
-          console.log(error);
+          console.log("hdfddfv%%%%%%%%%%",error);
           reject(error);
         });
-    });
+    }); 
+    // return apiPost(UPLOAD_POST,data,header)
   }
 
-  export const addpost = (data, header={}) =>{
-      apiPost(UPLOAD_POST, data)
+
+  export const getPost = (query='') =>{
+    return apiGet(GET_POST+query)
   }

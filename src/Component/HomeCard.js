@@ -19,9 +19,12 @@ export default function HomeCard({
     name = false,
     onPress,
     userName = '',
+    lastName = '',
     location = '',
-    postDetails='',
-    postTime=''
+    postDetails = '',
+    postTime = '',
+    commentCount = '',
+    likesCount = ''
 }) {
 
 
@@ -30,10 +33,12 @@ export default function HomeCard({
             <View style={styles.headView}>
                 <View style={{ flexDirection: "row" }}>
                     <View >
-                        <Image source={userProfile} style={styles.userProfile} />
+                        <Image source={{ uri: userProfile }} style={styles.userProfile} />
                     </View>
                     <View style={{ justifyContent: 'center', marginLeft: moderateScale(10) }}>
-                        <Text style={{ color: colors.white, fontSize: textScale(16) }} >{userName}</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ color: colors.white, fontSize: textScale(16) }} >{userName} {lastName}</Text>
+                        </View>
                         <Text style={{ color: '#AEAEAE' }} >{location}  </Text>
                     </View>
                 </View>
@@ -42,7 +47,7 @@ export default function HomeCard({
                 </View>
             </View>
             <TouchableOpacity onPress={onPress}>
-                <Image source={postImage} style={styles.postStyle} />
+                <Image source={{ uri: postImage }} style={styles.postStyle} />
             </TouchableOpacity>
             <View style={{
                 marginHorizontal: moderateScale(16),
@@ -54,13 +59,13 @@ export default function HomeCard({
             <View
                 style={styles.footerView}>
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={{ color: colors.white }}>Comments</Text>
+                    <Text style={{ color: colors.white }} >{commentCount} Comments</Text>
                 </View>
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: colors.white, }}> {strings.LIKES} </Text>
+                    <Text style={{ color: colors.white, }}> {likesCount} {strings.LIKES} </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Image source={imagePaths.direction} style={{ height: height/ 60 }} />
+                    <Image source={imagePaths.direction} style={{ height: height / 60 }} />
                 </View>
             </View>
         </View>
@@ -94,13 +99,14 @@ const styles = StyleSheet.create({
         marginVertical: moderateScaleVertical(16),
         alignSelf: 'center',
     },
-    headView:{ flexDirection: 'row', 
-    paddingTop: moderateScale(15),
-     justifyContent: "space-between", 
-     alignItems: 'center',
-      marginHorizontal: moderateScale(16) 
+    headView: {
+        flexDirection: 'row',
+        paddingTop: moderateScale(15),
+        justifyContent: "space-between",
+        alignItems: 'center',
+        marginHorizontal: moderateScale(16)
     },
-    footerView:{
+    footerView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: moderateScaleVertical(16),
