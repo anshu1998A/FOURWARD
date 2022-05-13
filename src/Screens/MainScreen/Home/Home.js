@@ -12,6 +12,7 @@ const Home = ({ navigation, route }) => {
   const data = useSelector(state => state.userStatus);
   const [state, setState] = useState()
   const [count, setCount] = useState(0)
+  const [ onRefress,setRefresh]=useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -24,6 +25,15 @@ const Home = ({ navigation, route }) => {
     })
   }, [count])
 
+
+  // const onRefresh = () => {
+  //   setRefresh(true);
+  //   fetchData();
+  // };
+  // const fetchData = () => {
+  //   setCount(count - 1)
+  //   setRefresh(false);
+  // };
   // const { cardData } = state;
   const renderItem = (element, index) => {
     console.log("render ITEM*********************", element)
@@ -38,7 +48,7 @@ const Home = ({ navigation, route }) => {
         postTime={element.item.time_ago}
         commentCount={element.item.comment_count}
         likesCount={element.item.like_count}
-        onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: item })}
+        onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: element })}
       />
     )
 
@@ -64,6 +74,8 @@ const Home = ({ navigation, route }) => {
 
 
           }}
+          // onRefresh={onRefresh}
+          // refreshing={onRefress}
         />
       </View>
     </WrapperContainer>
