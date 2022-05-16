@@ -53,16 +53,16 @@ export default function HomeCard({
                 marginHorizontal: moderateScale(16),
                 marginVertical: moderateScale(10)
             }}>
-                <Text style={{ color: colors.white }}> {postDetails}</Text>
+                <Text style={{ color: colors.white }}>{postDetails}</Text>
                 <Text style={{ color: colors.whiteOpacity50 }}>{postTime}</Text>
             </View>
             <View
                 style={styles.footerView}>
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={{ color: colors.white }} >{commentCount} Comments</Text>
+                    <Text style={{ color: colors.white }} > {strings.COMMENTS} {commentCount}</Text>
                 </View>
                 <View style={{ justifyContent: 'center' }}>
-                    <Text style={{ color: colors.white, }}> {likesCount} {strings.LIKES} </Text>
+                    <Text style={{ color: colors.white, }}> {strings.LIKES} {likesCount}  </Text>
                 </View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image source={imagePaths.direction} style={{ height: height / 60 }} />

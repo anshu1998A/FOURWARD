@@ -44,7 +44,7 @@ const Home = ({ navigation, route }) => {
         lastName={element.item.user.last_name}
         location={element.item.location_name}
         postImage={element.item.images.file[0]}
-        caption={element.item.caption}
+        postDetails={element.item.description}
         postTime={element.item.time_ago}
         commentCount={element.item.comment_count}
         likesCount={element.item.like_count}

@@ -90,7 +90,7 @@ const EditProfile = ({ navigation }) => {
     console.log('data>>>', data);
     let image = data.sourceURL
     console.log("SELCTE PROFILE IMAGE+++++", image)
-    // setIsLoading(true);
+    setIsLoading(true);
     const form = new FormData();
     form.append('image', {
       uri: image,
@@ -100,6 +100,7 @@ const EditProfile = ({ navigation }) => {
     let header = { 'Content-Type': 'multipart/form-data' }
     apiPost(UPLOAD_IMAGE, form, header).then(res => {
       console.log(res);
+      setIsLoading(false)
       changeHandler({ profileImage: res.data })
     }).catch(err => {
       alert(err)
@@ -121,26 +122,8 @@ const EditProfile = ({ navigation }) => {
         onPress={() => navigation.navigate(navigationString.PROFILE)} />
       <ScrollView >
         < View style={styles.imageView} >
-          <Image source={{ uri: profileImage }} style={styles.imageStyle} resizeMode="cover" />
-          {/* 
-          source={profileImage ? { uri: profileImage } : profileImage}  */}
-          {/* <TouchableOpacity
-            onPress={uploadImage}
-
-            style={styles.imagePickerStyle}>
-            {!!image && image !== "" ? (
-              <Image
-                source={{ uri: image }}
-              />
-
-            ) : (
-              <Image
-                style={styles.defaultImage}
-                source={imagePaths.edit_image}
-              />
-            )}
-
-          </TouchableOpacity> */}
+          <Image source={profileImage ? { uri: profileImage } : profileImage}  style={styles.imageStyle} resizeMode="cover" />
+         
           <TouchableOpacity style={styles.imagePickerStyle} onPress={uploadImage} >
 
             <Image

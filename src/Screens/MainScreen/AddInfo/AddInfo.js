@@ -16,6 +16,7 @@ import styles from './styles';
 const AddInfo = ({ navigation, route }) => {
     const image = route?.params?.image;
     console.log("Selected image is: ", image);
+    const [isLoading, setIsLoading] = useState(false)
     const [allValues, setAllValues] = useState({
         description: '',
         location: '',
@@ -110,19 +111,20 @@ const AddInfo = ({ navigation, route }) => {
         console.log("Post API data : ", apiData)
 
         let header = { "Content-Type": "multipart/form-data" }
+        setIsLoading(true)
         actions.addpost(apiData, header)
             .then(res => {
+                setIsLoading(false)
                 console.log("post api res_+++++", res)
                 alert("post api hit successfully....!!!")
                 navigation.navigate(navigationString.HOME)
             })
             .catch(err => {
                 console.log(err, 'err');
-                // alert(err?.message);
             });
     }
     return (
-        <WrapperContainer>
+        <WrapperContainer isLoading={isLoading} withModal={isLoading}>
             <HeadComp
                 leftImage={true}
                 leftImageIcon={imagePaths.back_Arrow}
