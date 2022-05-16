@@ -25,8 +25,8 @@ const AddInfo = ({ navigation, route }) => {
     });
 
     const { description, location, post, imageType } = allValues
-    // console.log("Selected image is+++++++++++++++++ : ", post);
     const changeHandler = (val) => { setAllValues(() => ({ ...allValues, ...val })) }
+    console.log("Selected image is+++++++++++++++++ : ", post);
 
     const launchCamera = () => {
         ImageCropPicker.openCamera({
@@ -115,9 +115,9 @@ const AddInfo = ({ navigation, route }) => {
         actions.addpost(apiData, header)
             .then(res => {
                 setIsLoading(false)
-                console.log("post api res_+++++", res)
                 alert("post api hit successfully....!!!")
                 navigation.navigate(navigationString.HOME)
+                console.log("post api res_+++++", apiData)
             })
             .catch(err => {
                 console.log(err, 'err');

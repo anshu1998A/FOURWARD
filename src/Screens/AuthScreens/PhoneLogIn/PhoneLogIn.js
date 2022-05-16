@@ -20,7 +20,7 @@ const PhoneLogIn = ({ navigation }) => {
 
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
-
+  const [isLoading, setIsLoading] = useState(false)
 
   const [data, setData] = useState({
     phoneNumber: '',
@@ -62,11 +62,14 @@ const PhoneLogIn = ({ navigation }) => {
       password: password,
       loginType: 'admin'
     }
+
     try {
+      setIsLoading(true)
       const res = await actions.login(apiData);
       console.log('Login api res_+++++', res);
       // actions.login;
       alert('User Login successfully....!!!');
+      setIsLoading(false)
     } catch (error) {
       console.log('error raised', error);
       alert(error?.message);

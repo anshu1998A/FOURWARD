@@ -21,7 +21,7 @@ const SignUp = ({ navigation }) => {
   const [countryCode, setCountryCode] = useState('91');
   const [countryFlag, setCountryFlag] = useState('IN');
 
-
+  const [isLoading, setIsLoading] = useState(false)
   console.log(DeviceInfo.getUniqueId())
 
 
@@ -85,10 +85,12 @@ const SignUp = ({ navigation }) => {
 
 
     try {
+      setIsLoading(true)
       const res = await actions.signUp(apiData);
       console.log('singnup api res_+++++', res);
       navigation.navigate(navigationString.OTP, { data: res?.data });
       alert('User signup successfully....!!!');
+      setIsLoading(false)
     } catch (error) {
       console.log('error raised', error);
 
@@ -179,7 +181,7 @@ const SignUp = ({ navigation }) => {
             secureTextEntry={confirmShow}
             placeholderTextColor={colors.whiteOpacity50}
             rightText={true}
-            rightTextVal={confirmShow? strings.SHOW : strings.HIDE}
+            rightTextVal={confirmShow ? strings.SHOW : strings.HIDE}
             value={confirmPassword}
             onChangetext={(confirmPassword) => changeHandler({ confirmPassword })}
           />

@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import imagePaths from '../constants/imagePaths';
 import strings from '../constants/lang';
 import colors from '../styles/colors';
+import AppIntroSlider from 'react-native-app-intro-slider';
 import {
     height,
     moderateScale,
@@ -14,17 +15,17 @@ import {
 
 export default function HomeCard({
     userProfile = '',
-    menuButton = '',
     postImage = '',
-    name = false,
-    onPress,
+    onPress, 
+    likeButton,
     userName = '',
     lastName = '',
     location = '',
     postDetails = '',
     postTime = '',
     commentCount = '',
-    likesCount = ''
+    likesCount = '',
+    appIntro = false
 }) {
 
 
@@ -58,12 +59,12 @@ export default function HomeCard({
             </View>
             <View
                 style={styles.footerView}>
-                <View style={{ alignItems: 'center' }}>
+                <TouchableOpacity style={{ alignItems: 'center' }} >
                     <Text style={{ color: colors.white }} > {strings.COMMENTS} {commentCount}</Text>
-                </View>
-                <View style={{ justifyContent: 'center' }}>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ justifyContent: 'center' }} onPress={likeButton}>
                     <Text style={{ color: colors.white, }}> {strings.LIKES} {likesCount}  </Text>
-                </View>
+                </TouchableOpacity>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Image source={imagePaths.direction} style={{ height: height / 60 }} />
                 </View>
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     },
     postStyle: {
         width: moderateScale(width - 68),
-        height: moderateScale(width - 68),
+        height: height / 1.5,
         marginVertical: moderateScaleVertical(16),
         alignSelf: 'center',
     },

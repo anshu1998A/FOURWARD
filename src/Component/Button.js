@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import colors from '../styles/colors';
+import fontFamily from '../styles/fontFamily';
 import { moderateScale, textScale, width } from '../styles/responsiveSize';
 
 const ButtonComponent = ({
@@ -55,6 +56,7 @@ const buttonStyles = StyleSheet.create({
     },
     textStyle: {
         fontSize: textScale(14),
+        // fontFamily: fontFamily.Barlow_Medium
     },
     image: {
         height: moderateScale(20),

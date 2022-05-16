@@ -10,21 +10,29 @@ import styles from './styles';
 
 
 const PostDetails = ({ navigation, route }) => {
-  const profile = route?.params?.postDetail;
-  const bg = profile.userName;
-
-  console.log("route?.params", route?.params)
+  const profile = route?.params?.postDetail?.item?.user?.profile;
+  const firstName = route?.params?.postDetail?.item?.user?.first_name;
+  const image = route?.params?.postDetail?.item?.images?.file[0];
+  const description = route?.params?.postDetail?.item?.description;
+  const lastName= route?.params?.postDetail?.item?.user?.last_name;
+  const location = route?.params?.postDetail?.item?.location_name;
+  const postTime = route?.params?.postDetail?.item?.time_ago;
+  console.log("uploaded image++++++", image)
+  console.log("route?.params", route?.params?.postDetail)
   return (
   
-      <ImageBackground source={profile?.postImage} style={styles.postImage} resizeMode='stretch'>
+      <ImageBackground source={{uri:image}} style={styles.postImage}>
         <View style={styles.postDetails}>
           <View style={styles.headerView}>
             <View>
-              <Image source={profile?.userProfile} style={styles.profileImage} />
+              <Image source={{uri:profile}} style={styles.profileImage} />
             </View>
             <View style={{ flex: 0.8 }}>
-              <Text style={{color:colors.white}}>{profile?.userName}</Text>
-              <Text style={{color:colors.white}}>{profile?.location}</Text>
+              <View style={{flexDirection:'row'}}>
+              <Text style={{color:colors.white}}>{firstName}</Text>
+              <Text style={{color:colors.white}}>{lastName}</Text>
+              </View>
+              <Text style={{color:colors.white}}>{location}</Text>
             </View>
             <TouchableOpacity onPress={() => {navigation.goBack()}}>
 
@@ -33,8 +41,8 @@ const PostDetails = ({ navigation, route }) => {
           </View>
 
           <View style={{paddingVertical: 20}}>
-            <Text style={{color:colors.white, fontSize:textScale(15)}}>{profile?.postDetail}</Text>
-            <Text  style={{color:colors.white, fontSize:textScale(13)}}>{profile?.postTime}</Text>
+            <Text style={{color:colors.white, fontSize:textScale(15)}}>{description}</Text>
+            <Text  style={{color:colors.white, fontSize:textScale(13)}}>{postTime}</Text>
             <ButtonComponent buttonText={strings.MAP}
               textColor={colors.white} />
           </View>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, View } from 'react-native';
-import { BarIndicator } from 'react-native-indicators';
+import {SkypeIndicator} from 'react-native-indicators';
 import colors from '../styles/colors';
 import { height, width } from '../styles/responsiveSize';
 
@@ -11,13 +11,13 @@ const LoadingComponent = () => {
   return (
     <View
       style={{
-        // ...commonStyles.loader,
-        backgroundColor: colors.whiteOpacity22,
-        elevation: 5,
+        backgroundColor: colors.whiteOpacity4,
+        
         height:height,
         width:width
       }}>
-      <BarIndicator size={25} color={colors.redD} />
+      <SkypeIndicator size={30} color={colors.redD} />
+      
     </View>
   );
 };

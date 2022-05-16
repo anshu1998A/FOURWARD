@@ -12,9 +12,23 @@ const Home = ({ navigation, route }) => {
   const data = useSelector(state => state.userStatus);
   const [state, setState] = useState()
   const [count, setCount] = useState(0)
-  const [ onRefress,setRefresh]=useState(false)
+  const [ onRefres,setRefresh]=useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [like, setLike] = useState(0)
 
+  const onLike = (element) =>{
+    // alert("kcdcjdfbnb")
+    console.log( "ghdsxasbdxsndjsid",element.id)
+    const id = element.id
+    // console.log(like, 'Like count')
+    if(like === 0){
+      setLike(like+1)
+    }else{
+      setLike(like-1)
+    }
+    const apiData = `?post_id=${id}&status=${like}`;
+    console.log(apiData,"apidata")
+  }
   useEffect(() => {
     let apidata = `?skip=${count}`
     setIsLoading(true)
@@ -25,16 +39,8 @@ const Home = ({ navigation, route }) => {
     })
   }, [count])
 
+ 
 
-  // const onRefresh = () => {
-  //   setRefresh(true);
-  //   fetchData();
-  // };
-  // const fetchData = () => {
-  //   setCount(count - 1)
-  //   setRefresh(false);
-  // };
-  // const { cardData } = state;
   const renderItem = (element, index) => {
     console.log("render ITEM*********************", element)
     return (
@@ -49,6 +55,7 @@ const Home = ({ navigation, route }) => {
         commentCount={element.item.comment_count}
         likesCount={element.item.like_count}
         onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: element })}
+        likeButton={onLike}
       />
     )
 
@@ -67,7 +74,6 @@ const Home = ({ navigation, route }) => {
         <FlatList
           data={state}
           renderItem={renderItem}
-          // keyExtractor=
           onEndReached={() => {
             console.log('count++++++++++++++', count)
             setCount(count + 1)
@@ -75,7 +81,7 @@ const Home = ({ navigation, route }) => {
 
           }}
           // onRefresh={onRefresh}
-          // refreshing={onRefress}
+          // refreshing={onRefres}
         />
       </View>
     </WrapperContainer>

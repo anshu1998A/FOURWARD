@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
         marginBottom:moderateScale(10)
     },
     inputView:{
-        marginTop: moderateScaleVertical(16)
+        marginTop: moderateScaleVertical(16),
+        // fontFamily: fontFamily.Barlow_Medium
     }
 
 })
