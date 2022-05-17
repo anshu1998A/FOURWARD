@@ -1,3 +1,4 @@
+import { error } from 'is_js';
 import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { useSelector } from 'react-redux';
@@ -16,16 +17,24 @@ const Home = ({ navigation, route }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [like, setLike] = useState(0)
 
-  const onLike = element => {
+  const onLike = (element) => {
     let id = element.item.id
-    console.log(id,element.item.like_status)
-    if (element.item.like_status == 0) {
-      setLike(like + 1)
+    console.log(id, element.item.like_status)
+    if (like === 0) {
+      setLike(1)
     } else {
-      setLike(like - 1)
+      setLike(0)
     }
     let apiData = `?post_id=${id}&status=${like}`;
-    console.log("apidata",apiData)
+    console.log("apidata", apiData)
+    actions.getLike(apiData)
+      .then((res) => {
+        console.log("likePost____", res);
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
   }
   useEffect(() => {
     let apidata = `?skip=${count}`
@@ -38,8 +47,8 @@ const Home = ({ navigation, route }) => {
   }, [count])
 
   const refresh = () => {
-    // setRefresh(true)
-    // newData()
+    setRefresh(true)
+    newData()
 
   }
   const newData = () => {
@@ -48,20 +57,21 @@ const Home = ({ navigation, route }) => {
   }
 
 
-  const renderItem = (element, index) => {
+  const postDetail = (element,image) =>{
     console.log("render ITEM*********************", element)
+    navigation.navigate(navigationString.POST_DETAILS, {
+      item: element,
+      image: image
+    })
+    console.log(element,'mYgfImage');
+  }
+  const renderItem = (element, index) => {
+   
     return (
       <HomeCard
-        userProfile={element.item.user.profile}
-        userName={element.item.user.first_name}
-        lastName={element.item.user.last_name}
-        location={element.item.location_name}
-        postImage={element.item.images.file[0]}
-        postDetails={element.item.description}
-        postTime={element.item.time_ago}
-        commentCount={element.item.comment_count}
-        likesCount={element.item.like_count}
-        onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: element })}
+        data={element}
+        // onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: element })}
+        postNav={(image)=>postDetail( element,image)}
         likeButton={() => { onLike(element) }}
       />
     )
@@ -88,9 +98,9 @@ const Home = ({ navigation, route }) => {
             console.log('count++++++++++++++', count)
             setCount(count + 8)
           }}
-          // onRefresh={refresh}
-          // refreshing={onRefresh}
-          
+          onRefresh={refresh}
+          refreshing={onRefresh}
+
         />
       </View>
     </WrapperContainer>

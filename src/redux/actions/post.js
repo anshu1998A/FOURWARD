@@ -1,4 +1,4 @@
-import { GET_POST, UPLOAD_IMAGE, UPLOAD_POST } from "../../config/urls";
+import { GET_POST, LIKE_POST, UPLOAD_IMAGE, UPLOAD_POST } from "../../config/urls";
 import { apiGet, apiPost } from "../../utlis/utlis";
 
 export const addImage =(data, header ) =>{
@@ -36,4 +36,8 @@ export const addImage =(data, header ) =>{
 
   export const getPost = (query='') =>{
     return apiGet(GET_POST+query)
+  }
+  export const getLike =(query="") =>{
+    console.log(query)
+    return apiPost(LIKE_POST+query)
   }

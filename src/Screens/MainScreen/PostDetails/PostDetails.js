@@ -10,29 +10,33 @@ import styles from './styles';
 
 
 const PostDetails = ({ navigation, route }) => {
-  const profile = route?.params?.postDetail?.item?.user?.profile;
-  const firstName = route?.params?.postDetail?.item?.user?.first_name;
-  const image = route?.params?.postDetail?.item?.images?.file[0];
-  const description = route?.params?.postDetail?.item?.description;
-  const lastName= route?.params?.postDetail?.item?.user?.last_name;
-  const location = route?.params?.postDetail?.item?.location_name;
-  const postTime = route?.params?.postDetail?.item?.time_ago;
-  console.log("uploaded image++++++", image)
-  console.log("route?.params", route?.params?.postDetail)
+  // const data = route?.params?.postDetail?.item?.user;
+  // const profile = route?.params?.postDetail?.item?.user?.profile;
+  // const firstName = route?.params?.postDetail?.item?.user?.first_name;
+  const image = route?.params?.image;
+  const data = route?.params?.item;
+
+  // const description = route?.params?.postDetail?.item?.description;
+  // const lastName= route?.params?.postDetail?.item?.user?.last_name;
+  // const location = route?.params?.postDetail?.item?.location_name;
+  // const postTime = route?.params?.postDetail?.item?.time_ago;
+
+  console.log("route params", image )
   return (
-  
-      <ImageBackground source={{uri:image}} style={styles.postImage}>
-        <View style={styles.postDetails}>
-          <View style={styles.headerView}>
+
+    <ImageBackground source={{ uri: image }} style={styles.postImage}>
+      <View style={styles.postDetails}>
+          
+        <View style={styles.headerView}>
             <View>
-              <Image source={{uri:profile}} style={styles.profileImage} />
+              <Image source={{ uri: data?.item?.user?.profile }} style={styles.profileImage} />
             </View>
             <View style={{ flex: 0.8 }}>
               <View style={{flexDirection:'row'}}>
-              <Text style={{color:colors.white}}>{firstName}</Text>
-              <Text style={{color:colors.white}}>{lastName}</Text>
+              <Text style={{color:colors.white}}>{data?.item?.user?.first_name}</Text>
+              <Text style={{color:colors.white}}>{data?.item?.user?.last_name}</Text>
               </View>
-              <Text style={{color:colors.white}}>{location}</Text>
+              <Text style={{color:colors.white}}>{data?.item?.location_name}</Text>
             </View>
             <TouchableOpacity onPress={() => {navigation.goBack()}}>
 
@@ -40,16 +44,16 @@ const PostDetails = ({ navigation, route }) => {
             </TouchableOpacity>
           </View>
 
-          <View style={{paddingVertical: 20}}>
-            <Text style={{color:colors.white, fontSize:textScale(15)}}>{description}</Text>
-            <Text  style={{color:colors.white, fontSize:textScale(13)}}>{postTime}</Text>
+        <View style={{paddingVertical: 20}}>
+            <Text style={{color:colors.white, fontSize:textScale(15)}}>{data?.item?.description}</Text>
+            <Text  style={{color:colors.white, fontSize:textScale(13)}}>{data?.item?.time_ago}</Text>
             <ButtonComponent buttonText={strings.MAP}
               textColor={colors.white} />
           </View>
-        </View>
+      </View>
 
-      </ImageBackground>
-  
+    </ImageBackground>
+
   )
 }
 
