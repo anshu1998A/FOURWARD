@@ -10,24 +10,22 @@ import actions from '../../../redux/actions';
 
 const Home = ({ navigation, route }) => {
   const data = useSelector(state => state.userStatus);
-  const [state, setState] = useState()
+  const [state, setState] = useState([])
   const [count, setCount] = useState(0)
-  const [ onRefres,setRefresh]=useState(false)
+  const [onRefresh, setRefresh] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [like, setLike] = useState(0)
 
-  const onLike = (element) =>{
-    // alert("kcdcjdfbnb")
-    console.log( "ghdsxasbdxsndjsid",element.id)
-    const id = element.id
-    // console.log(like, 'Like count')
-    if(like === 0){
-      setLike(like+1)
-    }else{
-      setLike(like-1)
+  const onLike = element => {
+    let id = element.item.id
+    console.log(id,element.item.like_status)
+    if (element.item.like_status == 0) {
+      setLike(like + 1)
+    } else {
+      setLike(like - 1)
     }
-    const apiData = `?post_id=${id}&status=${like}`;
-    console.log(apiData,"apidata")
+    let apiData = `?post_id=${id}&status=${like}`;
+    console.log("apidata",apiData)
   }
   useEffect(() => {
     let apidata = `?skip=${count}`
@@ -35,11 +33,20 @@ const Home = ({ navigation, route }) => {
     actions.getPost(apidata).then((res) => {
       console.log("GET POST DATA+++++++++++++++++", res)
       setIsLoading(false)
-      setState(res?.data)
+      setState([...state, ...res?.data])
     })
   }, [count])
 
- 
+  const refresh = () => {
+    // setRefresh(true)
+    // newData()
+
+  }
+  const newData = () => {
+    setCount(count - 8);
+    setRefresh(false);
+  }
+
 
   const renderItem = (element, index) => {
     console.log("render ITEM*********************", element)
@@ -55,7 +62,7 @@ const Home = ({ navigation, route }) => {
         commentCount={element.item.comment_count}
         likesCount={element.item.like_count}
         onPress={() => navigation.navigate(navigationString.POST_DETAILS, { postDetail: element })}
-        likeButton={onLike}
+        likeButton={() => { onLike(element) }}
       />
     )
 
@@ -72,16 +79,18 @@ const Home = ({ navigation, route }) => {
       />
       <View>
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={state}
           renderItem={renderItem}
+          // onEndReachedThreshold={0.5}
           onEndReached={() => {
+            // alert("jsgbhfbcjhcfgh")
             console.log('count++++++++++++++', count)
-            setCount(count + 1)
-
-
+            setCount(count + 8)
           }}
-          // onRefresh={onRefresh}
-          // refreshing={onRefres}
+          // onRefresh={refresh}
+          // refreshing={onRefresh}
+          
         />
       </View>
     </WrapperContainer>
