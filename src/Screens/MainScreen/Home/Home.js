@@ -1,8 +1,8 @@
-import { error } from 'is_js';
 import { cloneDeep } from 'lodash';
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { FlatList, RefreshControl, View } from 'react-native';
+import { colors } from 'react-native-elements';
+import { color } from 'react-native-elements/dist/helpers';
 import HeadComp from '../../../Component/Header';
 import HomeCard from '../../../Component/HomeCard';
 import WrapperContainer from '../../../Component/WrapperContainer';
@@ -11,15 +11,13 @@ import navigationString from '../../../navigation/navigationString';
 import actions from '../../../redux/actions';
 
 const Home = ({ navigation, route }) => {
-  const data = useSelector(state => state.userStatus);
-  const [state, setState] = useState([])
+  // const data = useSelector(state => state.userStatus);
+  const [post, setPost] = useState([])
   const [count, setCount] = useState(0)
   const [onRefresh, setRefresh] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [like, setLike] = useState(0)
 
-
-  console.log("State'''''", state)
+  console.log("posts'''''", post)
   const onLike = (element) => {
     let id = element.item.id
     let likeStatus = Number(element.item.like_status) ? 0 : 1
@@ -30,7 +28,7 @@ const Home = ({ navigation, route }) => {
     actions.getLike(apiData)
       .then((res) => {
         console.log("likePost____", res);
-        let newArray = cloneDeep(state)
+        let newArray = cloneDeep(post)
         newArray = newArray.map((i, inx) => {
           if (i?.id == id) {
             i.like_status = likeStatus,
@@ -40,7 +38,7 @@ const Home = ({ navigation, route }) => {
             return i
           }
         })
-        setState(newArray)
+        setPost(newArray)
         console.log(newArray, "newArray");
       })
       .catch((error) => {
@@ -48,25 +46,22 @@ const Home = ({ navigation, route }) => {
       })
   }
   useEffect(()=>{
-    console.log(state,"updated state");
+    console.log(post,"updated state");
 
-  },[state])
-
+  },[post])
 
   useEffect(() => {
     if (isLoading || onRefresh) {
-
       let apidata = `?skip=${count}`
-      // setIsLoading(true)
       console.log('apidata---------', apidata)
       actions.getPost(apidata).then((res) => {
         console.log("GET POST DATA+++++++++++++++++", res)
         setIsLoading(false)
         setRefresh(false)
         if (onRefresh) {
-          setState(res?.data)
+          setPost(res?.data)
         } else {
-          setState([...state, ...res?.data])
+          setPost([...post, ...res?.data])
         }
 
       })
@@ -76,10 +71,12 @@ const Home = ({ navigation, route }) => {
   const refresh = () => {
     setCount(0)
     setRefresh(true)
-    // newData()
 
   }
 
+  // const addComments = () =>{
+
+  // }
 
   const postDetail = (element, image) => {
     //  console.log("render ITEM*********************", element)
@@ -96,9 +93,10 @@ const Home = ({ navigation, route }) => {
         data={element}
         postNav={(image) => postDetail(element, image)}
         likeButton={() => { onLike(element) }}
+        commentButton={() => navigation.navigate(navigationString.COMMENTS, {element})}
+        // commentButton={() => addComments(element)}
       />
     )
-
   }
 
   return (
@@ -113,21 +111,26 @@ const Home = ({ navigation, route }) => {
       <View>
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={state}
-          extraData={state}
+          data={post}
+          extraData={post}
           renderItem={renderItem}
+          onEndReachedThreshold={0.1}
           onEndReached={() => {
             console.log('count++++++++++++++', count)
             setCount(count + 8)
             setIsLoading(true)
           }}
-          onRefresh={refresh}
-          refreshing={onRefresh}
-
+          refreshControl={
+            <RefreshControl
+                refreshing={onRefresh}
+                onRefresh={refresh}
+                tintColor="red"
+                titleColor="red"
+            />
+        }
         />
       </View>
     </WrapperContainer>
   );
 };
-
 export default Home;

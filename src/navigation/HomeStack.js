@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react';
+import { Comments } from '../Screens/MainScreen';
 import AddInfo from '../Screens/MainScreen/AddInfo/AddInfo';
 import ChangePassword from '../Screens/MainScreen/ChangePassword/ChangePassword';
 import EditProfile from '../Screens/MainScreen/EditProfile/EditProfile';
@@ -36,6 +37,11 @@ const HomeStack = () => {
       <Stack.Screen
         name={navigationString.ADD_INFO}
         component={AddInfo}
+      />
+
+      <Stack.Screen 
+      name={navigationString.COMMENTS}
+      component={Comments}
       />
     </Stack.Navigator>
   )

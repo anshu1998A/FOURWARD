@@ -15,5 +15,10 @@ export const commonStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: moderateScaleVertical(16),
-  }
+  },
+  leftTextStyle: {
+    fontSize: textScale(16),
+    color: colors.white,
+    fontWeight: 'bold'
+},
 });

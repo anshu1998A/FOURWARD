@@ -1,16 +1,13 @@
 
-import { View, Text, Image } from 'react-native';
-import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
-import navigationString from './navigationString';
-import { Home, Notification, Search } from '../Screens/MainScreen';
+import React from 'react';
+import { Image } from 'react-native';
 import imagePaths from '../constants/imagePaths';
-import { moderateScale, moderateScaleVertical, width } from '../styles/responsiveSize';
-import Post from '../Screens/MainScreen/Post/Post';
-import Profile from '../Screens/MainScreen/Profile/Profile';
+import { Home, Notification, Post, Profile, Search } from '../Screens/MainScreen';
 import colors from '../styles/colors';
+import { moderateScale, width } from '../styles/responsiveSize';
+import navigationString from './navigationString';
+
 
 
 
@@ -28,7 +25,6 @@ function BottomTabNAvigation() {
         borderTopLeftRadius: moderateScale(8),
         borderTopRightRadius: moderateScale(8),
         borderTopWidth: moderateScale(0),
-        // paddingVertical: moderateScaleVertical(10)
         alignSelf: 'center',
         justifyContent: 'center',
       },

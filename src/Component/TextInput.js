@@ -13,7 +13,7 @@ const TextInputComponent = ({
   rightIcon = false,
   onChangetext = '',
   keyboardtype,
-  value = '',
+  value,
   viewstyle,
 multiline= false,
   rightText=false,

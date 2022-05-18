@@ -16,6 +16,7 @@ import {
 
 export default function HomeCard({
     likeButton,
+    commentButton,
     postNav = '',
     data = {}
 }) {
@@ -29,12 +30,14 @@ export default function HomeCard({
                         <Image source={{ uri: data.item.user.profile }} style={styles.userProfile} />
                     </View>
                     <View style={{ justifyContent: 'center', marginLeft: moderateScale(10) }}>
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row', width: width / 2 }}>
                             <Text style={{ color: colors.white, fontSize: textScale(16) }}>
                                 {data.item.user.first_name} {data.item.user.last_name}
                             </Text>
                         </View>
-                        <Text style={{ color: '#AEAEAE' }} >{data.item.location_name}  </Text>
+                        <Text style={{ color: '#AEAEAE', width: width / 2 }} >
+                            {data.item.location_name}
+                        </Text>
                     </View>
                 </View>
                 <View style={{ justifyContent: 'center', height: height / 20 }}>
@@ -59,10 +62,8 @@ export default function HomeCard({
                                 if (i.item != null && typeof i.item != 'object') {
                                     return (
                                         <TouchableOpacity activeOpacity={1} onPress={() => postNav(i.item)}>
-                                            <Image
-                                                source={{ uri: i.item }}
-                                                style={styles.postImage}
-                                            />
+                                            <Image source={{ uri: i.item }}
+                                                style={styles.postImage} />
                                         </TouchableOpacity>
                                     );
                                 }
@@ -85,10 +86,10 @@ export default function HomeCard({
                     activeDotIndex={snapState}
                     containerStyle={{ paddingVertical: 0, marginTop: 0 }}
                     dotColor={'red'}
-                    dotStyle={{ width: 12, height: 12, borderRadius: 12 / 2 }}
+                    dotStyle={{ width: 10, height: 10, borderRadius: 10 / 2 }}
                     inactiveDotStyle={{ width: 20, height: 20, borderRadius: 20 / 2 }}
                     inactiveDotColor={'black'}
-                    inactiveDotOpacity={0.4}
+                    inactiveDotOpacity={0.3}
                     activeOpacity={0.8}
                     dotContainerStyle={{ marginHorizontal: 2 }}
                 />
@@ -102,7 +103,7 @@ export default function HomeCard({
             </View>
             <View
                 style={styles.footerView}>
-                <TouchableOpacity style={{ alignItems: 'center' }} >
+                <TouchableOpacity style={{ alignItems: 'center' }} onPress={commentButton} >
                     <Text style={{ color: colors.white }} > {strings.COMMENTS} {data.item.comment_count}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ justifyContent: 'center' }} onPress={likeButton}>

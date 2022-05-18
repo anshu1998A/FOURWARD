@@ -16,6 +16,7 @@ export default {
     HOMESTACK: 'Home stack',
     CAHNGE_PASSWORD: "Change Password",
     POST_DETAILS: 'Post Details',
-    ADD_INFO: 'Add info'
+    ADD_INFO: 'Add info',
+    COMMENTS: 'Commetns'
    
 }
