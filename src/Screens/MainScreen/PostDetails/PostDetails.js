@@ -10,16 +10,8 @@ import styles from './styles';
 
 
 const PostDetails = ({ navigation, route }) => {
-  // const data = route?.params?.postDetail?.item?.user;
-  // const profile = route?.params?.postDetail?.item?.user?.profile;
-  // const firstName = route?.params?.postDetail?.item?.user?.first_name;
   const image = route?.params?.image;
   const data = route?.params?.item;
-
-  // const description = route?.params?.postDetail?.item?.description;
-  // const lastName= route?.params?.postDetail?.item?.user?.last_name;
-  // const location = route?.params?.postDetail?.item?.location_name;
-  // const postTime = route?.params?.postDetail?.item?.time_ago;
 
   console.log("route params", image )
   return (

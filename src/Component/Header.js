@@ -41,8 +41,6 @@ function HeadComp({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical:moderateScaleVertical(20),
-        // marginTop: moderateScale(20)
-        // backgroundColor:'pink'
       }}>
       <View style={{  flexDirection: 'row', justifyContent:'space-between',  }}>
         {leftImage && (

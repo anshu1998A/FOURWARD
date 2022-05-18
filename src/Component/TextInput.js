@@ -21,7 +21,6 @@ multiline= false,
   showPassword,
   secureTextEntry,
   longText=false,
-  // multiline={false}
   ...props
 }) => {
   return (

@@ -15,8 +15,6 @@ import {
 } from '../styles/responsiveSize';
 
 export default function HomeCard({
-
-    onPress,
     likeButton,
     postNav = '',
     data = {}
@@ -43,9 +41,6 @@ export default function HomeCard({
                     <Image source={imagePaths.setting} />
                 </View>
             </View>
-            {/* <TouchableOpacity onPress={onPress}>
-                <Image source={{ uri: postImage }} style={styles.postStyle} />
-            </TouchableOpacity> */}
             <View >
                 {!!(
                     data?.item?.images?.file &&
@@ -61,7 +56,6 @@ export default function HomeCard({
                             horizontal
                             onSnapToItem={index => setSnapState(index)}
                             renderItem={(i) => {
-                                console.log('item>>>>>>>>>', i)
                                 if (i.item != null && typeof i.item != 'object') {
                                     return (
                                         <TouchableOpacity activeOpacity={1} onPress={() => postNav(i.item)}>

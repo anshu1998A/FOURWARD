@@ -38,8 +38,8 @@ const Post = ({ navigation, route }) => {
       return;
     }
     CameraRoll.getPhotos({
-      first: 20,
-      assetType: 'photos',
+      first: 200,
+      // assetType: 'photos',
     })
       .then(r => {
         updateState({ photos: r.edges })
