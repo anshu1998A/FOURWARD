@@ -1,4 +1,4 @@
-import { GET_COMMENT, GET_POST, LIKE_POST, UPLOAD_IMAGE, UPLOAD_POST } from "../../config/urls";
+import { GET_COMMENT, GET_POST, LIKE_POST, POST_COMMENT, UPLOAD_IMAGE, UPLOAD_POST } from "../../config/urls";
 import { apiGet, apiPost } from "../../utlis/utlis";
 
 export const addImage = (data, header) => {
@@ -43,4 +43,8 @@ export const getLike = (query = "", header = {}) => {
 }
 export const getComment = (query = '') => {
   return apiGet(GET_COMMENT + query)
+}
+
+export const addComment = (query = '') => {
+  return apiPost(POST_COMMENT + query)
 }

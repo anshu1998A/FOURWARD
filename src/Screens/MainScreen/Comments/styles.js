@@ -11,13 +11,29 @@ const styles = StyleSheet.create({
     {
         marginHorizontal: moderateScaleVertical(24),
         flexDirection: 'row',
+        // flex:1,
         // justifyContent: 'space-between',
         marginBottom: moderateScaleVertical(30)
     },
     headerView: {
-        
         marginTop: moderateScaleVertical(48),
-        // justifyContent: 'space-evenly',
+        justifyContent: 'space-evenly',
+    },
+    commentMainView: {
+        flexDirection: 'row',
+        // backgroundColor:'black',
+        marginLeft: moderateScale(20),
+        alignItems:'center',
+        flex:1,
+        marginVertical: moderateScaleVertical(10)
+    },
+    userImage:{
+        // paddingVertical:5,
+        height: moderateScale(width / 10),
+        width: moderateScale(width / 10),
+        borderRadius: moderateScale(width / 20),
+        // marginBottom:5
+        // alignSelf:'center'
     },
     profileImage: {
         height: moderateScale(width / 10),
